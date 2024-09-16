@@ -1,5 +1,4 @@
 package com.example.healthflow;
-git add
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,7 @@ import java.sql.SQLException;
 public class Logincontroller {
 
     @FXML       //yani toh component access hot ahe
-    private TextField tfuser;  // Username TextField
+    private TextFieldd tfuser;  // Username TextField
 
     @FXML
     private PasswordField tfpass;  // Password PasswordField
