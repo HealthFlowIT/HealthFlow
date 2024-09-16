@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class Logincontroller {
 
     @FXML       //yani toh component access hot ahe
-    private TextFieldd tfuser;  // Username TextField
+    private TextField tfuser;  // Username TextField
 
     @FXML
     private PasswordField tfpass;  // Password PasswordField
