@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400" prefWidth="600" style="-fx-background-color: #f0f4f7;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
-
-    <!-- Background Image -->
-<!--    <ImageView fitHeight="400.0" fitWidth="600.0">-->
-<!--        <Image url="@/mnt/data/login.jpg" />-->
-<!--    </ImageView>-->
-
-    <!-- Username Field -->
-    <TextField fx:id="tfuser" layoutX="325.0" layoutY="103.0" prefHeight="40" prefWidth="250" promptText="Your Email" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
-
-    <!-- Password Field -->
-    <PasswordField fx:id="tfpass" layoutX="325.0" layoutY="169.0" prefHeight="40" prefWidth="250" promptText="Password" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
-
-    <!-- Login Button -->
-    <Button fx:id="btnlog" layoutX="373.0" layoutY="255.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" style="-fx-background-color: #1E90FF; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Login" />
-   <ProgressIndicator fx:id="load" layoutX="506.0" layoutY="264.0" progress="0.0" />
+<AnchorPane prefHeight="306.0" prefWidth="665.0" style="-fx-background-color: #eaf2f8;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
+   <ImageView fitHeight="323.0" fitWidth="619.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Screenshot%202024-09-18%20223220.png" />
+      </image>
+   </ImageView>
+   <AnchorPane layoutX="486.0" layoutY="3.0" prefHeight="314.0" prefWidth="194.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15;">
+      <children>
+      
+                <!-- Password Field -->
+          <PasswordField fx:id="tfpass" layoutX="11.0" layoutY="117.0" prefHeight="32.0" prefWidth="202.0" promptText="Password" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
+      
+                <!-- Login Button -->
+          <Button fx:id="btnlog" layoutX="53.0" layoutY="207.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" style="-fx-background-color: #2874a6; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Login" />
+      
+            <!--     Background Image-->
+      <!--    <ImageView fitHeight="400.0" fitWidth="600.0">-->
+      <!--        <Image url="@/mnt/data/login.jpg" />-->
+      <!--    </ImageView>-->
+      
+                <!-- Username Field -->
+          <TextField fx:id="tfuser" layoutX="12.0" layoutY="69.0" prefHeight="32.0" prefWidth="201.0" promptText="Your Email" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
+         <Label layoutX="107.0" layoutY="157.0" text="Forget password" textFill="#ef0e0e" />
+      </children>
+   </AnchorPane>
 </AnchorPane>

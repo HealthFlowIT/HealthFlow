@@ -2,73 +2,195 @@ package com.example.healthflow;
 
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
+import java.io.IOException;
+
+
 public class HomeController {
+//public class DashboardController {
 
     @FXML
-    private Label acp;  // Active patients label
+    public AnchorPane ankrDashboard;
 
     @FXML
-    private Label treat;  // Treatments label
+    public Button btnHome;
 
     @FXML
-    private Label Oper;  // Operations label
+    public  Button btnAppointment;
 
     @FXML
-    private PieChart piec;  // PieChart
+    public Button btnBilling;
 
     @FXML
-    private StackedBarChart<?, ?> barg;  // BarGraph
+    public MenuButton mnuBtnRegistration;
+
+    @FXML
+    public MenuItem PatientTab;
+
+    @FXML
+    public MenuItem DoctorTab;
+
+    @FXML
+    public MenuItem StaffTab;
+
+    @FXML
+    public Button btnClinicalManagement;
+
+    @FXML
+    public VBox vbxUser;
+
+    @FXML
+    public Button btnUser;
+
+    // Handler for Home button
+    @FXML
+    public void handleHomeButtonClick() throws IOException {
+        switchScene("HomePage2.fxml");
+    }
+
+    // Handler for Appointment button
+    @FXML
+    public void handleAppointmentButtonClick() throws IOException {
+        switchScene("AppointmentPage.fxml");
+    }
+
+    // Handler for Billing button
+    @FXML
+    public void handleBillingButtonClick() throws IOException {
+        switchScene("BillingandInvoice.fxml");
+    }
+
+    // Handler for Registration MenuItem selection
+    @FXML
+    public void handlePatientTabClick() throws IOException {
+        switchScene("PatientRegistration.fxml");
+    }
+
+    @FXML
+    public void handleDoctorTabClick() throws IOException {
+        switchScene("DoctorRegistration.fxml");
+    }
+
+    @FXML
+    public void handleStaffTabClick() throws IOException {
+        switchScene("StaffRegistration.fxml");
+    }
+
+    @FXML
+    public void handleClinicalManagementTabClick() throws IOException {
+        switchScene("ClinicalManagement.fxml");
+    }
+
+    // Method to switch scenes
+    private void switchScene(String fxmlFile) throws IOException {
+        System.out.println("Switching to scene: " + fxmlFile);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+//    // Reset button styles and set the clicked button as active
+//    resetButtonStyles();
+//        clickedButton.getStyleClass().add("sidebar-button-active");
+//}
+//
+//// Reset all buttons to default style
+//private void resetButtonStyles() {
+//    List<Button> buttons = List.of(btnPortfolio, btnSIP, btnMutualFunds, btnReports, btnTransactions, btnRealTimeUpdates, btnProfile);
+//    for (Button button : buttons) {
+//        button.getStyleClass().remove("sidebar-button-active");
+//    }
+//}
+
+
+
+//public class HomeController {
+
+    @FXML
+    public Label lblNoOfTotalPatients;  // Matches FXML ID for total patients
+    @FXML
+    public Label lblActivePatients;
+    @FXML
+    public Label lblNoOfActivePatients;// Added FXML ID for active patients
+    @FXML
+    public Label lblOperations;
+    @FXML
+    public Label lblNoOfOperations;// Added FXML ID for operations
+
+    @FXML
+    public PieChart pieChart;               // FXML ID for PieChart
+    @FXML
+    public XYChart<String, Number> barGraph;  // FXML ID for StackedBarChart
 
     // Database connection details
     private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-    private final String DB_USERNAME = "root"; // Replace with your MySQL username
-    private final String DB_PASSWORD = "12345678"; // Replace with your MySQL password
+    private final String DB_USERNAME = "root";
+    private final String DB_PASSWORD = "12345678";
 
-    // Method to load data into dashboard
     public void loadDashboardData() {
-        loadActivePatients();
-        loadTreatments();
-        loadOperations();
-        loadPieChart();
-        loadBarGraph();
-    }
-    //make changes over here for calculation of data
-    // Example method for loading active patients count
-    private void loadActivePatients() {
-        String query = "SELECT COUNT(*) AS activePatients FROM patients WHERE status='active'";  // Adjust table and column names
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(query);
+            // Query to get total number of patients
+            String queryTotalPatients = "SELECT COUNT(*) AS totalPatients FROM patient";
+            ResultSet resultSet = statement.executeQuery(queryTotalPatients);
+
             if (resultSet.next()) {
-                acp.setText(resultSet.getString("activePatients"));
+                int totalPatients = resultSet.getInt("totalPatients");
+                lblNoOfTotalPatients.setText(String.valueOf(totalPatients));  // Update label with data
             }
-        } catch (SQLException e) {
+
+// Query to get active patients
+            String queryActivePatients = "SELECT COUNT(*) AS activePatients FROM patient WHERE Activity = 'Active'";
+            resultSet = statement.executeQuery(queryActivePatients);
+
+            if (resultSet.next()) {
+                int activePatients = resultSet.getInt("activePatients");
+                lblNoOfActivePatients.setText(String.valueOf(activePatients));  // Update label with data
+            }
+
+// Query to get total operations, excluding rows with 'none' in the Operation column and checking for 'active' in activity column
+            String queryTotalOperations = "SELECT COUNT(*) AS totalOperations FROM patient WHERE Operation != 'none' AND activity LIKE '%active%'";
+            resultSet = statement.executeQuery(queryTotalOperations);
+
+            if (resultSet.next()) {
+                int totalOperations = resultSet.getInt("totalOperations");
+                lblNoOfOperations.setText(String.valueOf(totalOperations));  // Update label with data
+            }
+            // Example PieChart and StackedBarChart update
+            pieChart.getData().clear();
+            resultSet = statement.executeQuery("SELECT activity, COUNT(*) AS count FROM patient GROUP BY activity");
+            while (resultSet.next()) {
+                pieChart.getData().add(new PieChart.Data(resultSet.getString("activity"), resultSet.getInt("count")));
+            }
+            barGraph.getData().clear();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            resultSet = statement.executeQuery("SELECT Operation, COUNT(*) AS count FROM patient GROUP BY Operation");
+            while (resultSet.next()) {
+                series.getData().add(new XYChart.Data<>(resultSet.getString("Operation"), resultSet.getInt("count")));
+            }
+            barGraph.getData().add(series);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void loadTreatments() {
-        // Add logic for loading treatments data
-    }
-
-    private void loadOperations() {
-        // Add logic for loading operations data
-    }
-
-    private void loadPieChart() {
-        // Add logic for populating PieChart with data
-    }
-
-    private void loadBarGraph() {
-        // Add logic for populating BarGraph with data
     }
 }

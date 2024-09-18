@@ -77,17 +77,17 @@ public class Logincontroller {
     private void loadHomePage(ActionEvent event) {
         try {
             // Load the home page instead of landing page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/Home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
 
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Home Dashboard");
+            stage.setTitle("Home");
             stage.show();
 
             // Optionally, get the HomeController and pass any necessary data
-            HomeController homeController = loader.getController();
+            com.example.healthflow.HomeController homeController = loader.getController();
             homeController.loadDashboardData();  // Ensure this method exists in HomeController for loading the data
 
         } catch (IOException e) {

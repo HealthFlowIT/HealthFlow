@@ -12,6 +12,7 @@ module com.example.healthflow {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.management;
+    requires java.desktop;
 
     opens com.example.healthflow to javafx.fxml;
     exports com.example.healthflow;
