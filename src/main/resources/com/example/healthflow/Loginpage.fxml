@@ -8,29 +8,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="306.0" prefWidth="665.0" style="-fx-background-color: #eaf2f8;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
-   <ImageView fitHeight="323.0" fitWidth="619.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@Screenshot%202024-09-18%20223220.png" />
-      </image>
-   </ImageView>
-   <AnchorPane layoutX="486.0" layoutY="3.0" prefHeight="314.0" prefWidth="194.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15;">
-      <children>
-      
-                <!-- Password Field -->
-          <PasswordField fx:id="tfpass" layoutX="11.0" layoutY="117.0" prefHeight="32.0" prefWidth="202.0" promptText="Password" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
-      
-                <!-- Login Button -->
-          <Button fx:id="btnlog" layoutX="53.0" layoutY="207.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" style="-fx-background-color: #2874a6; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5; -fx-background-radius: 5;" text="Login" />
-      
-            <!--     Background Image-->
-      <!--    <ImageView fitHeight="400.0" fitWidth="600.0">-->
-      <!--        <Image url="@/mnt/data/login.jpg" />-->
-      <!--    </ImageView>-->
-      
-                <!-- Username Field -->
-          <TextField fx:id="tfuser" layoutX="12.0" layoutY="69.0" prefHeight="32.0" prefWidth="201.0" promptText="Your Email" style="-fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 5; -fx-font-size: 14px;" />
-         <Label layoutX="107.0" layoutY="157.0" text="Forget password" textFill="#ef0e0e" />
-      </children>
-   </AnchorPane>
+<AnchorPane prefHeight="306.0" prefWidth="665.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
+    <ImageView fitHeight="323.0" fitWidth="619.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@Screenshot%202024-09-18%20223220.png" />
+        </image>
+    </ImageView>
+    <AnchorPane layoutX="486.0" layoutY="3.0" prefHeight="314.0" prefWidth="194.0" styleClass="form-pane" stylesheets="@Styles1.css">
+        <children>
+
+            <!-- Password Field -->
+            <PasswordField fx:id="tfpass" layoutX="11.0" layoutY="117.0" prefHeight="32.0" prefWidth="202.0" promptText="Password" styleClass="text-field-shadow" />
+
+            <!-- Login Button -->
+            <Button fx:id="btnlog" layoutX="53.0" layoutY="207.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" styleClass="login-button" text="Login" />
+
+            <!-- Username Field -->
+            <TextField fx:id="tfuser" layoutX="12.0" layoutY="69.0" prefHeight="32.0" prefWidth="201.0" promptText="Your Email" styleClass="text-field-shadow" />
+            <Label layoutX="107.0" layoutY="157.0" text="Forget password" textFill="#ef0e0e" />
+        </children>
+    </AnchorPane>
 </AnchorPane>
