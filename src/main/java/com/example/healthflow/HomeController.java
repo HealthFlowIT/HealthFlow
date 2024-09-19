@@ -1,5 +1,4 @@
 package com.example.healthflow;
-
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -8,9 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-
-
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -22,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class HomeController {
@@ -100,30 +97,15 @@ public class HomeController {
     }
 
     // Method to switch scenes
-    private void switchScene(String fxmlFile) throws IOException {
+    public void switchScene(String fxmlFile) throws IOException {
         System.out.println("Switching to scene: " + fxmlFile);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
-//    // Reset button styles and set the clicked button as active
-//    resetButtonStyles();
-//        clickedButton.getStyleClass().add("sidebar-button-active");
-//}
-//
-//// Reset all buttons to default style
-//private void resetButtonStyles() {
-//    List<Button> buttons = List.of(btnPortfolio, btnSIP, btnMutualFunds, btnReports, btnTransactions, btnRealTimeUpdates, btnProfile);
-//    for (Button button : buttons) {
-//        button.getStyleClass().remove("sidebar-button-active");
-//    }
-//}
-
-
-
 //public class HomeController {
 
     @FXML
@@ -142,12 +124,11 @@ public class HomeController {
     @FXML
     public XYChart<String, Number> barGraph;  // FXML ID for StackedBarChart
 
-    // Database connection details
-    private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-    private final String DB_USERNAME = "root";
-    private final String DB_PASSWORD = "12345678";
-
     public void loadDashboardData() {
+        String DB_USERNAME = "root";
+        String DB_PASSWORD = "12345678";
+        // Database connection details
+        String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
              Statement statement = connection.createStatement()) {
             // Query to get total number of patients

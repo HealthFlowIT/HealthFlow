@@ -1,5 +1,6 @@
 package com.example.healthflow;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,33 +8,32 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.Objects;
 
-public class PatientRegistrationController {
-
-    @FXML
-    public AnchorPane ankrAddress;
-
-    @FXML
-    public AnchorPane ankrContact;
+public class AppointmentController {
 
     @FXML
     public AnchorPane ankrDashboard;
+    
+    @FXML
+    public MenuItem DoctorTab;
+
+    @FXML
+    public MenuItem PatientTab;
+
+    @FXML
+    public MenuItem StaffTab;
 
     @FXML
     public AnchorPane ankrDashboard2;
-
-    @FXML
-    public AnchorPane ankrMain;
-
-    @FXML
-    public AnchorPane ankrPersonalDetails;
 
     @FXML
     public AnchorPane ankrTitle;
@@ -60,103 +60,97 @@ public class PatientRegistrationController {
     public Button btnSave;
 
     @FXML
+    public Button btnSave1;
+
+    @FXML
     public Button btnUser;
 
     @FXML
     public ImageView imgvUser;
 
     @FXML
-    public Label lblAddress;
-
-    @FXML
-    public Label lblAge;
-
-    @FXML
-    public Label lblBed1;
-
-    @FXML
-    public Label lblBloodGroup;
-
-    @FXML
-    public Label lblCity;
-
-    @FXML
-    public Label lblContact;
-
-    @FXML
-    public Label lblDOB;
+    public Label lblClinicalManagement;
 
     @FXML
     public Label lblDashboard;
 
     @FXML
-    public Label lblEmail;
+    public Label lblDoctorID;
 
     @FXML
-    public Label lblGender;
+    public Label lblDoctorID1;
 
     @FXML
-    public Label lblName;
+    public Label lblDoctorID11;
 
     @FXML
-    public Label lblPIN;
+    public Label lblDoctorID111;
 
     @FXML
-    public Label lblPatientID;
+    public Label lblDoctorID112;
+
+    @FXML
+    public Label lblDoctorID1121;
+
+    @FXML
+    public Label lblDoctorID12;
+
+    @FXML
+    public Label lblDoctorID121;
+
+    @FXML
+    public Label lblDoctorID13;
+
+    @FXML
+    public Label lblDoctorID2;
+
+    @FXML
+    public Label lblDoctorID3;
 
     @FXML
     public Label lblPersonalDetails;
 
     @FXML
-    public Label lblPhoneNo;
+    public Label lblPersonalDetails1;
 
     @FXML
-    public Label lblStreet;
+    public Label lblPersonalDetails11;
+
+    @FXML
+    public Label lblPersonalDetails2;
 
     @FXML
     public MenuButton mnuBtnRegistration;
 
     @FXML
-    public TextField txtfAddressLine1;
+    public MenuButton mnubtnChooseSpeciality;
 
     @FXML
-    public TextField txtfAge;
+    public MenuButton mnubtnChooseSpeciality1;
 
     @FXML
-    public TextField txtfBedno1;
+    public MenuButton mnubtnChooseSpeciality11;
 
     @FXML
-    public TextField txtfBloodGroup;
+    public MenuButton mnubtnChooseSpeciality2;
 
     @FXML
-    public TextField txtfCity;
+    public MenuButton mnubtnChooseSpeciality21;
 
     @FXML
     public TextField txtfDOB;
 
     @FXML
-    public TextField txtfEmail;
+    public TextField txtfDOB1;
 
     @FXML
-    public TextField txtfFirstName;
+    public TextField txtfDOB11;
 
     @FXML
-    public TextField txtfGender;
+    public TextField txtfDOB2;
 
     @FXML
-    public TextField txtfLastName;
-
-    @FXML
-    public TextField txtfPIN;
-
-    @FXML
-    public TextField txtfPatientID;
-
-    @FXML
-    public TextField txtfPhoneNo;
-
-    @FXML
-    public TextField txtfStreet;
+    public TextField txtfDOB3;
 
     @FXML
     public VBox vbxDashboard;
@@ -164,7 +158,6 @@ public class PatientRegistrationController {
     @FXML
     public VBox vbxUser;
 
-    // Handler for Home button
     @FXML
     public void handleHomeButtonClick() throws IOException {
         switchScene("HomePage2.fxml");
@@ -179,7 +172,7 @@ public class PatientRegistrationController {
     // Handler for Billing button
     @FXML
     public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingPage.fxml");
+        switchScene("BillingandInvoice.fxml");
     }
 
     // Handler for Registration MenuItem selection
@@ -204,7 +197,9 @@ public class PatientRegistrationController {
     }
 
     // Method to switch scenes
-    private void switchScene(String fxmlFile) throws IOException {
+    public void switchScene(String fxmlFile) throws IOException {
+        System.out.println("Switching to scene: " + fxmlFile);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
@@ -212,5 +207,3 @@ public class PatientRegistrationController {
         stage.show();
     }
 }
-
-

@@ -1,6 +1,6 @@
 package com.example.healthflow;
 
-import javafx.event.ActionEvent;
+//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,15 +11,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Objects;
+
 import javafx.scene.control.TableView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.control.cell.PropertyValueFactory;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+//import javafx.scene.control.cell.PropertyValueFactory;
+//import java.sql.Connection;
+//import java.sql.DriverManager;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 
 
 public class ClinicalManagementController {
@@ -125,7 +127,7 @@ public class ClinicalManagementController {
 
     // Method to switch scenes
     private void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
         stage.setScene(scene);

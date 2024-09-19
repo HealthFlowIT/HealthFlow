@@ -1,4 +1,5 @@
 package com.example.healthflow;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +13,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class BillingAndInvoiceController {
+public class DoctorRegistrationController {
+
+    @FXML
+    public AnchorPane ankrContact;
+
+    @FXML
+    public AnchorPane ankrCredentials;
 
     @FXML
     public AnchorPane ankrDashboard;
@@ -22,6 +29,9 @@ public class BillingAndInvoiceController {
 
     @FXML
     public AnchorPane ankrMain;
+
+    @FXML
+    public AnchorPane ankrOthers;
 
     @FXML
     public AnchorPane ankrPersonalDetails;
@@ -51,16 +61,16 @@ public class BillingAndInvoiceController {
     public Button btnSave;
 
     @FXML
-    public Button btnSave1;
-
-    @FXML
     public Button btnUser;
 
     @FXML
     public ImageView imgvUser;
 
     @FXML
-    public Label lblClinicalManagement;
+    public Label lblContact;
+
+    @FXML
+    public Label lblCredentials;
 
     @FXML
     public Label lblDOB;
@@ -72,47 +82,99 @@ public class BillingAndInvoiceController {
     public Label lblDoctorID;
 
     @FXML
-    public Label lblDoctorID1;
+    public Label lblDoctorRegistration;
+
+    @FXML
+    public Label lblEmail;
 
     @FXML
     public Label lblGender;
 
     @FXML
-    private Label lblGender1;
+    public Label lblName;
 
     @FXML
-    private Label lblName;
+    public Label lblOthers;
 
     @FXML
-    private Label lblPersonalDetails;
+    public Label lblPassword;
 
     @FXML
-    private MenuButton mnuBtnRegistration;
+    public Label lblPersonalDetails;
 
     @FXML
-    private TextField txtfDOB;
+    public Label lblPhoneNo;
 
     @FXML
-    private TextField txtfFirstName;
+    public Label lblRegNo;
 
     @FXML
-    private TextField txtfGender;
+    public Label lblSpeciality;
 
     @FXML
-    private TextField txtfGender1;
+    public Label lblUsername;
 
     @FXML
-    private TextField txtfLastName;
+    public MenuButton mnuBtnRegistration;
 
     @FXML
-    private VBox vbxDashboard;
+    public MenuButton mnubtnChooseSpeciality;
 
     @FXML
-    private VBox vbxUser;
+    public TextField txtfConfirmPassword;
+
+    @FXML
+    public TextField txtfDOB;
+
+    @FXML
+    public TextField txtfDoctorID;
+
+    @FXML
+    public TextField txtfEmail;
+
+    @FXML
+    public TextField txtfFirstName;
+
+    @FXML
+    public TextField txtfGender;
+
+    @FXML
+    public TextField txtfLastName;
+
+    @FXML
+    public TextField txtfPhoneNo;
+
+    @FXML
+    public TextField txtfRegNo;
+
+    @FXML
+    public TextField txtfSetPassword;
+
+    @FXML
+    public TextField txtfUsername;
+
+    @FXML
+    public VBox vbxDashboard;
+
+    @FXML
+    public VBox vbxUser;
+
+
+
+        @FXML
+        public MenuItem PatientTab;
+
+        @FXML
+        public MenuItem DoctorTab;
+
+        @FXML
+        public MenuItem StaffTab;
+
+
 
         // Handler for Home button
         @FXML
-       public void handleHomeButtonClick() throws IOException {
+        public void handleHomeButtonClick() throws IOException {
             switchScene("HomePage2.fxml");
         }
 
@@ -124,13 +186,13 @@ public class BillingAndInvoiceController {
 
         // Handler for Billing button
         @FXML
-        private void handleBillingButtonClick() throws IOException {
+        public void handleBillingButtonClick() throws IOException {
             switchScene("BillingPage.fxml");
         }
 
         // Handler for Registration MenuItem selection
         @FXML
-        private void handlePatientTabClick() throws IOException {
+        public void handlePatientTabClick() throws IOException {
             switchScene("PatientRegistration.fxml");
         }
 
@@ -147,11 +209,10 @@ public class BillingAndInvoiceController {
         @FXML
         public void handleClinicalManagementTabClick() throws IOException {
             switchScene("ClinicalManagement.fxml");
-
         }
 
         // Method to switch scenes
-        private void switchScene(String fxmlFile) throws IOException {
+        public void switchScene(String fxmlFile) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ankrDashboard.getScene().getWindow();
@@ -159,5 +220,4 @@ public class BillingAndInvoiceController {
             stage.show();
         }
     }
-
 

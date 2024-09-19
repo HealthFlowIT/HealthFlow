@@ -13,6 +13,7 @@ module com.example.healthflow {
     requires java.sql;
     requires java.management;
     requires java.desktop;
+    requires mysql.connector.j;
 
     opens com.example.healthflow to javafx.fxml;
     exports com.example.healthflow;
