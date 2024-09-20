@@ -186,13 +186,13 @@ public class PatientRegistrationController {
     // Handler for Appointment button
     @FXML
     public void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button
     @FXML
     public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingPage.fxml");
+        switchScene("BillingandInvoice.fxml");
     }
 
     // Handler for Registration MenuItem selection
@@ -224,84 +224,84 @@ public class PatientRegistrationController {
         stage.setScene(scene);
         stage.show();
     }
-    // Your existing @FXML variables
+//     Your existing @FXML variables
 
-//    // Method to save patient details to the database
-//    @FXML
-//    public void handleSaveButtonClick() {
-//        String patientID = txtfPatientID.getText();
-//        String firstName = txtfFirstName.getText();
-//        String lastName = txtfLastName.getText();
-//        String address = txtfAddressLine1.getText();
-//        String city = txtfCity.getText();
-//        String pinCode = txtfPIN.getText();
-//        String bedNumber = txtfBedno1.getText();
-//        String bloodGroup = txtfBloodGroup.getText();
-//        String age = txtfAge.getText();
-//        String dob = (txtfDOB.getValue() != null) ? txtfDOB.getValue().toString() : null;  // Null safety for DatePicker
-//        String gender = txtfGender.getText();
-//        String phone = txtfPhoneNo.getText();
-//        String email = txtfEmail.getText();
-//
-//        // Check for null values before proceeding
-//        if (patientID == null || firstName == null || lastName == null || dob == null) {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Validation Error");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Please fill in all required fields (ID, Name, DOB).");
-//            alert.showAndWait();
-//            return;
-//        }
-//
-//        // SQL query for patient table
-//        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id) "
-//                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//
-//        // SQL query for bed table
-//        String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
-//
-//        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
-//             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient);
-//             PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
-//
-//            // Set parameters for patient table
-//            pstmtPatient.setString(1, patientID);
-//            pstmtPatient.setString(2, firstName);
-//            pstmtPatient.setString(3, lastName);
-//            pstmtPatient.setString(4, address);
-//            pstmtPatient.setString(5, city);
-//            pstmtPatient.setString(6, pinCode);
-//            pstmtPatient.setString(7, bloodGroup);
-//            pstmtPatient.setString(8, age);
-//            pstmtPatient.setString(9, dob);
-//            pstmtPatient.setString(10, gender);
-//            pstmtPatient.setString(11, phone);
-//            pstmtPatient.setString(12, email);
-//
-//            // Set parameters for bed table
-//            pstmtBed.setString(1, bedNumber);
-//            pstmtBed.setString(2, patientID);
-//
-//            // Execute the queries
-//            pstmtPatient.executeUpdate();
-//            pstmtBed.executeUpdate();
-//
-//            // Notify the user
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Success");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Patient details saved successfully!");
-//            alert.showAndWait();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setTitle("Error");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Failed to save patient details: " + e.getMessage());
-//            alert.showAndWait();
-//        }
-//    }
+    // Method to save patient details to the database
+    @FXML
+    public void handleSaveButtonClick() {
+        String patientID = txtfPatientID.getText();
+        String firstName = txtfFirstName.getText();
+        String lastName = txtfLastName.getText();
+        String address = txtfAddressLine1.getText();
+        String city = txtfCity.getText();
+        String pinCode = txtfPIN.getText();
+        String bedNumber = txtfBedno1.getText();
+        String bloodGroup = txtfBloodGroup.getText();
+        String age = txtfAge.getText();
+        String dob = (txtfDOB.getValue() != null) ? txtfDOB.getValue().toString() : null;  // Null safety for DatePicker
+        String gender = txtfGender.getText();
+        String phone = txtfPhoneNo.getText();
+        String email = txtfEmail.getText();
+
+        // Check for null values before proceeding
+        if (patientID == null || firstName == null || lastName == null || dob == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in all required fields (ID, Name, DOB).");
+            alert.showAndWait();
+            return;
+        }
+
+        // SQL query for patient table
+        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        // SQL query for bed table
+        String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient);
+             PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
+
+            // Set parameters for patient table
+            pstmtPatient.setString(1, patientID);
+            pstmtPatient.setString(2, firstName);
+            pstmtPatient.setString(3, lastName);
+            pstmtPatient.setString(4, address);
+            pstmtPatient.setString(5, city);
+            pstmtPatient.setString(6, pinCode);
+            pstmtPatient.setString(7, bloodGroup);
+            pstmtPatient.setString(8, age);
+            pstmtPatient.setString(9, dob);
+            pstmtPatient.setString(10, gender);
+            pstmtPatient.setString(11, phone);
+            pstmtPatient.setString(12, email);
+
+            // Set parameters for bed table
+            pstmtBed.setString(1, bedNumber);
+            pstmtBed.setString(2, patientID);
+
+            // Execute the queries
+            pstmtPatient.executeUpdate();
+            pstmtBed.executeUpdate();
+
+            // Notify the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Patient details saved successfully!");
+            alert.showAndWait();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to save patient details: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
 
 
 }

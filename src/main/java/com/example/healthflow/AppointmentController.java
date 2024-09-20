@@ -171,7 +171,7 @@ public class AppointmentController {
     // Handler for Appointment button
     @FXML
     public void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button

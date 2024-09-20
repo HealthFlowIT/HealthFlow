@@ -181,13 +181,13 @@ public class DoctorRegistrationController {
         // Handler for Appointment button
         @FXML
         public void handleAppointmentButtonClick() throws IOException {
-            switchScene("AppointmentPage.fxml");
+            switchScene("Appointment.fxml");
         }
 
         // Handler for Billing button
         @FXML
         public void handleBillingButtonClick() throws IOException {
-            switchScene("BillingPage.fxml");
+            switchScene("BillingandInvoice.fxml");
         }
 
         // Handler for Registration MenuItem selection

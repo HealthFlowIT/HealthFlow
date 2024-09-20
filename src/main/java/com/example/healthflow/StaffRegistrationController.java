@@ -168,6 +168,7 @@ public VBox vbxUser;
     @FXML
     public MenuItem StaffTab;
     // Handler for Home button
+    // Handler for Home button
     @FXML
     public void handleHomeButtonClick() throws IOException {
         switchScene("HomePage2.fxml");
@@ -176,13 +177,13 @@ public VBox vbxUser;
     // Handler for Appointment button
     @FXML
     public void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button
     @FXML
     public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingPage.fxml");
+        switchScene("BillingandInvoice.fxml");
     }
 
     // Handler for Registration MenuItem selection
@@ -215,5 +216,53 @@ public VBox vbxUser;
         stage.show();
     }
 }
+
+//    @FXML
+//    public void handleHomeButtonClick() throws IOException {
+//        switchScene("HomePage2.fxml");
+//    }
+//
+//    // Handler for Appointment button
+//    @FXML
+//    public void handleAppointmentButtonClick() throws IOException {
+//        switchScene("Appointment.fxml");
+//    }
+//
+//    // Handler for Billing button
+//    @FXML
+//    public void handleBillingButtonClick() throws IOException {
+//        switchScene("BillingandInvoice.fxml");
+//    }
+//
+//    // Handler for Registration MenuItem selection
+//    @FXML
+//    public void handlePatientTabClick() throws IOException {
+//        switchScene("PatientRegistration.fxml");
+//    }
+//
+//    @FXML
+//    public void handleDoctorTabClick() throws IOException {
+//        switchScene("DoctorRegistration.fxml");
+//    }
+//
+//    @FXML
+//    public void handleStaffTabClick() throws IOException {
+//        switchScene("StaffRegistration.fxml");
+//    }
+//
+//    @FXML
+//    public void handleClinicalManagementTabClick() throws IOException {
+//        switchScene("ClinicalManagement.fxml");
+//    }
+//
+//    // Method to switch scenes
+//    public void switchScene(String fxmlFile) throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+//}
 
 

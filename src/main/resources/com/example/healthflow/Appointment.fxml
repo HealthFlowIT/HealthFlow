@@ -21,7 +21,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.AppointmentController">
    <AnchorPane fx:id="ankrDashboard" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="10.0">
       <VBox fx:id="vbxDashboard" layoutY="-2.0" prefHeight="385.0" prefWidth="123.0" style="-fx-background-color: #3F72AF; -fx-background-radius: 20;" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="76.66666666666667" AnchorPane.topAnchor="-2.0">
          <Label fx:id="lblDashboard" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="127.0" text="HealthFlow" textAlignment="CENTER" textFill="#dbe2ef" underline="true">
@@ -33,7 +33,7 @@
             </effect>
          </Label>
          <AnchorPane fx:id="ankrDashboard2" prefHeight="206.0" prefWidth="127.0">
-            <Button fx:id="btnClinicalManagement" alignment="CENTER" layoutX="21.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="143.0">
+            <Button fx:id="btnClinicalManagement" alignment="CENTER" layoutX="21.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="143.0">
                <font>
                   <Font name="Calibri Bold" size="10.0" />
                </font>
@@ -61,7 +61,7 @@
          </effect>
       </MenuButton>
    </AnchorPane>
-   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="51.0">
+   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="51.0">
       <font>
          <Font name="Calibri Bold" size="10.0" />
       </font>
@@ -69,7 +69,7 @@
          <InnerShadow />
       </effect>
    </Button>
-   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="103.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="107.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Appointment" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="95.0">
+   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="103.0" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="24.0" prefWidth="107.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Appointment" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="276.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="95.0">
       <font>
          <Font name="Calibri Bold" size="10.0" />
       </font>
@@ -77,7 +77,7 @@
          <DropShadow />
       </effect>
    </Button>
-   <Button fx:id="btnBilling" alignment="CENTER" layoutX="25.0" layoutY="143.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Billing / Invoice" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="231.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="140.0">
+   <Button fx:id="btnBilling" alignment="CENTER" layoutX="25.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleBillingButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Billing / Invoice" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="231.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="140.0">
       <font>
          <Font name="Calibri Bold" size="10.0" />
       </font>
@@ -232,7 +232,7 @@
                <Font name="Calibri" size="12.0" />
             </font>
          </Label>
-         <DatePicker fx:id="dtpkrDate" layoutX="58.0" layoutY="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="93.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" />
+         <DatePicker fx:id="dtpkrDate" layoutX="58.0" layoutY="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="21.0" prefWidth="93.0" style="-fx-background-color: #DBE2Ef; -fx-background-radius: 20;" />
          <Label fx:id="lblTimeSlot" layoutX="225.0" layoutY="32.0" prefWidth="66.0" text="Time Slot :" AnchorPane.topAnchor="32.0">
             <font>
                <Font name="Calibri" size="12.0" />

@@ -48,9 +48,9 @@
       </VBox>
       <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #112D4E; -fx-background-radius: 20;" text="Registration" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.5" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="220.0">
          <items>
-            <MenuItem mnemonicParsing="false" text="Patient" />
-            <MenuItem mnemonicParsing="false" text="Doctor" />
-            <MenuItem mnemonicParsing="false" text="Staff" />
+            <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
+            <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
+            <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
          </items>
          <font>
             <Font name="Calibri Bold" size="11.0" />

@@ -58,10 +58,10 @@ public class HomeController {
     public Button btnUser;
 
     // Handler for Home button
-//    @FXML
-//    public void handleHomeButtonClick() throws IOException {
-//        switchScene("HomePage2.fxml");
-//    }
+    @FXML
+    public void handleHomeButtonClick() throws IOException {
+        switchScene("HomePage2.fxml");
+    }
 
     // Handler for Appointment button
     @FXML
