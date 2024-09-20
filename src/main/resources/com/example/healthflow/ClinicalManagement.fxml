@@ -36,16 +36,12 @@
             </effect>
          </Label>
          <AnchorPane fx:id="ankrDashboard2" prefHeight="206.0" prefWidth="127.0">
-            <Button fx:id="btnClinicalManagement" alignment="CENTER" layoutX="21.0" layoutY="147.0" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="143.0">
+            <Button fx:id="btnClinicalManagement" alignment="CENTER" layoutX="21.0" layoutY="147.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="143.0">
                <font>
                   <Font name="Calibri Bold" size="10.0" />
                </font>
                <effect>
-                  <InnerShadow>
-                     <color>
-                        <Color opacity="0.8223350048065186" />
-                     </color>
-                  </InnerShadow>
+                     <DropShadow />
                </effect>
             </Button>
          </AnchorPane>
@@ -93,9 +89,6 @@
             <color>
                <Color opacity="0.8223350048065186" />
             </color>
-            <input>
-               <DropShadow />
-            </input>
          </InnerShadow>
       </effect>
    </Button>

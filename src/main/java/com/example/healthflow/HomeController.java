@@ -31,7 +31,7 @@ public class HomeController {
     public Button btnHome;
 
     @FXML
-    public  Button btnAppointment;
+    public Button btnAppointment;
 
     @FXML
     public Button btnBilling;
@@ -58,15 +58,15 @@ public class HomeController {
     public Button btnUser;
 
     // Handler for Home button
-    @FXML
-    public void handleHomeButtonClick() throws IOException {
-        switchScene("HomePage2.fxml");
-    }
+//    @FXML
+//    public void handleHomeButtonClick() throws IOException {
+//        switchScene("HomePage2.fxml");
+//    }
 
     // Handler for Appointment button
     @FXML
     public void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button
@@ -159,7 +159,7 @@ public class HomeController {
             }
             // Example PieChart and StackedBarChart update
             pieChart.getData().clear();
-            resultSet = statement.executeQuery("SELECT activity, COUNT(*) AS count FROM patient GROUP BY activity");
+            resultSet = statement.executeQuery("SELECT Activity, COUNT(*) AS count FROM patient GROUP BY activity");
             while (resultSet.next()) {
                 pieChart.getData().add(new PieChart.Data(resultSet.getString("activity"), resultSet.getInt("count")));
             }
@@ -175,3 +175,4 @@ public class HomeController {
         }
     }
 }
+

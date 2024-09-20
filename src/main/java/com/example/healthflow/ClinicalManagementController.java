@@ -95,13 +95,13 @@ public class ClinicalManagementController {
     // Handler for Appointment button
     @FXML
     public void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button
     @FXML
     public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingPage.fxml");
+        switchScene("BillingandInvoice.fxml");
     }
 
     // Handler for Registration MenuItem selection
@@ -120,10 +120,10 @@ public class ClinicalManagementController {
         switchScene("StaffRegistration.fxml");
     }
 
-    @FXML
-    public void handleClinicalManagementTabClick() throws IOException {
-        switchScene("ClinicalManagement.fxml");
-    }
+//    @FXML
+//    public void handleClinicalManagementTabClick() throws IOException {
+//        switchScene("ClinicalManagement.fxml");
+//    }
 
     // Method to switch scenes
     private void switchScene(String fxmlFile) throws IOException {

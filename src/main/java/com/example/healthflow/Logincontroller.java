@@ -3,10 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 
@@ -44,6 +41,13 @@ public class Logincontroller {
         } else {
             // Credentials are incorrect, show an error alert
             showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
+        }
+        if (tfuser.getText().isEmpty() || tfpass.getText().isEmpty()) {
+            lblError.setText("Please enter username and password");
+            lblError.setVisible(true);
+        } else {
+            // Process login
+            lblError.setVisible(false);
         }
     }
 
@@ -103,4 +107,7 @@ public class Logincontroller {
         alert.setContentText(message);
         alert.showAndWait();
     }
-}
+    @FXML
+    private Label lblError;
+    }
+

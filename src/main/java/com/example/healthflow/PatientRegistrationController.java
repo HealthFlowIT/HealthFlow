@@ -4,18 +4,28 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class PatientRegistrationController {
+
+    @FXML
+    public MenuItem DoctorTab;
+
+    @FXML
+    public MenuItem PatientTab;
+
+    @FXML
+    public MenuItem StaffTab;
 
     @FXML
     public AnchorPane ankrAddress;
@@ -67,6 +77,9 @@ public class PatientRegistrationController {
 
     @FXML
     public Label lblAddress;
+
+    @FXML
+    public Label lblAddress1;
 
     @FXML
     public Label lblAge;
@@ -132,7 +145,7 @@ public class PatientRegistrationController {
     public TextField txtfCity;
 
     @FXML
-    public TextField txtfDOB;
+    public DatePicker txtfDOB;
 
     @FXML
     public TextField txtfEmail;
@@ -204,13 +217,96 @@ public class PatientRegistrationController {
     }
 
     // Method to switch scenes
-    private void switchScene(String fxmlFile) throws IOException {
+    public void switchScene(String fxmlFile) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+    // Your existing @FXML variables
+
+//    // Method to save patient details to the database
+//    @FXML
+//    public void handleSaveButtonClick() {
+//        String patientID = txtfPatientID.getText();
+//        String firstName = txtfFirstName.getText();
+//        String lastName = txtfLastName.getText();
+//        String address = txtfAddressLine1.getText();
+//        String city = txtfCity.getText();
+//        String pinCode = txtfPIN.getText();
+//        String bedNumber = txtfBedno1.getText();
+//        String bloodGroup = txtfBloodGroup.getText();
+//        String age = txtfAge.getText();
+//        String dob = (txtfDOB.getValue() != null) ? txtfDOB.getValue().toString() : null;  // Null safety for DatePicker
+//        String gender = txtfGender.getText();
+//        String phone = txtfPhoneNo.getText();
+//        String email = txtfEmail.getText();
+//
+//        // Check for null values before proceeding
+//        if (patientID == null || firstName == null || lastName == null || dob == null) {
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Validation Error");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Please fill in all required fields (ID, Name, DOB).");
+//            alert.showAndWait();
+//            return;
+//        }
+//
+//        // SQL query for patient table
+//        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id) "
+//                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//        // SQL query for bed table
+//        String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
+//
+//        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+//             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient);
+//             PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
+//
+//            // Set parameters for patient table
+//            pstmtPatient.setString(1, patientID);
+//            pstmtPatient.setString(2, firstName);
+//            pstmtPatient.setString(3, lastName);
+//            pstmtPatient.setString(4, address);
+//            pstmtPatient.setString(5, city);
+//            pstmtPatient.setString(6, pinCode);
+//            pstmtPatient.setString(7, bloodGroup);
+//            pstmtPatient.setString(8, age);
+//            pstmtPatient.setString(9, dob);
+//            pstmtPatient.setString(10, gender);
+//            pstmtPatient.setString(11, phone);
+//            pstmtPatient.setString(12, email);
+//
+//            // Set parameters for bed table
+//            pstmtBed.setString(1, bedNumber);
+//            pstmtBed.setString(2, patientID);
+//
+//            // Execute the queries
+//            pstmtPatient.executeUpdate();
+//            pstmtBed.executeUpdate();
+//
+//            // Notify the user
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Success");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Patient details saved successfully!");
+//            alert.showAndWait();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Failed to save patient details: " + e.getMessage());
+//            alert.showAndWait();
+//        }
+//    }
+
+
 }
+
+
+
 
 

@@ -9,10 +9,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
 
 public class BillingAndInvoiceController {
+
+    @FXML
+    public DatePicker DpDD;
+
+    @FXML
+    public DatePicker DpInv;
+
+    @FXML
+    public TableColumn<?, ?> TcAmt;
+
+    @FXML
+    public TableColumn<?, ?> TcP;
+
+    @FXML
+    public TableColumn<?, ?> TcSr;
 
     @FXML
     public AnchorPane ankrDashboard;
@@ -48,10 +64,10 @@ public class BillingAndInvoiceController {
     public Button btnHome;
 
     @FXML
-    public Button btnSave;
+    public Button btnPaid;
 
     @FXML
-    public Button btnSave1;
+    public Button btnSave;
 
     @FXML
     public Button btnUser;
@@ -66,6 +82,12 @@ public class BillingAndInvoiceController {
     public Label lblDOB;
 
     @FXML
+    public Label lblDOB1;
+
+    @FXML
+    public Label lblDOB11;
+
+    @FXML
     public Label lblDashboard;
 
     @FXML
@@ -78,37 +100,43 @@ public class BillingAndInvoiceController {
     public Label lblGender;
 
     @FXML
-    private Label lblGender1;
+    public Label lblGender1;
 
     @FXML
-    private Label lblName;
+    public Label lblName;
 
     @FXML
-    private Label lblPersonalDetails;
+    public Label lblPersonalDetails;
 
     @FXML
-    private MenuButton mnuBtnRegistration;
+    public MenuButton mnuBtnRegistration;
 
     @FXML
-    private TextField txtfDOB;
+    public TextField txtfAD;
 
     @FXML
-    private TextField txtfFirstName;
+    public TextField txtfDD;
 
     @FXML
-    private TextField txtfGender;
+    public TextField txtfDOB;
 
     @FXML
-    private TextField txtfGender1;
+    public TextField txtfFirstName;
 
     @FXML
-    private TextField txtfLastName;
+    public TextField txtfGender;
 
     @FXML
-    private VBox vbxDashboard;
+    public TextField txtfGender1;
 
     @FXML
-    private VBox vbxUser;
+    public TextField txtfLastName;
+
+    @FXML
+    public VBox vbxDashboard;
+
+    @FXML
+    public VBox vbxUser;
 
         // Handler for Home button
         @FXML
@@ -119,18 +147,18 @@ public class BillingAndInvoiceController {
         // Handler for Appointment button
         @FXML
         public void handleAppointmentButtonClick() throws IOException {
-            switchScene("AppointmentPage.fxml");
+            switchScene("Appointment.fxml");
         }
 
         // Handler for Billing button
-        @FXML
-        private void handleBillingButtonClick() throws IOException {
-            switchScene("BillingPage.fxml");
-        }
+//        @FXML
+//        public void handleBillingButtonClick() throws IOException {
+//            switchScene("BillingandInvoice.fxml");
+//        }
 
         // Handler for Registration MenuItem selection
         @FXML
-        private void handlePatientTabClick() throws IOException {
+        public void handlePatientTabClick() throws IOException {
             switchScene("PatientRegistration.fxml");
         }
 
@@ -151,13 +179,14 @@ public class BillingAndInvoiceController {
         }
 
         // Method to switch scenes
-        private void switchScene(String fxmlFile) throws IOException {
+        public void switchScene(String fxmlFile) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ankrDashboard.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         }
+    
     }
 
 

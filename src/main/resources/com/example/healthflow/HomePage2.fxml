@@ -72,7 +72,7 @@
          </effect>
       </ImageView>
    </AnchorPane>
-   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="148.0" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 20;" text="Home" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="51.0">
+   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 20;" text="Home" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="320.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="477.0" AnchorPane.topAnchor="51.0">
       <font>
          <Font name="Calibri Bold" size="10.0" />
       </font>
@@ -180,10 +180,10 @@
       </Label>
    </AnchorPane>
    <AnchorPane fx:id="ankrPiechart" layoutX="152.4" layoutY="142.8" prefHeight="150.0" prefWidth="224.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="135.8">
-      <PieChart fx:id="pieChart" layoutX="12.0" layoutY="5.0" prefHeight="150.0" prefWidth="178.0" title="piechart" AnchorPane.topAnchor="5.0" />
+      <PieChart fx:id="pieChart" layoutX="12.0" layoutY="5.0" prefHeight="226.0" prefWidth="200.0" title="Patient Stats" AnchorPane.topAnchor="5.0" />
    </AnchorPane>
    <AnchorPane fx:id="ankrBarGraph" layoutX="382.0" layoutY="143.0" prefHeight="156.0" prefWidth="214.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="136.0">
-      <StackedBarChart fx:id="barGraph" layoutY="3.0" minWidth="-Infinity" prefHeight="226.0" prefWidth="218.0" title="bargraph" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <StackedBarChart fx:id="barGraph" layoutY="3.0" minWidth="-Infinity" prefHeight="226.0" prefWidth="218.0" title="Operation Stats" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>

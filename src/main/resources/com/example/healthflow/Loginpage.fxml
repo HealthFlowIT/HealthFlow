@@ -14,6 +14,7 @@
             <Image url="@Screenshot%202024-09-18%20223220.png" />
         </image>
     </ImageView>
+    <Label fx:id="lblError" layoutX="50" layoutY="180" textFill="red" visible="false"/>
     <AnchorPane layoutX="486.0" layoutY="3.0" prefHeight="314.0" prefWidth="194.0" styleClass="form-pane" stylesheets="@Styles1.css">
         <children>
 
