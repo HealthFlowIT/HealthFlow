@@ -127,7 +127,7 @@
          <Image url="@man_4825038.png" />
       </ImageView>
    </VBox>
-   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
       <font>
          <Font name="Gill Sans Ultra Bold" size="14.0" />
       </font>
@@ -139,47 +139,59 @@
          </DropShadow>
       </effect>
    </Button>
-   <AnchorPane fx:id="ankrTitle" layoutX="201.33333333333334" layoutY="39.0" prefHeight="28.0" prefWidth="160.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="201.0" AnchorPane.topAnchor="23.0">
-      <children>
-         <Label fx:id="lblClinicalManagement" layoutX="14.0" layoutY="2.0" text="Billing / Invoice">
-            <font>
-               <Font name="Book Antiqua Bold" size="18.0" />
-            </font>
-         </Label>
-      </children>
+   <AnchorPane fx:id="ankrTitle" layoutX="201.33333333333334" layoutY="39.0" prefHeight="28.0" prefWidth="160.0"
+               style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="201.0"
+               AnchorPane.topAnchor="23.0">
+      <Label fx:id="lblClinicalManagement" layoutX="14.0" layoutY="2.0" text="Billing / Invoice">
+         <font>
+            <Font name="Book Antiqua Bold" size="18.0"/>
+         </font>
+      </Label>
    </AnchorPane>
-   <AnchorPane layoutX="152.0" layoutY="184.0" prefHeight="135.0" prefWidth="267.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.bottomAnchor="78.66666666666666" AnchorPane.topAnchor="186.0">
-      <children>
-         <TableView layoutX="14.0" layoutY="44.0" prefHeight="108.0" prefWidth="240.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-            <columns>
-               <TableColumn fx:id="TcSr" prefWidth="21.555572509765625" style="-fx-background-color: #DBE2EF;" text="Sr." />
-               <TableColumn fx:id="TcP" prefWidth="168.44442749023438" style="-fx-background-color: #DBE2EF;" text="Particulars " />
-               <TableColumn fx:id="TcAmt" prefWidth="53.999969482421875" style="-fx-background-color: #DBE2EF;" text="Amount" />
-            </columns>
-            <columnResizePolicy>
-               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </TableView>
-      </children>
+   <AnchorPane layoutX="152.0" layoutY="184.0" prefHeight="135.0" prefWidth="267.0"
+               style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;"
+               AnchorPane.bottomAnchor="78.66666666666666" AnchorPane.topAnchor="186.0">
+      <TableView layoutX="14.0" layoutY="44.0" prefHeight="108.0" prefWidth="240.0"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0"
+                 AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <columns>
+            <TableColumn fx:id="TcSr" prefWidth="21.555572509765625" style="-fx-background-color: #DBE2EF;" text="Sr."/>
+            <TableColumn fx:id="TcP" prefWidth="168.44442749023438" style="-fx-background-color: #DBE2EF;"
+                         text="Particulars "/>
+            <TableColumn fx:id="TcAmt" prefWidth="53.999969482421875" style="-fx-background-color: #DBE2EF;"
+                         text="Amount"/>
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+         </columnResizePolicy>
+         <opaqueInsets>
+            <Insets/>
+         </opaqueInsets>
+      </TableView>
    </AnchorPane>
-   <AnchorPane layoutX="435.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0" prefWidth="157.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.bottomAnchor="78.66" AnchorPane.topAnchor="186.0">
-      <children>
-         <Label fx:id="lblDoctorID" layoutX="12.0" layoutY="14.0" text="Invoice date :" AnchorPane.bottomAnchor="107.33333333333331" AnchorPane.leftAnchor="12.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <DatePicker fx:id="DpInv" layoutX="23.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="116.0" promptText="Enter date" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="77.33333333333334" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="40.0" />
-         <Label fx:id="lblDoctorID1" layoutX="8.0" layoutY="75.0" text="Due date :" AnchorPane.leftAnchor="12.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <DatePicker fx:id="DpDD" layoutX="20.0" layoutY="101.33333333333333" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="116.0" promptText="Enter date" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="101.0" />
-      </children>
+   <AnchorPane layoutX="435.0" layoutY="186.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0"
+               prefWidth="157.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;"
+               AnchorPane.bottomAnchor="78.66" AnchorPane.topAnchor="186.0">
+      <Label fx:id="lblDoctorID" layoutX="12.0" layoutY="14.0" text="Invoice date :"
+             AnchorPane.bottomAnchor="107.33333333333331" AnchorPane.leftAnchor="12.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <DatePicker fx:id="DpInv" layoutX="23.0" layoutY="40.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="116.0" promptText="Enter date"
+                  style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;"
+                  AnchorPane.bottomAnchor="77.33333333333334" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="18.0"
+                  AnchorPane.topAnchor="40.0"/>
+      <Label fx:id="lblDoctorID1" layoutX="8.0" layoutY="75.0" text="Due date :" AnchorPane.leftAnchor="12.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <DatePicker fx:id="DpDD" layoutX="20.0" layoutY="101.33333333333333" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="116.0" promptText="Enter date"
+                  style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="23.0"
+                  AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="101.0"/>
    </AnchorPane>
    <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="177.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="344.0">
       <font>
@@ -205,137 +217,157 @@
          </DropShadow>
       </effect>
    </Button>
-   <AnchorPane fx:id="ankrPersonalDetails" layoutX="148.0" layoutY="64.0" prefHeight="114.0" prefWidth="439.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;">
-      <children>
-         <Label fx:id="lblName" layoutX="26.0" layoutY="36.0" text="Name :" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="36.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <Label fx:id="lblDOB" layoutX="30.0" layoutY="64.0" text="Doctor ID :" AnchorPane.bottomAnchor="38.39999999999999" AnchorPane.leftAnchor="30.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <Label fx:id="lblGender" layoutX="222.0" layoutY="39.0" text="Patient ID :" AnchorPane.leftAnchor="224.0" AnchorPane.topAnchor="36.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <Label fx:id="lblPersonalDetails" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="53.0" text="Details :" underline="true" AnchorPane.leftAnchor="18.0">
-            <font>
-               <Font name="Calibri Bold" size="13.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtfFirstName" layoutX="68.0" layoutY="37.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="65.0" promptText="First name" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="68.0" AnchorPane.topAnchor="35.0">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-         </TextField>
-         <TextField fx:id="txtfDOB" layoutX="106.4" layoutY="66.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="91.0" promptText="Enter Doctor ID" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="62.0">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-         </TextField>
-         <TextField fx:id="txtfGender" alignment="CENTER" layoutX="307.0" layoutY="35.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="119.0" promptText="Enter Patient ID" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="307.0" AnchorPane.topAnchor="35.0">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-            <padding>
-               <Insets left="9.0" top="-1.0" />
-            </padding>
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-         </TextField>
-         <TextField fx:id="txtfLastName" layoutX="143.0" layoutY="39.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="65.0" promptText="Last name" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.topAnchor="35.0">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-         </TextField>
-         <Label fx:id="lblGender1" layoutX="227.0" layoutY="64.0" text="Invoice no. :" AnchorPane.leftAnchor="224.0">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtfGender1" alignment="CENTER" layoutX="307.0" layoutY="62.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="119.0" promptText="Enter Invoice number" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="307.0">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-            <padding>
-               <Insets left="9.0" top="-1.0" />
-            </padding>
-         </TextField>
-         <Label fx:id="lblDOB1" layoutX="30.0" layoutY="88.0" text="Admit Date:">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <Label fx:id="lblDOB11" layoutX="224.0" layoutY="88.0" text="Discharge Date">
-            <font>
-               <Font name="Calibri" size="12.0" />
-            </font>
-         </Label>
-         <TextField fx:id="txtfAD" layoutX="106.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="100.0" promptText="Enter Admit Date" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-         </TextField>
-         <TextField fx:id="txtfDD" layoutX="309.0" layoutY="86.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="116.0" promptText="Enter Discharge Date" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;">
-            <effect>
-               <DropShadow>
-                  <color>
-                     <Color opacity="0.050761424005031586" />
-                  </color>
-               </DropShadow>
-            </effect>
-            <font>
-               <Font name="Calibri Italic" size="12.0" />
-            </font>
-         </TextField>
-      </children>
+   <AnchorPane fx:id="ankrPersonalDetails" layoutX="148.0" layoutY="64.0" prefHeight="114.0" prefWidth="439.0"
+               style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;">
+      <Label fx:id="lblName" layoutX="26.0" layoutY="36.0" text="Name :" AnchorPane.leftAnchor="30.0"
+             AnchorPane.topAnchor="36.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lblDOB" layoutX="30.0" layoutY="64.0" text="Doctor ID :" AnchorPane.bottomAnchor="38.39999999999999"
+             AnchorPane.leftAnchor="30.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lblGender" layoutX="222.0" layoutY="39.0" text="Patient ID :" AnchorPane.leftAnchor="224.0"
+             AnchorPane.topAnchor="36.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lblPersonalDetails" layoutX="16.0" layoutY="6.0" prefHeight="17.0" prefWidth="53.0" text="Details :"
+             underline="true" AnchorPane.leftAnchor="18.0">
+         <font>
+            <Font name="Calibri Bold" size="13.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtfFirstName" layoutX="68.0" layoutY="37.0" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="18.0" prefWidth="65.0" promptText="First name"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="68.0"
+                 AnchorPane.topAnchor="35.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+      </TextField>
+      <TextField fx:id="txtfDOB" layoutX="106.4" layoutY="66.0" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="18.0" prefWidth="91.0" promptText="Enter Doctor ID"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.bottomAnchor="36.0"
+                 AnchorPane.leftAnchor="106.0" AnchorPane.topAnchor="62.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+      </TextField>
+      <TextField fx:id="txtfGender" alignment="CENTER" layoutX="307.0" layoutY="35.0" minHeight="-Infinity"
+                 minWidth="-Infinity" prefHeight="18.0" prefWidth="119.0" promptText="Enter Patient ID"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="307.0"
+                 AnchorPane.topAnchor="35.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+         <padding>
+            <Insets left="9.0" top="-1.0"/>
+         </padding>
+         <opaqueInsets>
+            <Insets/>
+         </opaqueInsets>
+      </TextField>
+      <TextField fx:id="txtfLastName" layoutX="143.0" layoutY="39.0" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="18.0" prefWidth="65.0" promptText="Last name"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.topAnchor="35.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+      </TextField>
+      <Label fx:id="lblGender1" layoutX="227.0" layoutY="64.0" text="Invoice no. :" AnchorPane.leftAnchor="224.0">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtfGender1" alignment="CENTER" layoutX="307.0" layoutY="62.0" minHeight="-Infinity"
+                 minWidth="-Infinity" prefHeight="18.0" prefWidth="119.0" promptText="Enter Invoice number"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.leftAnchor="307.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+         <padding>
+            <Insets left="9.0" top="-1.0"/>
+         </padding>
+      </TextField>
+      <Label fx:id="lblDOB1" layoutX="30.0" layoutY="88.0" text="Admit Date:">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <Label fx:id="lblDOB11" layoutX="224.0" layoutY="88.0" text="Discharge Date">
+         <font>
+            <Font name="Calibri" size="12.0"/>
+         </font>
+      </Label>
+      <TextField fx:id="txtfAD" layoutX="106.0" layoutY="85.0" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="18.0" prefWidth="100.0" promptText="Enter Admit Date"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+      </TextField>
+      <TextField fx:id="txtfDD" layoutX="309.0" layoutY="86.0" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="18.0" prefWidth="116.0" promptText="Enter Discharge Date"
+                 style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.050761424005031586"/>
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font name="Calibri Italic" size="12.0"/>
+         </font>
+      </TextField>
    </AnchorPane>
    <Button fx:id="btnPaid" alignment="CENTER" contentDisplay="CENTER" layoutX="465.0" layoutY="344.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Paid" textAlignment="CENTER" textFill="WHITE" AnchorPane.topAnchor="344.0">
       <font>

@@ -20,7 +20,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #DBE2EF;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.HomeController">
    <AnchorPane fx:id="ankrDashboard" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="10.0">
       <VBox layoutY="-2.0" prefHeight="385.0" prefWidth="123.0" style="-fx-background-color: #3F72AF; -fx-background-radius: 20;" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="76.66666666666667" AnchorPane.topAnchor="-2.0">
          <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="127.0" text="HealthFlow" textAlignment="CENTER" textFill="#dbe2ef">
@@ -143,7 +143,7 @@
          </font>
       </Label>
    </AnchorPane>
-   <AnchorPane fx:id="ankrRecords1" layoutX="177.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="324.33333333333337">
+   <AnchorPane fx:id="ankrRecords1" layoutX="177.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="324.33333333333337">
       <Label fx:id="lblTotalPatient" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="25.0" prefHeight="16.0" prefWidth="64.0" text="Total patients">
          <font>
             <Font size="9.0" />
@@ -155,7 +155,7 @@
          </font>
       </Label>
    </AnchorPane>
-   <AnchorPane fx:id="ankrRecords2" layoutX="317.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.rightAnchor="183.66666666666669">
+   <AnchorPane fx:id="ankrRecords2" layoutX="317.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.rightAnchor="183.66666666666669">
       <Label fx:id="lblActivePatients" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="25.0" prefHeight="16.0" prefWidth="64.0" text="Active patients">
          <font>
             <Font size="9.0" />
@@ -167,7 +167,7 @@
          </font>
       </Label>
    </AnchorPane>
-   <AnchorPane fx:id="ankrRecords3" layoutX="459.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.rightAnchor="41.66666666666663">
+   <AnchorPane fx:id="ankrRecords3" layoutX="459.0" layoutY="67.0" prefHeight="41.0" prefWidth="99.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15; -fx-border-color: #3F72AF; -fx-border-radius: 15;" AnchorPane.rightAnchor="41.66666666666663">
       <Label fx:id="lblOperations" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="24.0" prefHeight="16.0" prefWidth="64.0" text="Operations">
          <font>
             <Font size="9.0" />
@@ -179,10 +179,10 @@
          </font>
       </Label>
    </AnchorPane>
-   <AnchorPane fx:id="ankrPiechart" layoutX="152.4" layoutY="142.8" prefHeight="150.0" prefWidth="224.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="135.8">
-      <PieChart fx:id="pieChart" layoutX="12.0" layoutY="5.0" prefHeight="226.0" prefWidth="200.0" title="Patient Stats" AnchorPane.topAnchor="5.0" />
+   <AnchorPane fx:id="ankrPiechart" layoutX="152.4" layoutY="142.8" prefHeight="150.0" prefWidth="224.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15;" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="135.8">
+      <PieChart fx:id="pieChart" layoutX="10.0" layoutY="14.0" prefHeight="213.0" prefWidth="200.0" title="Patient Stats" AnchorPane.topAnchor="14.0" />
    </AnchorPane>
-   <AnchorPane fx:id="ankrBarGraph" layoutX="382.0" layoutY="143.0" prefHeight="156.0" prefWidth="214.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 15;" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="136.0">
+   <AnchorPane fx:id="ankrBarGraph" layoutX="382.0" layoutY="143.0" prefHeight="156.0" prefWidth="214.0" style="-fx-background-color: #aed6f1; -fx-background-radius: 15;" AnchorPane.leftAnchor="372.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="136.0">
       <StackedBarChart fx:id="barGraph" layoutY="3.0" minWidth="-Infinity" prefHeight="226.0" prefWidth="218.0" title="Operation Stats" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <xAxis>
             <CategoryAxis side="BOTTOM" />

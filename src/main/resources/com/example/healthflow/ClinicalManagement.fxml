@@ -48,7 +48,7 @@
       </VBox>
       <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" onAction="#handlePatientTabClick" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #112D4E; -fx-background-radius: 20;" text="Registration" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.5" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="220.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#handlePatientTabClick" text="patient" />
+            <MenuItem mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
             <MenuItem mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
             <MenuItem mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
          </items>
@@ -135,7 +135,7 @@
          <TableColumn prefWidth="77.99996948242188" style="-fx-background-color: DBE2EF;" text="Phone no." />
       </columns>
    </TableView>
-   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
       <font>
          <Font name="Gill Sans Ultra Bold" size="14.0" />
       </font>

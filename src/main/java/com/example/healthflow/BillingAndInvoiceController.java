@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Stack;
 
 public class BillingAndInvoiceController {
 
@@ -177,8 +178,47 @@ public class BillingAndInvoiceController {
             switchScene("ClinicalManagement.fxml");
 
         }
+//    @FXML
+//    public void handleBackButtonClick() throws IOException {
+//        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+//        Parent homePageRoot = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+//
+//        // Get the current stage
+//        Stage stage = (Stage) ankrMain.getScene().getWindow();
+//
+//        // Create a new scene with the homepage root node from the FXML file
+//        Scene homePageScene = new Scene(homePageRoot);
+//
+//        // Set the homepage scene to the stage
+//        stage.setScene(homePageScene);
+//        stage.show();
+//    }
+@FXML
+public void handleBackButtonClick() throws IOException {
+    // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+    FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+    Parent homePageRoot = loader.load();
 
-        // Method to switch scenes
+    // Get the controller for the homepage
+    HomeController homePageController = loader.getController();
+
+    // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
+    homePageController.refreshPage();
+
+    // Get the current stage
+    Stage stage = (Stage) ankrMain.getScene().getWindow();
+
+    // Create a new scene with the homepage root node from the FXML file
+    Scene homePageScene = new Scene(homePageRoot);
+
+    // Set the homepage scene to the stage
+    stage.setScene(homePageScene);
+    stage.show();
+}
+
+
+
+    // Method to switch scenes
         public void switchScene(String fxmlFile) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
             Scene scene = new Scene(root);
@@ -186,7 +226,8 @@ public class BillingAndInvoiceController {
             stage.setScene(scene);
             stage.show();
         }
-    
+
     }
+
 
 

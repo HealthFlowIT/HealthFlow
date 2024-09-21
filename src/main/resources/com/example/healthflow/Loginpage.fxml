@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -8,25 +10,26 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="306.0" prefWidth="665.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
-    <ImageView fitHeight="323.0" fitWidth="619.0" pickOnBounds="true" preserveRatio="true">
-        <image>
-            <Image url="@Screenshot%202024-09-18%20223220.png" />
-        </image>
-    </ImageView>
-    <Label fx:id="lblError" layoutX="50" layoutY="180" textFill="red" visible="false"/>
-    <AnchorPane layoutX="486.0" layoutY="3.0" prefHeight="314.0" prefWidth="194.0" styleClass="form-pane" stylesheets="@Styles1.css">
+<AnchorPane prefHeight="483.0" prefWidth="786.0" style="-fx-background-color: #2481cd;" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.Logincontroller">
+    <Label fx:id="lblError" layoutX="50" layoutY="180" textFill="red" visible="false" />
+    <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="449.0" prefWidth="345.0" styleClass="form-pane" stylesheets="@Styles1.css">
         <children>
 
             <!-- Password Field -->
-            <PasswordField fx:id="tfpass" layoutX="11.0" layoutY="117.0" prefHeight="32.0" prefWidth="202.0" promptText="Password" styleClass="text-field-shadow" />
+            <PasswordField fx:id="tfpass" layoutX="71.0" layoutY="151.20000000000002" prefHeight="40.0" prefWidth="202.0" promptText="Password" styleClass="text-field-shadow" AnchorPane.topAnchor="141.0" />
 
             <!-- Login Button -->
-            <Button fx:id="btnlog" layoutX="53.0" layoutY="207.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" styleClass="login-button" text="Login" />
+            <Button fx:id="btnlog" layoutX="113.0" layoutY="266.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" styleClass="login-button" text="Login" />
 
             <!-- Username Field -->
-            <TextField fx:id="tfuser" layoutX="12.0" layoutY="69.0" prefHeight="32.0" prefWidth="201.0" promptText="Username" styleClass="text-field-shadow" />
-            <Label layoutX="107.0" layoutY="157.0" text="Forget password" textFill="#ef0e0e" />
+            <TextField fx:id="tfuser" layoutX="71.0" layoutY="88.0" prefHeight="40.0" prefWidth="202.0" promptText="Username" styleClass="text-field-shadow" AnchorPane.topAnchor="88.0" />
+         <CheckBox fx:id="CBoxShowPass" layoutX="168.0" layoutY="207.0" mnemonicParsing="false" onAction="#initialize" text="Show Password" />
+         <Hyperlink fx:id="HypLinkForgPass" layoutX="125.0" layoutY="362.0" onAction="#handleForgotPassword" text="Forgot Password" />
         </children>
     </AnchorPane>
+   <ImageView fitHeight="492.0" fitWidth="416.0" layoutX="376.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Screenshot%202024-09-20%20232455.png" />
+      </image>
+   </ImageView>
 </AnchorPane>

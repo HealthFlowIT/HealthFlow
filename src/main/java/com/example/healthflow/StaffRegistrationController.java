@@ -169,54 +169,6 @@ public VBox vbxUser;
     public MenuItem StaffTab;
     // Handler for Home button
     // Handler for Home button
-    @FXML
-    public void handleHomeButtonClick() throws IOException {
-        switchScene("HomePage2.fxml");
-    }
-
-    // Handler for Appointment button
-    @FXML
-    public void handleAppointmentButtonClick() throws IOException {
-        switchScene("Appointment.fxml");
-    }
-
-    // Handler for Billing button
-    @FXML
-    public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingandInvoice.fxml");
-    }
-
-    // Handler for Registration MenuItem selection
-    @FXML
-    public void handlePatientTabClick() throws IOException {
-        switchScene("PatientRegistration.fxml");
-    }
-
-    @FXML
-    public void handleDoctorTabClick() throws IOException {
-        switchScene("DoctorRegistration.fxml");
-    }
-
-    @FXML
-    public void handleStaffTabClick() throws IOException {
-        switchScene("StaffRegistration.fxml");
-    }
-
-    @FXML
-    public void handleClinicalManagementTabClick() throws IOException {
-        switchScene("ClinicalManagement.fxml");
-    }
-
-    // Method to switch scenes
-    public void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-}
-
 //    @FXML
 //    public void handleHomeButtonClick() throws IOException {
 //        switchScene("HomePage2.fxml");
@@ -264,5 +216,75 @@ public VBox vbxUser;
 //        stage.show();
 //    }
 //}
+
+    @FXML
+    public void handleHomeButtonClick() throws IOException {
+        switchScene("HomePage2.fxml");
+    }
+
+    // Handler for Appointment button
+    @FXML
+    public void handleAppointmentButtonClick() throws IOException {
+        switchScene("Appointment.fxml");
+    }
+
+    // Handler for Billing button
+    @FXML
+    public void handleBillingButtonClick() throws IOException {
+        switchScene("BillingandInvoice.fxml");
+    }
+
+    // Handler for Registration MenuItem selection
+    @FXML
+    public void handlePatientTabClick() throws IOException {
+        switchScene("PatientRegistration.fxml");
+    }
+
+    @FXML
+    public void handleDoctorTabClick() throws IOException {
+        switchScene("DoctorRegistration.fxml");
+    }
+
+    @FXML
+    public void handleStaffTabClick() throws IOException {
+        switchScene("StaffRegistration.fxml");
+    }
+
+    @FXML
+    public void handleClinicalManagementTabClick() throws IOException {
+        switchScene("ClinicalManagement.fxml");
+    }
+
+    // Method to switch scenes
+    public void switchScene(String fxmlFile) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void handleBackButtonClick() throws IOException {
+        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+        Parent homePageRoot = loader.load();
+
+        // Get the controller for the homepage
+        HomeController homePageController = loader.getController();
+
+        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
+        homePageController.refreshPage();
+
+        // Get the current stage
+        Stage stage = (Stage) ankrMain.getScene().getWindow();
+
+        // Create a new scene with the homepage root node from the FXML file
+        Scene homePageScene = new Scene(homePageRoot);
+
+        // Set the homepage scene to the stage
+        stage.setScene(homePageScene);
+        stage.show();
+    }
+
+}
 
 

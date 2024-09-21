@@ -57,7 +57,7 @@
             <InnerShadow />
          </effect>
       </MenuButton>
-      <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="14.0">
+      <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="Gill Sans Ultra Bold" size="14.0" />
          </font>
@@ -407,7 +407,7 @@
          </TextField>
       </children>
    </AnchorPane>
-   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="353.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="355.33">
+   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleClearButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="355.33">
       <font>
          <Font name="Book Antiqua" size="12.0" />
       </font>
@@ -419,7 +419,7 @@
          </DropShadow>
       </effect>
    </Button>
-   <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" layoutX="368.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Save" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="355.3333333333333">
+   <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" layoutX="368.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleSaveButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E;" text="Save" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="355.3333333333333">
       <font>
          <Font name="Book Antiqua" size="12.0" />
       </font>

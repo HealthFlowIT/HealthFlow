@@ -242,6 +242,7 @@ public class PatientRegistrationController {
         String gender = txtfGender.getText();
         String phone = txtfPhoneNo.getText();
         String email = txtfEmail.getText();
+        String street = txtfStreet.getText();
 
         // Check for null values before proceeding
         if (patientID == null || firstName == null || lastName == null || dob == null) {
@@ -254,8 +255,8 @@ public class PatientRegistrationController {
         }
 
         // SQL query for patient table
-        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id,street) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         // SQL query for bed table
         String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
@@ -277,6 +278,7 @@ public class PatientRegistrationController {
             pstmtPatient.setString(10, gender);
             pstmtPatient.setString(11, phone);
             pstmtPatient.setString(12, email);
+            pstmtPatient.setString(13, street);
 
             // Set parameters for bed table
             pstmtBed.setString(1, bedNumber);
@@ -302,7 +304,43 @@ public class PatientRegistrationController {
             alert.showAndWait();
         }
     }
+    public void handleBackButtonClick() throws IOException {
+        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+        Parent homePageRoot = loader.load();
 
+        // Get the controller for the homepage
+        HomeController homePageController = loader.getController();
+
+        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
+        homePageController.refreshPage();
+
+        // Get the current stage
+        Stage stage = (Stage) ankrMain.getScene().getWindow();
+
+        // Create a new scene with the homepage root node from the FXML file
+        Scene homePageScene = new Scene(homePageRoot);
+
+        // Set the homepage scene to the stage
+        stage.setScene(homePageScene);
+        stage.show();
+    }
+    public void handleClearButtonClick() {
+        txtfPatientID.clear();
+        txtfFirstName.clear();
+        txtfLastName.clear();
+        txtfAddressLine1.clear();
+        txtfCity.clear();
+        txtfPIN.clear();
+        txtfBedno1.clear();
+        txtfBloodGroup.clear();
+        txtfAge.clear();
+        txtfDOB.setValue(null); // Clear DatePicker
+        txtfGender.clear();
+        txtfPhoneNo.clear();
+        txtfEmail.clear();
+        txtfStreet.clear();
+    }
 
 }
 

@@ -121,7 +121,7 @@
          <Image url="@man_4825038.png" />
       </ImageView>
    </VBox>
-   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
       <font>
          <Font name="Gill Sans Ultra Bold" size="14.0" />
       </font>

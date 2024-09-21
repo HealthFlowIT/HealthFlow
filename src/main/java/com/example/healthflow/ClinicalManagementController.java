@@ -133,6 +133,28 @@ public class ClinicalManagementController {
         stage.setScene(scene);
         stage.show();
     }
+    public void handleBackButtonClick() throws IOException {
+        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+        Parent homePageRoot = loader.load();
+
+        // Get the controller for the homepage
+        HomeController homePageController = loader.getController();
+
+        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
+        homePageController.refreshPage();
+
+        // Get the current stage
+        Stage stage = (Stage) ankrMain.getScene().getWindow();
+
+        // Create a new scene with the homepage root node from the FXML file
+        Scene homePageScene = new Scene(homePageRoot);
+
+        // Set the homepage scene to the stage
+        stage.setScene(homePageScene);
+        stage.show();
+    }
+
 }
 //    public class Patient {
 //        private int id;
