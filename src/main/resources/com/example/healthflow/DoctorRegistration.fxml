@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.DoctorRegistrationController">
+   <AnchorPane fx:id="ankrDashboard" layoutX="389.0" layoutY="108.0" prefHeight="55.0" prefWidth="49.0" />
+   <AnchorPane fx:id="ankrTitle" layoutX="415.0" layoutY="23.0" prefHeight="56.0" prefWidth="382.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;">
+      <children>
+         <Label fx:id="lblDoctorRegistration" layoutX="31.0" layoutY="5.0" text="Doctor Registration" AnchorPane.leftAnchor="31.0">
+            <font>
+               <Font name="Book Antiqua Bold" size="36.0" />
+            </font>
+         </Label>
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="ankrPersonalDetails" layoutX="298.0" layoutY="92.0" prefHeight="174.0" prefWidth="878.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="290.0">
+      <children>
+         <Label fx:id="lblName" layoutX="26.0" layoutY="36.0" text="Name :" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="72.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblDOB" layoutX="27.0" layoutY="69.0" text="DOB :" AnchorPane.bottomAnchor="14.66" AnchorPane.leftAnchor="60.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblGender" layoutX="222.0" layoutY="39.0" text="Gender :" AnchorPane.leftAnchor="448.0" AnchorPane.topAnchor="72.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblDoctorID" layoutX="226.0" layoutY="70.0" text="Doctor ID :" AnchorPane.bottomAnchor="14.66" AnchorPane.leftAnchor="448.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblPersonalDetails" layoutX="16.0" layoutY="6.0" prefHeight="4.0" prefWidth="222.0" text="Personal details :" underline="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="12.0">
+            <font>
+               <Font name="Calibri Bold" size="26.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtfFirstName" layoutX="68.0" layoutY="37.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="130.0" promptText="First name" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="70.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="txtfGender" layoutX="278.0" layoutY="37.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="256.0" promptText="Enter gender" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="556.0" AnchorPane.topAnchor="70.66">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+            <padding>
+               <Insets left="9.0" top="-1.0" />
+            </padding>
+         </TextField>
+         <TextField fx:id="txtfDoctorID" alignment="CENTER" layoutX="293.3333333333333" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="226.0" promptText="PatientID" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="A101" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="586.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Book Antiqua Bold" size="20.0" />
+            </font>
+         </TextField>
+         <TextField fx:id="txtfLastName" layoutX="143.0" layoutY="39.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="130.0" promptText="Last name" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="286.0" AnchorPane.topAnchor="70.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </TextField>
+         <DatePicker fx:id="dtpkrDate" layoutX="142.0" layoutY="130.0" prefHeight="34.0" prefWidth="278.0" />
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="ankrContact" layoutX="300.0" layoutY="275.0" prefHeight="112.0" prefWidth="880.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="290.0">
+      <children>
+         <Label fx:id="lblContact" layoutX="17.0" layoutY="4.0" prefHeight="4.0" prefWidth="222.0" text="Contact :" underline="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="8.0">
+            <font>
+               <Font name="Calibri Bold" size="26.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblPhoneNo" layoutX="30.0" layoutY="32.0" text="Phone no :" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="64.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblEmail" layoutX="236.0" layoutY="26.0" text="Email :" AnchorPane.leftAnchor="448.0" AnchorPane.topAnchor="64.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtfPhoneNo" layoutX="91.33333333333333" layoutY="23.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="240.0" promptText="Enter phone number" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="182.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+            <padding>
+               <Insets left="9.0" top="-2.0" />
+            </padding>
+         </TextField>
+         <TextField fx:id="txtfEmail" layoutX="291.0" layoutY="33.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="262.0" promptText="Enter mail address" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="36.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </TextField>
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="ankrOthers" layoutX="301.0" layoutY="395.0" prefHeight="100.0" prefWidth="880.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="290.0">
+      <children>
+         <Label fx:id="lblOthers" layoutX="17.0" layoutY="4.0" prefHeight="4.0" prefWidth="222.0" text="Others :" underline="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="8.0">
+            <font>
+               <Font name="Calibri Bold" size="26.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblSpeciality" layoutX="40.0" layoutY="27.0" text="Speciality :" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="56.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblRegNo" layoutX="236.0" layoutY="26.0" text="Reg No. :" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="448.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtfRegNo" layoutX="287.0" layoutY="26.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="278.0" promptText="Enter registered number" style="-fx-background-color: #DBE2EF; -fx-background-radius: 10;" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="28.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+            <padding>
+               <Insets left="9.0" top="-2.0" />
+            </padding>
+         </TextField>
+         <ComboBox fx:id="mnubtnChooseSpeciality" layoutX="87.0" layoutY="24.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="262.0" promptText="Select speciality" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="174.0">
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="General Physician" />
+                  <String fx:value="Pediatrician" />  
+                  <String fx:value="Gynecologist" />
+                  <String fx:value="Dermatologist" />
+                  <String fx:value="Cardiologist" />
+                  <String fx:value="Neurologist" />
+               </FXCollections>
+            </items>
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.05000000074505806" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <padding>
+               <Insets top="-6.0" />
+            </padding>
+         </ComboBox>
+      </children>
+   </AnchorPane>
+   <VBox layoutX="10.0" layoutY="16.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="242.0" style="-fx-background-color: #3F72AF; -fx-background-radius: 40;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <children>
+         <Label alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="66.0" prefWidth="254.0" text="HealthFlow" textAlignment="CENTER" textFill="#dbe2ef">
+            <font>
+               <Font name="Calibri Bold" size="36.0" />
+            </font>
+            <effect>
+               <Bloom />
+            </effect>
+            <VBox.margin>
+               <Insets left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+         </Label>
+         <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 40; -fx-border-width: 3;" text="Home" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <effect>
+               <DropShadow />
+            </effect>
+            <VBox.margin>
+               <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
+            </VBox.margin>
+         </Button>
+         <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="248.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" text="Registration" textAlignment="CENTER" textFill="WHITE">
+            <items>
+               <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick" style="-fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20;" text="Patient" />
+               <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
+               <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
+            </items>
+            <font>
+               <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <effect>
+               <InnerShadow />
+            </effect>
+            <VBox.margin>
+               <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+         </MenuButton>
+         <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="246.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Appointment" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <effect>
+               <InnerShadow>
+                  <color>
+                     <Color opacity="0.8223350048065186" />
+                  </color>
+               </InnerShadow>
+            </effect>
+            <VBox.margin>
+               <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnBilling" alignment="CENTER" mnemonicParsing="false" onAction="#handleBillingButtonClick" prefHeight="60.0" prefWidth="244.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Billing / Invoice" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <effect>
+               <InnerShadow>
+                  <color>
+                     <Color opacity="0.8223350048065186" />
+                  </color>
+               </InnerShadow>
+            </effect>
+            <VBox.margin>
+               <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnClinicalManagement" alignment="CENTER" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="60.0" prefWidth="240.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE">
+            <font>
+               <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <effect>
+               <InnerShadow>
+                  <color>
+                     <Color opacity="0.8223350048065186" />
+                  </color>
+               </InnerShadow>
+            </effect>
+            <VBox.margin>
+               <Insets bottom="70.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+         </Button>
+         <VBox fx:id="vbxUser" alignment="BOTTOM_CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="202.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40;">
+            <padding>
+               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+            </padding>
+            <effect>
+               <InnerShadow />
+            </effect>
+            <VBox.margin>
+               <Insets bottom="20.0" left="20.0" right="20.0" />
+            </VBox.margin>
+            <children>
+               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
+                  <VBox.margin>
+                     <Insets bottom="-46.0" left="65.0" top="10.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Calibri" size="24.0" />
+                  </font>
+                  <padding>
+                     <Insets top="-1.0" />
+                  </padding>
+                  <effect>
+                     <DropShadow>
+                        <color>
+                           <Color red="0.10320000350475311" green="0.28294000029563904" blue="0.4300000071525574" opacity="0.699999988079071" />
+                        </color>
+                     </DropShadow>
+                  </effect>
+               </Button>
+               <ImageView fx:id="imgvUser" accessibleRole="BUTTON" fitHeight="52.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <VBox.margin>
+                     <Insets bottom="28.0" right="115.0" />
+                  </VBox.margin>
+                  <effect>
+                     <DropShadow>
+                        <color>
+                           <Color red="1.0" green="1.0" blue="1.0" opacity="0.5" />
+                        </color>
+                     </DropShadow>
+                  </effect>
+                  <image>
+                     <Image url="@man_4825038.png" />
+                  </image>
+               </ImageView>
+               <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
+                  <VBox.margin>
+                     <Insets bottom="-30.0" top="-10.0" />
+                  </VBox.margin>
+                  <font>
+                     <Font name="Calibri" size="24.0" />
+                  </font>
+                  <padding>
+                     <Insets top="-3.0" />
+                  </padding>
+                  <effect>
+                     <DropShadow>
+                        <color>
+                           <Color red="1.0" opacity="0.5" />
+                        </color>
+                     </DropShadow>
+                  </effect>
+               </Button>
+            </children>
+         </VBox>
+      </children>
+   </VBox>
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="297.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="56.0" prefWidth="84.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" text="&lt;" textAlignment="CENTER">
+      <font>
+         <Font name="Gill Sans Ultra Bold" size="28.0" />
+      </font>
+      <effect>
+         <DropShadow>
+            <color>
+               <Color red="0.06666667014360428" green="0.1764705926179886" blue="0.30588236451148987" opacity="0.5" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Button>
+   <AnchorPane fx:id="ankrCredentials" layoutX="314.0" layoutY="503.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="432.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="290.0">
+      <children>
+         <Label fx:id="lblCredentials" layoutX="17.0" layoutY="4.0" prefHeight="4.0" prefWidth="222.0" text="Credentials :" underline="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="8.0">
+            <font>
+               <Font name="Calibri Bold" size="26.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblUsername" layoutX="40.0" layoutY="27.0" minHeight="-Infinity" minWidth="-Infinity" text="Username :" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="54.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblPassword" layoutX="24.0" layoutY="48.0" minHeight="-Infinity" minWidth="-Infinity" text="Password :" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="96.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtfUsername" layoutX="95.0" layoutY="23.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="228.0" promptText="Set username" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="48.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </TextField>
+         <PasswordField fx:id="txtfConfirmPassword" layoutX="94.0" layoutY="136.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="248.0" promptText="Confirm password" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="17.333333333333314">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.10000000149011612" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </PasswordField>
+         <PasswordField fx:id="txtfSetPassword" layoutX="215.0" layoutY="98.0" minHeight="-Infinity" prefHeight="36.0" promptText="Set password" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="17.33">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.10000000149011612" />
+                  </color>
+               </DropShadow>
+            </effect>
+         </PasswordField>
+      </children>
+   </AnchorPane>
+   <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" layoutX="817.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Save" textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font name="Book Antiqua" size="24.0" />
+      </font>
+      <effect>
+         <DropShadow>
+            <color>
+               <Color opacity="0.699999988079071" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Button>
+   <AnchorPane fx:id="ankrCredentials1" layoutX="734.0" layoutY="504.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="434.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;">
+      <children>
+         <Label fx:id="lblCredentials1" layoutX="17.0" layoutY="4.0" prefHeight="34.0" prefWidth="268.0" text="Set security question :" underline="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="8.0">
+            <font>
+               <Font name="Calibri Bold" size="26.0" />
+            </font>
+         </Label>
+         <Label fx:id="lblUsername1" layoutX="23.0" layoutY="25.0" minHeight="-Infinity" minWidth="-Infinity" text="Question :" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="50.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <Label contentDisplay="CENTER" layoutX="30.0" layoutY="89.33333333333333" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="384.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="   What was your childhood nickname?" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="89.0">
+            <font>
+               <Font name="Calibri Light Italic" size="24.0" />
+            </font>
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.05000000074505806" />
+                  </color>
+               </DropShadow>
+            </effect>
+         </Label>
+         <Label fx:id="lblUsername11" layoutX="24.0" layoutY="72.0" minHeight="-Infinity" minWidth="-Infinity" text="Set answer :" AnchorPane.leftAnchor="48.0" AnchorPane.topAnchor="144.0">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </Label>
+         <TextField fx:id="txtfSecurityAnswer" layoutX="89.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="208.0" promptText="Set answer" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="178.0" AnchorPane.topAnchor="140.0">
+            <effect>
+               <DropShadow>
+                  <color>
+                     <Color opacity="0.050761424005031586" />
+                  </color>
+               </DropShadow>
+            </effect>
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+         </TextField>
+      </children>
+   </AnchorPane>
+   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="455.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleClearAll" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
+      <font>
+         <Font name="Book Antiqua" size="24.0" />
+      </font>
+      <effect>
+         <DropShadow>
+            <color>
+               <Color opacity="0.699999988079071" />
+            </color>
+         </DropShadow>
+      </effect>
+   </Button>
+</AnchorPane>
