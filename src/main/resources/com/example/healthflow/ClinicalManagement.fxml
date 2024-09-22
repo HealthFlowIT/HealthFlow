@@ -124,7 +124,7 @@
          <Image url="@man_4825038.png" />
       </ImageView>
    </VBox>
-   <TableView fx:id="tblvTable" layoutX="148.0" layoutY="126.0" onSort="#initialize" prefHeight="250.0" prefWidth="426.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="148.0">
+   <TableView fx:id="tblvTable" editable="true" layoutX="148.0" layoutY="126.0" onSort="#initialize" prefHeight="250.0" prefWidth="426.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="148.0">
       <columns>
          <TableColumn fx:id="ClnPatientId" minWidth="0.0" prefWidth="65.33334350585938" style="-fx-background-color: DBE2EF;" text="Patient ID" />
          <TableColumn fx:id="ClnFirstName" minWidth="0.0" prefWidth="92.66668701171875" style="-fx-background-color: DBE2EF;" text="First name" />

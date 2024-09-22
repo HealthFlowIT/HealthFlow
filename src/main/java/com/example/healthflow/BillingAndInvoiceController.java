@@ -216,8 +216,6 @@ public void handleBackButtonClick() throws IOException {
     stage.show();
 }
 
-
-
     // Method to switch scenes
         public void switchScene(String fxmlFile) throws IOException {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));

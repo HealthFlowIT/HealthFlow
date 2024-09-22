@@ -19,12 +19,23 @@
             <PasswordField fx:id="tfpass" layoutX="71.0" layoutY="151.20000000000002" prefHeight="40.0" prefWidth="202.0" promptText="Password" styleClass="text-field-shadow" AnchorPane.topAnchor="141.0" />
 
             <!-- Login Button -->
-            <Button fx:id="btnlog" layoutX="113.0" layoutY="266.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" styleClass="login-button" text="Login" />
+            <Button fx:id="btnlog" layoutX="112.0" layoutY="304.0" onAction="#handleLogin" prefHeight="40" prefWidth="120" styleClass="login-button" text="Login" />
 
             <!-- Username Field -->
             <TextField fx:id="tfuser" layoutX="71.0" layoutY="88.0" prefHeight="40.0" prefWidth="202.0" promptText="Username" styleClass="text-field-shadow" AnchorPane.topAnchor="88.0" />
-         <CheckBox fx:id="CBoxShowPass" layoutX="168.0" layoutY="207.0" mnemonicParsing="false" onAction="#initialize" text="Show Password" />
+         <CheckBox fx:id="CBoxShowPass" layoutX="168.0" layoutY="265.0" mnemonicParsing="false" onAction="#togglePasswordVisibility" text="Show Password" />
          <Hyperlink fx:id="HypLinkForgPass" layoutX="125.0" layoutY="362.0" onAction="#handleForgotPassword" text="Forgot Password" />
+         <TextField fx:id="tfpassVisible" layoutX="70.0" layoutY="200.0" managed="false" prefHeight="40.0" prefWidth="202.0" styleClass="text-field-shadow" visible="false" />
+         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="31.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" styleClass="text-field-shadow">
+            <image>
+               <Image url="@user%20(2).png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="31.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true" styleClass="text-field-shadow">
+            <image>
+               <Image url="@padlock%20(1).png" />
+            </image>
+         </ImageView>
         </children>
     </AnchorPane>
    <ImageView fitHeight="492.0" fitWidth="416.0" layoutX="376.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">

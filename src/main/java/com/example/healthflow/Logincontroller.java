@@ -36,6 +36,7 @@ public class Logincontroller {
 
     // Temporary TextField for showing plain password (hidden by default in FXML)
 //    private TextField tfShowPassword = new TextField();
+@FXML
 private TextField tfpassVisible = new TextField();
     // Database connection details
     private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
@@ -123,15 +124,24 @@ private TextField tfpassVisible = new TextField();
     @FXML
     private void togglePasswordVisibility() {
         if (CBoxShowPass.isSelected()) {
-            tfpassVisible.setText(tfpass.getText()); // Show the password in the text field
-            tfpass.setVisible(false); // Hide the password field
-            tfpassVisible.setVisible(true); // Show the visible text field
+            // Set TextField visible, and hide PasswordField
+            tfpassVisible.setText(tfpass.getText());
+            tfpassVisible.setVisible(true);
+            tfpassVisible.setManaged(true);
+
+            tfpass.setVisible(false);
+            tfpass.setManaged(false);
         } else {
-            tfpass.setText(tfpassVisible.getText()); // Set the password back into the password field
-            tfpassVisible.setVisible(false); // Hide the visible text field
-            tfpass.setVisible(true); // Show the password field
+            // Set PasswordField visible, and hide TextField
+            tfpass.setText(tfpassVisible.getText());
+            tfpass.setVisible(true);
+            tfpass.setManaged(true);
+
+            tfpassVisible.setVisible(false);
+            tfpassVisible.setManaged(false);
         }
     }
+
 
 
     // Handle forgot password hyperlink click

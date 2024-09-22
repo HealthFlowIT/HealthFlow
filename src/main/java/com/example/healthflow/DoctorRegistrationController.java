@@ -1,5 +1,6 @@
 package com.example.healthflow;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,7 +17,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DoctorRegistrationController {
 
@@ -169,6 +174,9 @@ public class DoctorRegistrationController {
     @FXML
     public VBox vbxUser;
 
+    @FXML
+    public TextField txtfSecurityAnswer;
+
     // Handler for Home button
     @FXML
     public void handleHomeButtonClick() throws IOException {
@@ -238,222 +246,127 @@ public class DoctorRegistrationController {
         stage.setScene(homePageScene);
         stage.show();
     }
-//    // Database connection details
-//    public static final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-//    public static final String DB_USERNAME = "root";
-//    public static final String DB_PASSWORD = "12345678";
-//
-//    @FXML
-//    public void handleSaveButtonClick() {
-//        String firstName = txtfFirstName.getText();
-//        String lastName = txtfLastName.getText();
-//        String gender = txtfGender.getText();
-//        String dob = txtfDOB.getText();
-//        String doctorID = txtfDoctorID.getText();
-//        String phoneNo = txtfPhoneNo.getText();
-//        String email = txtfEmail.getText();
-//        String regNo = txtfRegNo.getText();
-//        String username = txtfUsername.getText();
-//        String password = txtfSetPassword.getText();
-//        String confirmPassword = txtfConfirmPassword.getText();
-//
-//        // Validate password
-//        if (!validatePassword(password)) {
-//            showError("Password must be at least 8 characters long, contain uppercase and lowercase letters, and not be a common keyword.");
-//            return;
+
+
+
+        @FXML
+        public ComboBox<String> mnubtnChooseSpeciality;
+        @FXML
+        public Label lblPasswordError;
+
+
+        // Database credentials (replace with your actual credentials)
+        public final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
+        public final String DB_USER = "root";
+        public final String DB_PASS = "12345678";
+
+//        @FXML
+//        public void initialize() {
+//            // Initialize ComboBox with specialities
+//            mnubtnChooseSpeciality.getItems().addAll("Cardiology", "Neurology", "Orthopedics", "Pediatrics");
 //        }
-//
-//        if (!password.equals(confirmPassword)) {
-//            showError("Passwords do not match.");
-//            return;
-//        }
-//
-//        // Insert into appointment table
-//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
-//            String insertAppointmentSQL = "INSERT INTO doctor (Firstname, Lastname, Gender, DOB, DoctorId, PhoneNo, Email, Regno) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-//            try (PreparedStatement pstmt = connection.prepareStatement(insertAppointmentSQL)) {
-//                pstmt.setString(1, firstName);
-//                pstmt.setString(2, lastName);
-//                pstmt.setString(3, gender);
-//                pstmt.setString(4, dob);
-//                pstmt.setString(5, doctorID);
-//                pstmt.setString(6, phoneNo);
-//                pstmt.setString(7, email);
-//                pstmt.setString(8, regNo);
-//                pstmt.executeUpdate();
-//            }
-//
-//            // Insert into user table
-//            String insertUserSQL = "INSERT INTO user (username, password) VALUES (?, ?)";
-//            try (PreparedStatement pstmt = connection.prepareStatement(insertUserSQL)) {
-//                pstmt.setString(1, username);
-//                pstmt.setString(2, password);
-//                pstmt.executeUpdate();
-//            }
-//
-//            showAlert("Registration Successful!");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            showError("An error occurred while saving data.");
-//        }
-//    }
-//
-//    public boolean validatePassword(String password) {
-//        if (password.length() < 8) return false;
-//
-//        boolean hasUppercase = !password.equals(password.toLowerCase());
-//        boolean hasLowercase = !password.equals(password.toUpperCase());
-//        boolean hasCommonKeyword = password.equalsIgnoreCase("password") || password.equalsIgnoreCase("12345678");
-//
-//        return hasUppercase && hasLowercase && !hasCommonKeyword;
-//    }
-//
-//    public void showError(String message) {
-//        Alert alert = new Alert(Alert.AlertType.ERROR);
-//        alert.setTitle("Error");
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
-//
-//    public void showAlert(String message) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information");
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
-//    @FXML
-//    public void handleClearButtonClick() {
-//        // Clear all text fields
-//        txtfFirstName.clear();
-//        txtfLastName.clear();
-//        txtfGender.clear();
-//        txtfDOB.clear();
-//        txtfDoctorID.clear();
-//        txtfPhoneNo.clear();
-//        txtfEmail.clear();
-//        txtfRegNo.clear();
-//        txtfUsername.clear();
-//        txtfSetPassword.clear();
-//        txtfConfirmPassword.clear();
-//    }
-//}
 
-    @FXML
-    public void initialize() {
-        btnSave.setOnAction(e -> saveDoctorData());
-        btnClearAll.setOnAction(e -> clearAllFields());
-    }
+        // Save button handler
+        @FXML
+        public void handleSave(ActionEvent event) {
+            // Get values from form fields
+            String firstName = txtfFirstName.getText();
+            String lastName = txtfLastName.getText();
+            String gender = txtfGender.getText();
+            String doctorID = txtfDoctorID.getText();
+            String phoneNo = txtfPhoneNo.getText();
+            String email = txtfEmail.getText();
+            String regNo = txtfRegNo.getText();
+            String speciality = mnubtnChooseSpeciality.getValue();
+            LocalDate dob = dtpkrDate.getValue();
+            String username = txtfUsername.getText();
+            String password = txtfSetPassword.getText();
+            String confirmPassword = txtfConfirmPassword.getText();
+            String securityAnswer = txtfSecurityAnswer.getText();
 
-    public void saveDoctorData() {
-        String firstName = txtfFirstName.getText();
-        String lastName = txtfLastName.getText();
-        String gender = txtfGender.getText();
-        String dob = dtpkrDate.getValue() != null ? dtpkrDate.getValue().toString() : "";
-        String doctorID = txtfDoctorID.getText();
-        String phoneNo = txtfPhoneNo.getText();
-        String email = txtfEmail.getText();
-        String regNo = txtfRegNo.getText();
-        String username = txtfUsername.getText();
-        String password = txtfSetPassword.getText();
-        String confirmPassword = txtfConfirmPassword.getText();
-        String speciality = (String) cmbxSpeciality.getValue();  // Getting selected speciality
+            // Validate password
+            if (!isPasswordValid(password)) {
+                lblPasswordError.setTextFill(Color.RED);
+                lblPasswordError.setText("Password must be 8 characters long, contain upper and lower case letters, and a special character.");
+                return;
+            }
 
-        // Validate password
-        if (!isValidPassword(password)) {
-            showErrorAlert("Invalid Password", "Password must be at least 8 characters long, " +
-                    "contain both upper and lower case letters, and include a special character.");
-            return;
+            // Ensure password and confirm password match
+            if (!password.equals(confirmPassword)) {
+                lblPasswordError.setTextFill(Color.RED);
+                lblPasswordError.setText("Passwords do not match.");
+                return;
+            }
+
+            // Insert data into database
+            try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS)) {
+                // Insert into doctor table
+                String doctorQuery = "INSERT INTO doctor (DoctorId, Firstname, Lastname, Gender, DOB, PhoneNo, Email, Regno, Speciality) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement doctorStmt = conn.prepareStatement(doctorQuery);
+                doctorStmt.setString(1, doctorID);
+                doctorStmt.setString(2, firstName);
+                doctorStmt.setString(3, lastName);
+                doctorStmt.setString(4, gender);
+                doctorStmt.setDate(5, java.sql.Date.valueOf(dob));
+                doctorStmt.setString(6, phoneNo);
+                doctorStmt.setString(7, email);
+                doctorStmt.setString(8, regNo);
+                doctorStmt.setString(9, speciality);
+                doctorStmt.executeUpdate();
+
+                // Insert into user table
+                String userQuery = "INSERT INTO user (username, password, security_answer) VALUES (?, ?, ?)";
+                PreparedStatement userStmt = conn.prepareStatement(userQuery);
+                userStmt.setString(1, username);
+                userStmt.setString(2, password);
+                userStmt.setString(3, securityAnswer);
+                userStmt.executeUpdate();
+
+                // Success message
+                lblPasswordError.setTextFill(Color.GREEN);
+                lblPasswordError.setText("Data saved successfully!");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                lblPasswordError.setTextFill(Color.RED);
+                lblPasswordError.setText("Error saving data to database.");
+            }
         }
 
-        if (!password.equals(confirmPassword)) {
-            showErrorAlert("Password Mismatch", "Passwords do not match. Please try again.");
-            return;
+        // Password validation method
+        public boolean isPasswordValid(String password) {
+            if (password.length() < 8) {
+                return false;
+            }
+            String pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).+$";
+            Pattern compiledPattern = Pattern.compile(pattern);
+            Matcher matcher = compiledPattern.matcher(password);
+            return matcher.find();
         }
 
-        if (speciality == null || speciality.isEmpty()) {
-            showErrorAlert("Speciality Missing", "Please select a speciality.");
-            return;
-        }
-
-        // Database connection and insert logic
-        String doctorQuery = "INSERT INTO doctor (Firstname, Lastname, Gender, DOB, DoctorId, PhoneNo, Email, RegNo,Speciality) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
-        String userQuery = "INSERT INTO user (username, password) VALUES (?, ?)";
-//        String appointmentQuery = "INSERT INTO appointment (Doctorid, Speciality) VALUES (?, ?)";
-
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
-             PreparedStatement doctorStmt = conn.prepareStatement(doctorQuery);
-             PreparedStatement userStmt = conn.prepareStatement(userQuery);) {
-
-            // Insert into doctor table
-            doctorStmt.setString(1, firstName);
-            doctorStmt.setString(2, lastName);
-            doctorStmt.setString(3, gender);
-            doctorStmt.setString(4, dob);
-            doctorStmt.setString(5, doctorID);
-            doctorStmt.setString(6, phoneNo);
-            doctorStmt.setString(7, email);
-            doctorStmt.setString(8, regNo);
-            doctorStmt.setString(9, speciality);
-            doctorStmt.executeUpdate();
-
-            // Insert into user table
-            userStmt.setString(1, username);
-            userStmt.setString(2, password);
-            userStmt.executeUpdate();
-
-            // Insert into appointment table (Doctor ID and Speciality)
-//            appointmentStmt.setString(1, doctorID);  // Assuming doctorID is used as a foreign key in the appointment table
-//            appointmentStmt.setString(2, speciality);
-//            appointmentStmt.executeUpdate();
-
-            showConfirmationAlert("Success", "Doctor registration was successful!");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            showErrorAlert("Database Error", "An error occurred while saving data. Please try again.");
+        // Clear all button handler
+        @FXML
+        public void handleClearAll(ActionEvent event) {
+            txtfFirstName.clear();
+            txtfLastName.clear();
+            txtfGender.clear();
+            txtfDoctorID.clear();
+            txtfPhoneNo.clear();
+            txtfEmail.clear();
+            txtfRegNo.clear();
+            txtfUsername.clear();
+            txtfSetPassword.clear();
+            txtfConfirmPassword.clear();
+            txtfSecurityAnswer.clear();
+            mnubtnChooseSpeciality.getSelectionModel().clearSelection();
+            dtpkrDate.setValue(null);
+            lblPasswordError.setText("");
         }
     }
 
-    public boolean isValidPassword(String password) {
-        // Check for at least 8 characters, uppercase, lowercase, and special character
-        return password.length() >= 8 &&
-                password.matches(".*[A-Z].*") &&
-                password.matches(".*[a-z].*") &&
-                password.matches(".*\\W.*");
-    }
 
-    public void clearAllFields() {
-        txtfFirstName.clear();
-        txtfLastName.clear();
-        txtfGender.clear();
-        dtpkrDate.setValue(null);
-        txtfDoctorID.clear();
-        txtfPhoneNo.clear();
-        txtfEmail.clear();
-        txtfRegNo.clear();
-        txtfUsername.clear();
-        txtfSetPassword.clear();
-        txtfConfirmPassword.clear();
-        cmbxSpeciality.setValue(null);  // Clearing the speciality ComboBox
-    }
 
-    public void showErrorAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 
-    public void showConfirmationAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-}
+
 

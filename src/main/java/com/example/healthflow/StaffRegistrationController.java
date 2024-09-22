@@ -11,6 +11,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class  StaffRegistrationController {
@@ -20,6 +24,9 @@ public AnchorPane ankrContact;
 
 @FXML
 public AnchorPane ankrCredentials;
+
+@FXML
+public DatePicker dtpkrDate;
 
 @FXML
 public AnchorPane ankrDashboard;
@@ -206,16 +213,8 @@ public VBox vbxUser;
         switchScene("ClinicalManagement.fxml");
     }
 
-    // Method to switch scenes
-    public void switchScene(String fxmlFile) throws IOException {
-        System.out.println("Switching to scene: " + fxmlFile);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
+
+    @FXML
     public void handleBackButtonClick() throws IOException {
         // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
@@ -237,6 +236,149 @@ public VBox vbxUser;
         stage.show();
     }
 
-}
+
+
+        @FXML
+        public TextField txtfSecurityAnswer;
+//
+//
+//        @FXML
+//        public MenuButton mnubtnChooseQualification;  // Keep the existing values from FXML
+
+        @FXML
+        public void initialize() {
+            // Add handlers to the MenuItems in the MenuButton
+            for (MenuItem item : mnubtnChooseQualification.getItems()) {
+                item.setOnAction(event -> mnubtnChooseQualification.setText(item.getText()));
+            }
+        }
+
+        @FXML
+        public void handleSaveButtonClick() {
+            String firstName = txtfFirstName.getText();
+            String lastName = txtfLastName.getText();
+            String dob = (dtpkrDate.getValue() != null) ? dtpkrDate.getValue().toString() : "";
+            String staffID = txtfStaffID.getText();
+            String phoneNo = txtfPhoneNo.getText();
+            String email = txtfEmail.getText();
+            String qualification = mnubtnChooseQualification.getText();  // Get the selected text
+            String department = txtfDepartment.getText();
+            String username = txtfUsername.getText();
+            String setPassword = txtfSetPassword.getText();
+            String confirmPassword = txtfConfirmPassword.getText();
+            String securityAnswer = txtfSecurityAnswer.getText();
+
+            // Validate input and proceed with saving
+            if (areFieldsValid(firstName, lastName, dob, staffID, phoneNo, email, qualification, department, username, setPassword, confirmPassword, securityAnswer)) {
+                if (setPassword.equals(confirmPassword)) {
+                    try {
+                        SaveToDatabase(firstName, lastName, dob, staffID, phoneNo, email, qualification, department, username, setPassword, securityAnswer);
+                        showAlert(Alert.AlertType.INFORMATION, "Success", "Staff data saved successfully!");
+                        handleClearButtonClick();
+                    } catch (SQLException e) {
+                        showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to save data: " + e.getMessage());
+                    }
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Validation Error", "Passwords do not match!");
+                }
+            }
+        }
+
+        // Update switchScene method to use loader once
+    @FXML
+        public void switchScene(String fxmlFile) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();  // Load once
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
+
+        // Same clear and validation methods
+
+        // Method to check if fields are valid
+    @FXML
+        public boolean areFieldsValid(String firstName, String lastName, String dob, String staffID, String phoneNo,
+                                      String email, String qualification, String department, String username, String setPassword,
+                                      String confirmPassword, String securityAnswer) {
+            if (firstName.isEmpty() || lastName.isEmpty() || dob.isEmpty() || staffID.isEmpty() || phoneNo.isEmpty() || email.isEmpty()
+                    || qualification.equals("Choose option") || department.isEmpty() || username.isEmpty() || setPassword.isEmpty()
+                    || confirmPassword.isEmpty() || securityAnswer.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields must be filled.");
+                return false;
+            }
+            return true;
+        }
+
+    // Save data to the staff and user tables in the database
+    @FXML
+        public void SaveToDatabase(String firstName, String lastName, String dob, String staffID, String phoneNo,
+                                    String email, String qualification, String department, String username,
+                                    String password, String securityAnswer) throws SQLException {
+            // Database connection setup
+            String url = "jdbc:mysql://localhost:3306/healthflow";
+            String user = "root";  // Replace with your MySQL username
+            String dbPassword = "12345678";  // Replace with your MySQL password
+
+            Connection conn = DriverManager.getConnection(url, user, dbPassword);
+
+            // Insert into staff table
+            String staffInsertQuery = "INSERT INTO staff (staff_id, first_name, last_name, dob, phone_no, email, qualification, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement staffStmt = conn.prepareStatement(staffInsertQuery);
+            staffStmt.setString(1, staffID);
+            staffStmt.setString(2, firstName);
+            staffStmt.setString(3, lastName);
+            staffStmt.setString(4, dob);
+            staffStmt.setString(5, phoneNo);
+            staffStmt.setString(6, email);
+            staffStmt.setString(7, qualification);
+            staffStmt.setString(8, department);
+            staffStmt.executeUpdate();
+
+            // Insert into user table
+            String userInsertQuery = "INSERT INTO user (username, password, security_answer) VALUES (?, ?, ?)";
+            PreparedStatement userStmt = conn.prepareStatement(userInsertQuery);
+            userStmt.setString(1, username);
+            userStmt.setString(2, password);
+            userStmt.setString(3, securityAnswer);
+            userStmt.executeUpdate();
+
+            conn.close();
+        }
+
+        // Show alert dialog
+    @FXML
+        public void showAlert(Alert.AlertType alertType, String title, String content) {
+            Alert alert = new Alert(alertType);
+            alert.setTitle(title);
+            alert.setContentText(content);
+            alert.showAndWait();
+        }
+
+        // Clear all input fields
+        @FXML
+        public void handleClearAllButtonClick() {
+            handleClearButtonClick();
+        }
+@FXML
+        public void handleClearButtonClick() {
+            txtfFirstName.clear();
+            txtfLastName.clear();
+            dtpkrDate.setValue(null);
+            txtfStaffID.clear();
+            txtfPhoneNo.clear();
+            txtfEmail.clear();
+//            mnubtnChooseQualification.setValue(null);
+            txtfDepartment.clear();
+            txtfUsername.clear();
+            txtfSetPassword.clear();
+            txtfConfirmPassword.clear();
+            txtfSecurityAnswer.clear();
+            mnubtnChooseQualification.setText("Choose option");
+        }
+    }
+
+
 
 
