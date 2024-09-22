@@ -24,7 +24,7 @@
 
 
 <AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane fx:id="ankrTable" layoutX="146.0" layoutY="118.0" prefHeight="266.0" prefWidth="434.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="150.0" />
+   <AnchorPane fx:id="ankrTable" layoutX="137.0" layoutY="107.0" prefHeight="286.0" prefWidth="459.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="137.0" />
    <AnchorPane fx:id="ankrDashboard" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="10.0">
       <VBox fx:id="vbxDashboard" layoutY="-2.0" prefHeight="385.0" prefWidth="123.0" style="-fx-background-color: #3F72AF; -fx-background-radius: 20;" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="76.66666666666667" AnchorPane.topAnchor="-2.0">
          <Label fx:id="lblDashboard" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="33.0" prefWidth="127.0" text="HealthFlow" textAlignment="CENTER" textFill="#dbe2ef" underline="true">
@@ -46,11 +46,11 @@
             </Button>
          </AnchorPane>
       </VBox>
-      <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" onAction="#handlePatientTabClick" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #112D4E; -fx-background-radius: 20;" text="Registration" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.5" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="220.0">
+      <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="104.0" style="-fx-background-color: #112D4E; -fx-background-radius: 20;" text="Registration" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.5" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="220.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
-            <MenuItem mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
-            <MenuItem mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
+            <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
+            <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
+            <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
          </items>
          <font>
             <Font name="Calibri Bold" size="11.0" />
@@ -124,15 +124,15 @@
          <Image url="@man_4825038.png" />
       </ImageView>
    </VBox>
-   <TableView fx:id="tblvTable" layoutX="169.0" layoutY="126.0" prefHeight="249.0" prefWidth="414.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="160.0">
+   <TableView fx:id="tblvTable" layoutX="148.0" layoutY="126.0" onSort="#initialize" prefHeight="250.0" prefWidth="426.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 20;" AnchorPane.leftAnchor="148.0">
       <columns>
-         <TableColumn minWidth="0.0" prefWidth="65.33334350585938" style="-fx-background-color: DBE2EF;" text="Patient ID" />
-         <TableColumn minWidth="0.0" prefWidth="92.66668701171875" style="-fx-background-color: DBE2EF;" text="Name" />
-         <TableColumn prefWidth="42.666656494140625" style="-fx-background-color: DBE2EF;" text="Age" />
-         <TableColumn minWidth="0.0" prefWidth="51.777801513671875" style="-fx-background-color: DBE2EF;" text="Gender" />
-         <TableColumn prefWidth="30.888885498046875" style="-fx-background-color: DBE2EF;" text="BG" />
-         <TableColumn prefWidth="49.11114501953125" style="-fx-background-color: DBE2EF;" text="City" />
-         <TableColumn prefWidth="77.99996948242188" style="-fx-background-color: DBE2EF;" text="Phone no." />
+         <TableColumn fx:id="ClnPatientId" minWidth="0.0" prefWidth="65.33334350585938" style="-fx-background-color: DBE2EF;" text="Patient ID" />
+         <TableColumn fx:id="ClnFirstName" minWidth="0.0" prefWidth="92.66668701171875" style="-fx-background-color: DBE2EF;" text="First name" />
+         <TableColumn fx:id="ClnLastName" minWidth="0.0" prefWidth="92.66668701171875" style="-fx-background-color: DBE2EF;" text="Last name" />
+         <TableColumn fx:id="ClnAge" prefWidth="42.666656494140625" style="-fx-background-color: DBE2EF;" text="Age" />
+         <TableColumn fx:id="ClnGender" minWidth="0.0" prefWidth="51.777801513671875" style="-fx-background-color: DBE2EF;" text="Gender" />
+         <TableColumn fx:id="ClnBG" prefWidth="30.888885498046875" style="-fx-background-color: DBE2EF;" text="BG" />
+         <TableColumn fx:id="ClnPhNo" prefWidth="77.99996948242188" style="-fx-background-color: DBE2EF;" text="Phone no." />
       </columns>
    </TableView>
    <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="28.0" prefWidth="42.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" text="&lt;" textAlignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="23.0">
@@ -156,7 +156,7 @@
          </Label>
       </children>
    </AnchorPane>
-   <TextField fx:id="txtfSearch" layoutX="163.0" layoutY="71.0" promptText="Search" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" />
+   <TextField fx:id="txtfSearch" layoutX="163.0" layoutY="71.0" onKeyReleased="#handleSearchKeyReleased" promptText="Search" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;" />
    <ImageView fx:id="imgvSearch" fitHeight="20.0" fitWidth="18.0" layoutX="291.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@search_4202806.png" />

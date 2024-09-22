@@ -1,6 +1,4 @@
 package com.example.healthflow;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,14 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Objects;
-
 public class AppointmentController {
 
     @FXML
@@ -78,19 +70,16 @@ public class AppointmentController {
     public Button btnUser;
 
     @FXML
-    public ComboBox<?> cmbxAppointmentDuration;
+    public ComboBox<String> cmbxAppointmentDuration;
 
     @FXML
-    public ComboBox<?> cmbxAppointmentType;
+    public ComboBox<String> cmbxAppointmentType;
 
     @FXML
-    public ComboBox<?> cmbxDoctorName;
+    public ComboBox<String> cmbxDoctorName;
 
     @FXML
-    public ComboBox<?> cmbxSpeciality;
-
-    @FXML
-    public DatePicker dtpkrDate;
+    public ComboBox<String> cmbxSpeciality;
 
     @FXML
     public ImageView imgvUser;
@@ -152,8 +141,7 @@ public class AppointmentController {
     @FXML
     public TextField txtfID;
 
-    @FXML
-    public TextField txtfID1;
+
 
     @FXML
     public TextField txtfPatientID;
@@ -163,7 +151,14 @@ public class AppointmentController {
 
     @FXML
     public VBox vbxUser;
-    @FXML
+
+        @FXML
+        public ComboBox<?> cmbxTimeSlot;
+
+        @FXML
+        public DatePicker dtpkrAppointmentDate;
+
+        @FXML
     public void handleHomeButtonClick() throws IOException {
         switchScene("HomePage2.fxml");
     }
@@ -212,6 +207,14 @@ public class AppointmentController {
         stage.setScene(scene);
         stage.show();
     }
+//    public void switchScene(String fxmlFile) throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+
     public void handleBackButtonClick() throws IOException {
         // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
@@ -233,59 +236,5 @@ public class AppointmentController {
         stage.setScene(homePageScene);
         stage.show();
     }
-
 }
 
-
-//        @FXML
-//        public TextField txtfDoctorID, txtfPatientID;
-//    //txtfStaffID;
-////
-////        @FXML
-////        public Button btnSave, btnClearAll;
-//
-//        // JDBC connection details
-//        public final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-//        public final String USER = "root";
-//        public final String PASS = "12345678"; // Replace with your MySQL password
-//
-//        // Method to handle Save Button click
-//        @FXML
-//        void handleSaveButtonClick(ActionEvent event) {
-//            String doctorID = txtfDoctorID.getText();
-//            String patientID = txtfPatientID.getText();
-////            String staffID = txtfStaffID.getText();
-//            String dob = txtfDOB.getText();
-//
-//            // SQL Query to insert data
-//            String sql = "INSERT INTO appointment (doctor_id, patient_id )VALUES (?, ?)";
-////staff_id, dob)
-//            // Try inserting the data into the database
-//            try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-//                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-//
-//                // Set the parameters for the query
-//                pstmt.setString(1, doctorID);
-//                pstmt.setString(2, patientID);
-////                pstmt.setString(3, staffID);
-////                pstmt.setString(4, dob);
-//
-//                // Execute the insertion
-//                pstmt.executeUpdate();
-//                System.out.println("Data inserted successfully!");
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        // Method to handle Clear All button click
-//        @FXML
-//        void handleClearAllButtonClick(ActionEvent event) {
-//            // Clear all text fields
-//            txtfDoctorID.clear();
-//            txtfPatientID.clear();
-////            txtfStaffID.clear();
-////            txtfDOB.clear();
-//        }
-//    }

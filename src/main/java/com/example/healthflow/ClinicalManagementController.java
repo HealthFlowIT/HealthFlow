@@ -1,30 +1,44 @@
 package com.example.healthflow;
-
-//import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.*;
 import java.util.Objects;
 
-import javafx.scene.control.TableView;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-
+import javafx.event.ActionEvent;
 
 public class ClinicalManagementController {
+
+    @FXML
+    public TableColumn<?, ?> ClnAge;
+
+    @FXML
+    public TableColumn<?, ?> ClnBG;
+
+    @FXML
+    public TableColumn<?, ?> ClnFirstName;
+
+    @FXML
+    public TableColumn<?, ?> ClnGender;
+
+    @FXML
+    public TableColumn<?, ?> ClnLastName;
+
+    @FXML
+    public TableColumn<?, ?> ClnPatientId;
+
+    @FXML
+    public TableColumn<?, ?> ClnPhNo;
 
     @FXML
     public AnchorPane ankrDashboard;
@@ -75,7 +89,7 @@ public class ClinicalManagementController {
     public MenuButton mnuBtnRegistration;
 
     @FXML
-    public TableView<?> tblvTable;
+    public TableView<Patient> tblvTable;
 
     @FXML
     public TextField txtfSearch;
@@ -85,6 +99,11 @@ public class ClinicalManagementController {
 
     @FXML
     public VBox vbxUser;
+
+    @FXML
+    void handleAppointmentButtonClick(ActionEvent event) {
+
+    }
 
     // Handler for Home button
     @FXML
@@ -120,19 +139,25 @@ public class ClinicalManagementController {
         switchScene("StaffRegistration.fxml");
     }
 
-//    @FXML
-//    public void handleClinicalManagementTabClick() throws IOException {
-//        switchScene("ClinicalManagement.fxml");
-//    }
-
     // Method to switch scenes
-    private void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+//    public void switchScene(String fxmlFile) throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+    public void switchScene(String fxmlFile) throws IOException {
+        System.out.println("Switching to scene: " + fxmlFile);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
+
     public void handleBackButtonClick() throws IOException {
         // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
@@ -155,128 +180,190 @@ public class ClinicalManagementController {
         stage.show();
     }
 
-}
-//    public class Patient {
-//        private int id;
-//        private String name;
-//        private int age;
-//        private String gender;
-//        private String diagnosis;
+    public class Patient {
+        public final String patientID;
+        public final String firstName;
+        public final String lastName;
+        public final String bloodGroup;
+        public final String phoneNo;
+        public final String age;
+        public final String gender;
+
+        public Patient(String patientID, String firstName, String lastName, String bloodGroup, String phoneNo, String age, String gender) {
+            this.patientID = patientID;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.bloodGroup = bloodGroup;
+            this.phoneNo = phoneNo;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        public String getPatientID() {
+            return patientID;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public String getLastName() {
+            return lastName;
+        }
+
+        public String getBloodGroup() {
+            return bloodGroup;
+        }
+
+        public String getPhoneNo() {
+            return phoneNo;
+        }
+
+        public String getAge() {
+            return age;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+    }
+
+    // ObservableList to hold patient data
+    public ObservableList<Patient> patientList = FXCollections.observableArrayList();
+
+//    // Initialize method to load data when the controller is initialized
+//    @FXML
+//    public void initialize() {
+//        // Set up the columns with the model's properties
+//        ClnPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
+//        ClnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+//        ClnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+//        ClnBG.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
+//        ClnPhNo.setCellValueFactory(new PropertyValueFactory<>("phoneNo"));
+//        ClnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+//        ClnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 //
-//        // Constructor
-//        public Patient(int id, String name, int age, String gender, String diagnosis) {
-//            this.id = id;
-//            this.name = name;
-//            this.age = age;
-//            this.gender = gender;
-//            this.diagnosis = diagnosis;
-//        }
-//
-//        // Getters and setters
-//        public int getId() {
-//            return id;
-//        }
-//
-//        public void setId(int id) {
-//            this.id = id;
-//        }
-//
-//        public String getName() {
-//            return name;
-//        }
-//
-//        public void setName(String name) {
-//            this.name = name;
-//        }
-//
-//        public int getAge() {
-//            return age;
-//        }
-//
-//        public void setAge(int age) {
-//            this.age = age;
-//        }
-//
-//        public String getGender() {
-//            return gender;
-//        }
-//
-//        public void setGender(String gender) {
-//            this.gender = gender;
-//        }
-//
-//        public String getDiagnosis() {
-//            return diagnosis;
-//        }
-//
-//        public void setDiagnosis(String diagnosis) {
-//            this.diagnosis = diagnosis;
-//        }
+//        // Load patient data from the database
+//        loadPatientData();
 //    }
 //
+//    // Existing method to load patient data
+//    public ObservableList<Patient> patients;
 //
-////        @FXML
-////        private TableView<Patient> tblvTable;
-////
-////        @FXML
-////        private TableColumn<Patient, Integer> colId;
-////
-////        @FXML
-////        private TableColumn<Patient, String> colName;
-////
-////        @FXML
-////        private TableColumn<Patient, Integer> colAge;
-////
-////        @FXML
-////        private TableColumn<Patient, String> colGender;
-////
-////        @FXML
-////        private TableColumn<Patient, String> colDiagnosis;
+//    public void loadPatientData() {
+//        patients = FXCollections.observableArrayList();
 //
-//        // Initialize method to be called after the scene is loaded
-//        @FXML
-//        public void initialize() {
-//            // Link table columns to Patient properties
-//            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-//            colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-//            colAge.setCellValueFactory(new PropertyValueFactory<>("age"));
-//            colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-//            colDiagnosis.setCellValueFactory(new PropertyValueFactory<>("diagnosis"));
+//        String query = "SELECT first_name, last_name, Blood_Group, phone_no, Age, Gender FROM patient";
 //
-//            // Load data from the database
-//            loadPatientData();
-//        }
+//        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+//             Statement stmt = conn.createStatement();
+//             ResultSet rs = stmt.executeQuery(query)) {
 //
-//        private void loadPatientData() {
-//            ObservableList<Patient> patients = FXCollections.observableArrayList();
+//            while (rs.next()) {
+//                String firstName = rs.getString("first_name");
+//                String lastName = rs.getString("last_name");
+//                String bloodGroup = rs.getString("Blood_Group");
+//                String phoneNo = rs.getString("phone_no");
+//                int age = rs.getInt("Age");
+//                String gender = rs.getString("Gender");
 //
-//            String url = "jdbc:mysql://localhost:3306/healthflow";
-//            String user = "yourUsername";
-//            String password = "yourPassword";
-//
-//            String query = "SELECT id, name, Gender,Operation FROM patient";
-//
-//            try (Connection conn = DriverManager.getConnection(url, user, password);
-//                 PreparedStatement stmt = conn.prepareStatement(query);
-//                 ResultSet rs = stmt.executeQuery()) {
-//
-//                while (rs.next()) {
-//                    // Create a new Patient object and add it to the list
-//                    patients.add(new Patient(
-//                            rs.getInt("id"),
-//                            rs.getString("name"),
-//                            rs.getInt("age"),
-//                            rs.getString("gender"),
-//                            rs.getString("diagnosis")
-//                    ));
-//                }
-//
-//            } catch (SQLException e) {
-//                e.printStackTrace();
+//                patients.add(new Patient(firstName, lastName, bloodGroup, phoneNo, age, gender));
 //            }
 //
-//            // Populate the TableView with the patient data
 //            tblvTable.setItems(patients);
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            // Optionally show an error message
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Database Error");
+//            alert.setHeaderText(null);
+//            alert.setContentText("Failed to load patient data: " + e.getMessage());
+//            alert.showAndWait();
 //        }
 //    }
-//}
+
+
+
+
+
+
+
+        // ObservableList to hold patient data
+        public ObservableList<Patient> patients;
+
+        @FXML
+        public void initialize() {
+            // Set up the columns with the model's properties
+            ClnPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
+            ClnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            ClnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            ClnBG.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
+            ClnPhNo.setCellValueFactory(new PropertyValueFactory<>("phoneNo"));
+            ClnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+            ClnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+            // Load patient data from the database
+            loadPatientData();
+        }
+
+        public void loadPatientData() {
+            patients = FXCollections.observableArrayList();
+
+            String query = "SELECT patient_id, first_name, last_name, Blood_Group, phone_no, Age, Gender FROM patient";
+
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(query)) {
+
+                while (rs.next()) {
+                    String patientID = rs.getString("patient_id");
+                    String firstName = rs.getString("first_name");
+                    String lastName = rs.getString("last_name");
+                    String bloodGroup = rs.getString("Blood_Group");
+                    String phoneNo = rs.getString("phone_no");
+                    int age = rs.getInt("Age");
+                    String gender = rs.getString("Gender");
+
+                    patients.add(new Patient(patientID, firstName, lastName, bloodGroup, phoneNo, String.valueOf(age), gender));
+                }
+
+                tblvTable.setItems(patients);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Database Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Failed to load patient data: " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+
+        // Search functionality remains the same...
+
+
+
+
+
+    // Search functionality
+    @FXML
+    public void handleSearchKeyReleased() {
+        String searchText = txtfSearch.getText().toLowerCase();
+        ObservableList<Patient> filteredList = FXCollections.observableArrayList();
+
+        for (Patient patient : patients) {
+            if (patient.getFirstName().toLowerCase().contains(searchText) ||
+                    patient.getLastName().toLowerCase().contains(searchText) ||
+                    patient.getBloodGroup().toLowerCase().contains(searchText) ||
+                    patient.getPhoneNo().toLowerCase().contains(searchText) ||
+                    String.valueOf(patient.getAge()).contains(searchText) ||
+                    patient.getGender().toLowerCase().contains(searchText)) {
+                filteredList.add(patient);
+            }
+        }
+
+        tblvTable.setItems(filteredList);
+    }
+}
+
