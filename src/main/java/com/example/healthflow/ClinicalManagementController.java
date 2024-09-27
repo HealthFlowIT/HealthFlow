@@ -1,3 +1,4 @@
+
 package com.example.healthflow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -289,58 +290,58 @@ public class ClinicalManagementController {
 
 
 
-        // ObservableList to hold patient data
-        public ObservableList<Patient> patients;
+    // ObservableList to hold patient data
+    public ObservableList<Patient> patients;
 
-        @FXML
-        public void initialize() {
-            // Set up the columns with the model's properties
-            ClnPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
-            ClnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            ClnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            ClnBG.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
-            ClnPhNo.setCellValueFactory(new PropertyValueFactory<>("phoneNo"));
-            ClnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
-            ClnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+    @FXML
+    public void initialize() {
+        // Set up the columns with the model's properties
+        ClnPatientId.setCellValueFactory(new PropertyValueFactory<>("patientID"));
+        ClnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        ClnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        ClnBG.setCellValueFactory(new PropertyValueFactory<>("bloodGroup"));
+        ClnPhNo.setCellValueFactory(new PropertyValueFactory<>("phoneNo"));
+        ClnAge.setCellValueFactory(new PropertyValueFactory<>("age"));
+        ClnGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
-            // Load patient data from the database
-            loadPatientData();
-        }
+        // Load patient data from the database
+        loadPatientData();
+    }
 
-        public void loadPatientData() {
-            patients = FXCollections.observableArrayList();
+    public void loadPatientData() {
+        patients = FXCollections.observableArrayList();
 
-            String query = "SELECT patient_id, first_name, last_name, Blood_Group, phone_no, Age, Gender FROM patient";
+        String query = "SELECT patient_id, first_name, last_name, Blood_Group, phone_no, Age, Gender FROM patient";
 
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
-                 Statement stmt = conn.createStatement();
-                 ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
 
-                while (rs.next()) {
-                    String patientID = rs.getString("patient_id");
-                    String firstName = rs.getString("first_name");
-                    String lastName = rs.getString("last_name");
-                    String bloodGroup = rs.getString("Blood_Group");
-                    String phoneNo = rs.getString("phone_no");
-                    int age = rs.getInt("Age");
-                    String gender = rs.getString("Gender");
+            while (rs.next()) {
+                String patientID = rs.getString("patient_id");
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                String bloodGroup = rs.getString("Blood_Group");
+                String phoneNo = rs.getString("phone_no");
+                int age = rs.getInt("Age");
+                String gender = rs.getString("Gender");
 
-                    patients.add(new Patient(patientID, firstName, lastName, bloodGroup, phoneNo, String.valueOf(age), gender));
-                }
-
-                tblvTable.setItems(patients);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Database Error");
-                alert.setHeaderText(null);
-                alert.setContentText("Failed to load patient data: " + e.getMessage());
-                alert.showAndWait();
+                patients.add(new Patient(patientID, firstName, lastName, bloodGroup, phoneNo, String.valueOf(age), gender));
             }
-        }
 
-        // Search functionality remains the same...
+            tblvTable.setItems(patients);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Failed to load patient data: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    // Search functionality remains the same...
 
 
 

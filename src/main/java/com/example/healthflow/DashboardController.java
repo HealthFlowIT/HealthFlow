@@ -1,3 +1,4 @@
+
 package com.example.healthflow;
 
 import javafx.fxml.FXML;
@@ -57,13 +58,13 @@ public class DashboardController {
     // Handler for Appointment button
     @FXML
     private void handleAppointmentButtonClick() throws IOException {
-        switchScene("AppointmentPage.fxml");
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Billing button
     @FXML
     private void handleBillingButtonClick() throws IOException {
-        switchScene("BillingPage.fxml");
+        switchScene("BillingandInvoice.fxml");
     }
 
     // Handler for Registration MenuItem selection

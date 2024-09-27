@@ -216,9 +216,17 @@ public class PatientRegistrationController {
         switchScene("ClinicalManagement.fxml");
     }
 
+    @FXML
+    public void handleUserButtonClick() throws IOException {
+        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
+    }
+
     // Method to switch scenes
     public void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+        System.out.println("Switching to scene: " + fxmlFile);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ankrDashboard.getScene().getWindow();
         stage.setScene(scene);
