@@ -1,227 +1,229 @@
-//package com.example.healthflow;
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Parent;
-//import javafx.scene.Scene;
-//import javafx.scene.control.*;
-//import javafx.scene.control.cell.PropertyValueFactory;
-//import javafx.scene.image.ImageView;
-//import javafx.scene.layout.AnchorPane;
-//import javafx.scene.layout.VBox;
-//import javafx.stage.Stage;
-//
-//import java.awt.event.ActionEvent;
-//import java.io.IOException;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//import java.time.LocalDate;
-//import java.util.Objects;
-//import java.util.Stack;
-//
-//public class BillingAndInvoiceController {
-//
-//    @FXML
-//    public DatePicker DpDD;
-//
-//    @FXML
-//    public DatePicker DpInv;
-//
-//    @FXML
-//    public TableColumn<?, ?> TcAmt;
-//
-//    @FXML
-//    public TableColumn<?, ?> TcP;
-//
-//    @FXML
-//    public TableColumn<?, ?> TcSr;
-//
-//    @FXML
-//    public AnchorPane ankrDashboard;
-//
-//    @FXML
-//    public AnchorPane ankrDashboard2;
-//
-//    @FXML
-//    public AnchorPane ankrMain;
-//
-//    @FXML
-//    public AnchorPane ankrPersonalDetails;
-//
-//    @FXML
-//    public AnchorPane ankrTitle;
-//
-//    @FXML
-//    public Button btnAppointment;
-//
-//    @FXML
-//    public Button btnBack;
-//
-//    @FXML
-//    public Button btnBilling;
-//
-//    @FXML
-//    public Button btnClearAll;
-//
-//    @FXML
-//    public Button btnClinicalManagement;
-//
-//    @FXML
-//    public Button btnHome;
-//
-//    @FXML
-//    public Button btnAddParticulars;
-//
-//    @FXML
-//    public Button btnSave;
-//
-//    @FXML
-//    public Button btnUser;
-//
-//    @FXML
-//    public ImageView imgvUser;
-//
-//    @FXML
-//    public Label lblClinicalManagement;
-//
-//    @FXML
-//    public Label lblDOB;
-//
-//    @FXML
-//    public Label lblDOB1;
-//
-//    @FXML
-//    public Label lblDOB11;
-//
-//    @FXML
-//    public Label lblDashboard;
-//
-//    @FXML
-//    public Label lblDoctorID;
-//
-//    @FXML
-//    public Label lblDoctorID1;
-//
-//    @FXML
-//    public Label lblGender;
-//
-//    @FXML
-//    public Label lblGender1;
-//
-//    @FXML
-//    public Label lblName;
-//
-//    @FXML
-//    public Label lblPersonalDetails;
-//
-//    @FXML
-//    public MenuButton mnuBtnRegistration;
-//
-//    @FXML
-//    public TextField txtfAD;
-//
-//    @FXML
-//    public TextField txtfDD;
-//
-//    @FXML
-//    public TextField txtfDOB;
-//
-//    @FXML
-//    public TextField txtfFirstName;
-//
-//    @FXML
-//    public TextField txtfGender;
-//
-//    @FXML
-//    public TextField txtfGender1;
-//
-//    @FXML
-//    public TextField txtfLastName;
-//
-//    @FXML
-//    public VBox vbxDashboard;
-//
-//    @FXML
-//    public VBox vbxUser;
-//
-//    // Handler for Home button
-//    @FXML
-//    public void handleHomeButtonClick() throws IOException {
-//        switchScene("HomePage2.fxml");
-//    }
-//
-//    // Handler for Appointment button
-//    @FXML
-//    public void handleAppointmentButtonClick() throws IOException {
-//        switchScene("Appointment.fxml");
-//    }
-//
-////     Handler for Billing button
-//        @FXML
-//        public void handleBillingButtonClick() throws IOException {
-//            switchScene("BillingandInvoice.fxml");
-//        }
-//
-//    // Handler for Registration MenuItem selection
-//    @FXML
-//    public void handlePatientTabClick() throws IOException {
-//        switchScene("PatientRegistration.fxml");
-//    }
-//
-//    @FXML
-//    public void handleDoctorTabClick() throws IOException {
-//        switchScene("DoctorRegistration.fxml");
-//    }
-//
-//    @FXML
-//    public void handleStaffTabClick() throws IOException {
-//        switchScene("StaffRegistration.fxml");
-//    }
-//
-//    @FXML
-//    public void handleClinicalManagementTabClick() throws IOException {
-//        switchScene("ClinicalManagement.fxml");
-//
-//    }
-//    @FXML
-//    public void handleUserButtonClick() throws IOException {
-//        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
-//    }
-//    @FXML
-//    public void handleBackButtonClick() throws IOException {
-//        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
-//        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
-//        Parent homePageRoot = loader.load();
-//
-//        // Get the controller for the homepage
-//        HomeController homePageController = loader.getController();
-//
-//        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
-//        homePageController.refreshPage();
-//
-//        // Get the current stage
-//        Stage stage = (Stage) ankrMain.getScene().getWindow();
-//
-//        // Create a new scene with the homepage root node from the FXML file
-//        Scene homePageScene = new Scene(homePageRoot);
-//
-//        // Set the homepage scene to the stage
-//        stage.setScene(homePageScene);
-//        stage.show();
-//    }
-//
-//    // Method to switch scenes
-//    public void switchScene(String fxmlFile) throws IOException {
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-//        Scene scene = new Scene(root);
-//        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//
+package com.example.healthflow;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Objects;
+import java.util.Stack;
+
+public class BillingAndInvoiceController {
+
+    @FXML
+    public DatePicker DpDD;
+
+    @FXML
+    public DatePicker DpInv;
+
+    @FXML
+    public TableColumn<?, ?> TcAmt;
+
+    @FXML
+    public TableColumn<?, ?> TcP;
+
+    @FXML
+    public TableColumn<?, ?> TcSr;
+
+    @FXML
+    public AnchorPane ankrDashboard;
+
+    @FXML
+    public AnchorPane ankrDashboard2;
+
+    @FXML
+    public AnchorPane ankrMain;
+
+    @FXML
+    public AnchorPane ankrPersonalDetails;
+
+    @FXML
+    public AnchorPane ankrTitle;
+
+    @FXML
+    public Button btnAppointment;
+
+    @FXML
+    public Button btnBack;
+
+    @FXML
+    public Button btnBilling;
+
+    @FXML
+    public Button btnClearAll;
+
+    @FXML
+    public Button btnClinicalManagement;
+
+    @FXML
+    public Button btnHome;
+
+    @FXML
+    public Button btnAddParticulars;
+
+    @FXML
+    public Button btnSave;
+
+    @FXML
+    public Button btnUser;
+
+    @FXML
+    public ImageView imgvUser;
+
+    @FXML
+    public Label lblClinicalManagement;
+
+    @FXML
+    public Label lblDOB;
+
+    @FXML
+    public Label lblDOB1;
+
+    @FXML
+    public Label lblDOB11;
+
+    @FXML
+    public Label lblDashboard;
+
+    @FXML
+    public Label lblDoctorID;
+
+    @FXML
+    public Label lblDoctorID1;
+
+    @FXML
+    public Label lblGender;
+
+    @FXML
+    public Label lblGender1;
+
+    @FXML
+    public Label lblName;
+
+    @FXML
+    public Label lblPersonalDetails;
+
+    @FXML
+    public MenuButton mnuBtnRegistration;
+
+    @FXML
+    public TextField txtfAD;
+
+    @FXML
+    public TextField txtfDD;
+
+    @FXML
+    public TextField txtfDOB;
+
+    @FXML
+    public TextField txtfFirstName;
+
+    @FXML
+    public TextField txtfGender;
+
+    @FXML
+    public TextField txtfGender1;
+
+    @FXML
+    public TextField txtfLastName;
+
+    @FXML
+    public VBox vbxDashboard;
+
+    @FXML
+    public VBox vbxUser;
+
+    // Handler for Home button
+    @FXML
+    public void handleHomeButtonClick() throws IOException {
+        switchScene("HomePage2.fxml");
+    }
+
+    // Handler for Appointment button
+    @FXML
+    public void handleAppointmentButtonClick() throws IOException {
+        switchScene("Appointment.fxml");
+    }
+
+    //     Handler for Billing button
+    @FXML
+    public void handleBillingButtonClick() throws IOException {
+        switchScene("BillingandInvoice.fxml");
+    }
+
+    // Handler for Registration MenuItem selection
+    @FXML
+    public void handlePatientTabClick() throws IOException {
+        switchScene("PatientRegistration.fxml");
+    }
+
+    @FXML
+    public void handleDoctorTabClick() throws IOException {
+        switchScene("DoctorRegistration.fxml");
+    }
+
+    @FXML
+    public void handleStaffTabClick() throws IOException {
+        switchScene("StaffRegistration.fxml");
+    }
+
+    @FXML
+    public void handleClinicalManagementTabClick() throws IOException {
+        switchScene("ClinicalManagement.fxml");
+
+    }
+
+    @FXML
+    public void handleUserButtonClick() throws IOException {
+        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
+    }
+
+    @FXML
+    public void handleBackButtonClick() throws IOException {
+        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+        Parent homePageRoot = loader.load();
+
+        // Get the controller for the homepage
+        HomeController homePageController = loader.getController();
+
+        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
+        homePageController.refreshPage();
+
+        // Get the current stage
+        Stage stage = (Stage) ankrMain.getScene().getWindow();
+
+        // Create a new scene with the homepage root node from the FXML file
+        Scene homePageScene = new Scene(homePageRoot);
+
+        // Set the homepage scene to the stage
+        stage.setScene(homePageScene);
+        stage.show();
+    }
+
+    // Method to switch scenes
+    public void switchScene(String fxmlFile) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+}
 //    // FXML Components
 //    @FXML public TextField  txtfPatientID, txtfInvoiceNo, txtfDoctorID;
 //    @FXML public DatePicker dpAdmitDate, dpDischargeDate, dpInvoiceDate, dpDueDate;
@@ -672,223 +674,333 @@
 ////    }
 ////}
 //
-package com.example.healthflow;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.Objects;
-import java.util.Stack;
 
-public class BillingAndInvoiceController {
 
-    @FXML
-    public DatePicker DpDD;
 
-    @FXML
-    public DatePicker DpInv;
 
-    @FXML
-    public TableColumn<?, ?> TcAmt;
 
-    @FXML
-    public TableColumn<?, ?> TcP;
 
-    @FXML
-    public TableColumn<?, ?> TcSr;
+//28-09-2024
+//package com.example.healthflow;
+//
+//import javafx.beans.property.SimpleDoubleProperty;
+//import javafx.beans.property.SimpleIntegerProperty;
+//import javafx.beans.property.SimpleStringProperty;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+//import javafx.fxml.FXML;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Parent;
+//import javafx.scene.Scene;
+//import javafx.scene.control.*;
+//import javafx.scene.layout.AnchorPane;
+//import javafx.stage.Stage;
+//
+//import com.itextpdf.kernel.colors.ColorConstants; // Import from iText
+//import com.itextpdf.kernel.pdf.PdfDocument;
+//import com.itextpdf.kernel.pdf.PdfWriter;
+//import com.itextpdf.layout.Document;
+//import com.itextpdf.layout.element.Cell;
+//import com.itextpdf.layout.element.Paragraph;
+//import com.itextpdf.layout.element.Table;
+//
+//import java.io.FileNotFoundException;
+//import java.io.IOException;
+//import java.sql.*;
+//import java.time.LocalDate;
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Objects;
+//
+//public class BillingAndInvoiceController {
+//
+//    @FXML
+//    public MenuItem DoctorTab;
+//    @FXML
+//    public DatePicker DpDD;
+//    @FXML
+//    public DatePicker DpInv;
+//    @FXML
+//    public MenuItem PatientTab;
+//    @FXML
+//    public MenuItem StaffTab;
+//    @FXML
+//    public TableColumn<Particular, Integer> TcSr;
+//    @FXML
+//    public TableColumn<Particular, String> TcP;
+//    @FXML
+//    public TableColumn<Particular, Double> TcAmt;
+//    @FXML
+//    public AnchorPane ankrMain;
+//    @FXML
+//    public Button btnInsert;
+//    @FXML
+//    public Button btnPaid;
+//    @FXML
+//    public TextField txtfPatientId;
+//    @FXML
+//    public TextField txtfFirstName;
+//    @FXML
+//    public TextField txtfLastName;
+//    @FXML
+//    public TextField txtfDoctorId;
+//    @FXML
+//    public DatePicker dtpkrAdmit;
+//    @FXML
+//    public DatePicker dtpkrDischarge;
+//    @FXML
+//    public TableView<Particular> tblParticulars;
+//
+//    private ObservableList<Particular> particularsList = FXCollections.observableArrayList();
+//
+//    // Initialize method
+//    @FXML
+//    public void initialize() {
+//        TcSr.setCellValueFactory(cellData -> cellData.getValue().serialNoProperty().asObject());
+//        TcP.setCellValueFactory(cellData -> cellData.getValue().particularsProperty());
+//        TcAmt.setCellValueFactory(cellData -> cellData.getValue().amountProperty());
+//
+//        tblParticulars.setItems(particularsList);
+//
+//        // Set the current date for Invoice Date
+//        DpInv.setValue(java.time.LocalDate.now());
+//    }
+//
+//    // Fetch patient details when patient ID is entered
+//    @FXML
+//    public void fetchPatientDetails() {
+//        String patientId = txtfPatientId.getText();
+//        if (patientId.isEmpty()) {
+//            return;
+//        }
+//
+//        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "username", "password");
+//             PreparedStatement ps = connection.prepareStatement("SELECT first_name, last_name FROM patient WHERE patient_id = ?")) {
+//            ps.setString(1, patientId);
+//            ResultSet rs = ps.executeQuery();
+//
+//            if (rs.next()) {
+//                txtfFirstName.setText(rs.getString("first_name"));
+//                txtfLastName.setText(rs.getString("last_name"));
+//            } else {
+//                showAlert("Error", "Patient not found.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    // Insert particulars into the table view
+//    @FXML
+//    public void handleInsert() {
+//        // Example logic to create a new Particular and add it to the table
+//        Particular newParticular = new Particular();
+//        // Set values for newParticular here...
+//        newParticular.setSerialNo(particularsList.size() + 1); // Auto-increment serial number
+//        newParticular.setParticulars("Example Particular"); // Set example particulars
+//        newParticular.setAmount(100.0); // Set example amount
+//
+//        particularsList.add(newParticular);
+//    }
+//
+//    // Handle payment and save the bill to the database
+//    @FXML
+//    public void handlePaid() {
+//        String patientId = txtfPatientId.getText();
+//        String doctorId = txtfDoctorId.getText();
+//        String admitDate = dtpkrAdmit.getValue().toString();
+//        String dischargeDate = dtpkrDischarge.getValue().toString();
+//        String invoiceDate = DpInv.getValue().toString();
+//
+//        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "username", "password");
+//             PreparedStatement ps = connection.prepareStatement("INSERT INTO bill (patient_id, doctor_id, admit_date, discharge_date, invoice_date) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+//            ps.setString(1, patientId);
+//            ps.setString(2, doctorId);
+//            ps.setString(3, admitDate);
+//            ps.setString(4, dischargeDate);
+//            ps.setString(5, invoiceDate);
+//            ps.executeUpdate();
+//
+//            ResultSet generatedKeys = ps.getGeneratedKeys();
+//            if (generatedKeys.next()) {
+//                int billId = generatedKeys.getInt(1);
+//                for (Particular particular : particularsList) {
+//                    saveParticular(connection, billId, particular);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        generatePDFInvoice(patientId, txtfFirstName.getText(), txtfLastName.getText(), doctorId,
+//                dtpkrAdmit.getValue(), dtpkrDischarge.getValue(), DpInv.getValue());
+//    }
+//
+//    // Save particular to the database
+//    private void saveParticular(Connection connection, int billId, Particular particular) throws SQLException {
+//        try (PreparedStatement ps = connection.prepareStatement("INSERT INTO particulars (bill_id, particulars, amount) VALUES (?, ?, ?)")) {
+//            ps.setInt(1, billId);
+//            ps.setString(2, particular.getParticulars());
+//            ps.setDouble(3, particular.getAmount());
+//            ps.executeUpdate();
+//        }
+//    }
+//
+//    public void generatePDFInvoice(String patientId, String firstName, String lastName, String doctorId,
+//                                   LocalDate admitDate, LocalDate dischargeDate, LocalDate invoiceDate) {
+//        String filePath = "path/to/invoice_" + patientId + ".pdf"; // Change path as needed
+//
+//        try {
+//            // Initialize PDF writer
+//            PdfWriter writer = new PdfWriter(filePath);
+//            PdfDocument pdfDocument = new PdfDocument(writer);
+//            Document document = new Document(pdfDocument);
+//
+//            // Add title
+//            document.add(new Paragraph("Invoice")
+//                    .setFontSize(20)
+//                    .setBold()
+//                    .setMarginBottom(20));
+//
+//            // Add patient details
+//            document.add(new Paragraph("Patient ID: " + patientId));
+//            document.add(new Paragraph("Patient Name: " + firstName + " " + lastName));
+//            document.add(new Paragraph("Doctor ID: " + doctorId));
+//            document.add(new Paragraph("Admit Date: " + admitDate));
+//            document.add(new Paragraph("Discharge Date: " + dischargeDate));
+//            document.add(new Paragraph("Invoice Date: " + invoiceDate));
+//            document.add(new Paragraph("Due Date: " + LocalDate.now().plusDays(30))); // Example due date
+//
+//            // Create a table for particulars
+//            Table table = new Table(new float[]{1, 3, 1});
+//            table.setWidthPercent(100);
+//            table.addHeaderCell(new Cell().add("Serial No").setBackgroundColor(ColorConstants.LIGHT_GRAY));
+//            table.addHeaderCell(new Cell().add("Particulars").setBackgroundColor(ColorConstants.LIGHT_GRAY));
+//            table.addHeaderCell(new Cell().add("Amount").setBackgroundColor(ColorConstants.LIGHT_GRAY));
+//
+//            // Add items to the table
+//            for (Particular particular : particularsList) {
+//                table.addCell(new Cell().add(String.valueOf(particular.getSerialNo())));
+//                table.addCell(new Cell().add(particular.getParticulars()));
+//                table.addCell(new Cell().add(String.valueOf(particular.getAmount())));
+//            }
+//
+//            document.add(table);
+//
+//            // Close the document
+//            document.close();
+//
+//            // Optionally, open the PDF file
+//            openPDF(filePath);
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    // Display alert dialog
+//    private void showAlert(String title, String message) {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle(title);
+//        alert.setHeaderText(null);
+//        alert.setContentText(message);
+//        alert.showAndWait();
+//    }
+//
+//    // Method to switch scenes (if needed)
+//    public void switchScene(String fxmlFile) throws IOException {
+//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
+//        Scene scene = new Scene(root);
+//        Stage stage = (Stage) ankrMain.getScene().getWindow();
+//        stage.setScene(scene);
+//        stage.show();
+//    }
+//
+//    // Particular class to represent the particulars table
+//    class Particular {
+//        private final SimpleIntegerProperty serialNo;
+//        private final SimpleStringProperty particulars;
+//        private final SimpleDoubleProperty amount;
+//
+//        public Particular() {
+//            this.serialNo = new SimpleIntegerProperty();
+//            this.particulars = new SimpleStringProperty();
+//            this.amount = new SimpleDoubleProperty();
+//        }
+//
+//        public int getSerialNo() {
+//            return serialNo.get();
+//        }
+//
+//        public void setSerialNo(int serialNo) {
+//            this.serialNo.set(serialNo);
+//        }
+//
+//        public SimpleIntegerProperty serialNoProperty() {
+//            return serialNo;
+//        }
+//
+//        public String getParticulars() {
+//            return particulars.get();
+//        }
+//
+//        public void setParticulars(String particulars) {
+//            this.particulars.set(particulars);
+//        }
+//
+//        public SimpleStringProperty particularsProperty() {
+//            return particulars;
+//        }
+//
+//        public double getAmount() {
+//            return amount.get();
+//        }
+//
+//        public void setAmount(double amount) {
+//            this.amount.set(amount);
+//        }
+//
+//        public SimpleDoubleProperty amountProperty() {
+//            return amount;
+//        }
+//    }
+//
+//    private void openPDF(String filePath) {
+//        try {
+//            java.awt.Desktop.getDesktop().open(new java.io.File(filePath));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    // Class for invoice items
+//    public static class InvoiceItem {
+//        private int serialNo;
+//        private String particulars;
+//        private double amount;
+//
+//        // Constructor, getters, and setters...
+//        public InvoiceItem(int serialNo, String particulars, double amount) {
+//            this.serialNo = serialNo;
+//            this.particulars = particulars;
+//            this.amount = amount;
+//        }
+//
+//        public int getSerialNo() {
+//            return serialNo;
+//        }
+//
+//        public String getParticular() {
+//            return particulars;
+//        }
+//
+//        public double getAmount() {
+//            return amount;
+//        }
+//    }
+//}
 
-    @FXML
-    public AnchorPane ankrDashboard;
-
-    @FXML
-    public AnchorPane ankrDashboard2;
-
-    @FXML
-    public AnchorPane ankrMain;
-
-    @FXML
-    public AnchorPane ankrPersonalDetails;
-
-    @FXML
-    public AnchorPane ankrTitle;
-
-    @FXML
-    public Button btnAppointment;
-
-    @FXML
-    public Button btnBack;
-
-    @FXML
-    public Button btnBilling;
-
-    @FXML
-    public Button btnClearAll;
-
-    @FXML
-    public Button btnClinicalManagement;
-
-    @FXML
-    public Button btnHome;
-
-    @FXML
-    public Button btnPaid;
-
-    @FXML
-    public Button btnSave;
-
-    @FXML
-    public Button btnUser;
-
-    @FXML
-    public ImageView imgvUser;
-
-    @FXML
-    public Label lblClinicalManagement;
-
-    @FXML
-    public Label lblDOB;
-
-    @FXML
-    public Label lblDOB1;
-
-    @FXML
-    public Label lblDOB11;
-
-    @FXML
-    public Label lblDashboard;
-
-    @FXML
-    public Label lblDoctorID;
-
-    @FXML
-    public Label lblDoctorID1;
-
-    @FXML
-    public Label lblGender;
-
-    @FXML
-    public Label lblGender1;
-
-    @FXML
-    public Label lblName;
-
-    @FXML
-    public Label lblPersonalDetails;
-
-    @FXML
-    public MenuButton mnuBtnRegistration;
-
-    @FXML
-    public TextField txtfAD;
-
-    @FXML
-    public TextField txtfDD;
-
-    @FXML
-    public TextField txtfDOB;
-
-    @FXML
-    public TextField txtfFirstName;
-
-    @FXML
-    public TextField txtfGender;
-
-    @FXML
-    public TextField txtfGender1;
-
-    @FXML
-    public TextField txtfLastName;
-
-    @FXML
-    public VBox vbxDashboard;
-
-    @FXML
-    public VBox vbxUser;
-
-    // Handler for Home button
-    @FXML
-    public void handleHomeButtonClick() throws IOException {
-        switchScene("HomePage2.fxml");
-    }
-
-    // Handler for Appointment button
-    @FXML
-    public void handleAppointmentButtonClick() throws IOException {
-        switchScene("Appointment.fxml");
-    }
-
-    //     Handler for Billing button
-    @FXML
-    public void handleBillingButtonClick() throws IOException {
-        switchScene("BillingandInvoice.fxml");
-    }
-
-    // Handler for Registration MenuItem selection
-    @FXML
-    public void handlePatientTabClick() throws IOException {
-        switchScene("PatientRegistration.fxml");
-    }
-
-    @FXML
-    public void handleDoctorTabClick() throws IOException {
-        switchScene("DoctorRegistration.fxml");
-    }
-
-    @FXML
-    public void handleStaffTabClick() throws IOException {
-        switchScene("StaffRegistration.fxml");
-    }
-
-    @FXML
-    public void handleClinicalManagementTabClick() throws IOException {
-        switchScene("ClinicalManagement.fxml");
-
-    }
-    @FXML
-    public void handleUserButtonClick() throws IOException {
-        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
-    }
-    @FXML
-    public void handleBackButtonClick() throws IOException {
-        // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
-        Parent homePageRoot = loader.load();
-
-        // Get the controller for the homepage
-        HomeController homePageController = loader.getController();
-
-        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
-        homePageController.refreshPage();
-
-        // Get the current stage
-        Stage stage = (Stage) ankrMain.getScene().getWindow();
-
-        // Create a new scene with the homepage root node from the FXML file
-        Scene homePageScene = new Scene(homePageRoot);
-
-        // Set the homepage scene to the stage
-        stage.setScene(homePageScene);
-        stage.show();
-    }
-
-    // Method to switch scenes
-    public void switchScene(String fxmlFile) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ankrDashboard.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
-}
 
 
 

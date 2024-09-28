@@ -41,6 +41,8 @@ public class AppointmentController {
     public ComboBox<String> cmbxTimeSlot;
     @FXML
     public DatePicker dtpkrAppointmentDate;
+    @FXML
+    public TextField txtfAppointmentNumber;
 
     // Connection details (ensure they are set correctly)
     public static final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
@@ -119,6 +121,7 @@ public class AppointmentController {
         // Specialty change event to load corresponding doctors
         cmbxSpeciality.setOnAction(event -> handleSpecialityChange());
         cmbxDoctorName.setOnAction(event -> handleDoctorNameChange());
+        displayNextAppointmentNumber();
     }
 
     @FXML
@@ -223,28 +226,66 @@ public class AppointmentController {
             return;
         }
 
+//        // SQL query to insert appointment details into the database
+//        String query = "INSERT INTO appointment (patient_id, doctor_id, doctor_name, speciality, appointment_type, appointment_duration, time_slot, appointment_date) " +
+//                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+//             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+//
+//            // Set the parameters for the query
+//            preparedStatement.setString(1, patientId);
+//            preparedStatement.setString(2, doctorId);
+//            preparedStatement.setString(3, doctorName);
+//            preparedStatement.setString(4, speciality);
+//            preparedStatement.setString(5, appointmentType);
+//            preparedStatement.setString(6, appointmentDuration);
+//            preparedStatement.setString(7, formattedTimeSlot);
+//            preparedStatement.setString(8, appointmentDate);
+//
+//            // Execute the query
+//            int result = preparedStatement.executeUpdate();
+//
+//            if (result > 0) {
+//                System.out.println("Appointment booked successfully.");
+//            } else {
+//                System.out.println("Failed to book the appointment.");
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("Error booking appointment: " + e.getMessage());
+//        }
+//    }
+
+
         // SQL query to insert appointment details into the database
-        String query = "INSERT INTO appointment (patient_id, doctor_id, doctor_name, speciality, appointment_type, appointment_duration, time_slot, appointment_date) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO appointment (appointment_no, patient_id, doctor_id, doctor_name, speciality, appointment_type, appointment_duration, time_slot, appointment_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
+            // Get the appointment number from the text field
+            String appointmentNumber = txtfAppointmentNumber.getText();
+
             // Set the parameters for the query
-            preparedStatement.setString(1, patientId);
-            preparedStatement.setString(2, doctorId);
-            preparedStatement.setString(3, doctorName);
-            preparedStatement.setString(4, speciality);
-            preparedStatement.setString(5, appointmentType);
-            preparedStatement.setString(6, appointmentDuration);
-            preparedStatement.setString(7, formattedTimeSlot);
-            preparedStatement.setString(8, appointmentDate);
+            preparedStatement.setString(1, appointmentNumber);  // Appointment ID
+            preparedStatement.setString(2, patientId);
+            preparedStatement.setString(3, doctorId);
+            preparedStatement.setString(4, doctorName);
+            preparedStatement.setString(5, speciality);
+            preparedStatement.setString(6, appointmentType);
+            preparedStatement.setString(7, appointmentDuration);
+            preparedStatement.setString(8, formattedTimeSlot);
+            preparedStatement.setString(9, appointmentDate);
 
             // Execute the query
             int result = preparedStatement.executeUpdate();
 
             if (result > 0) {
                 System.out.println("Appointment booked successfully.");
+                // Optionally, increment and display the next appointment number for future appointments
+                displayNextAppointmentNumber();
             } else {
                 System.out.println("Failed to book the appointment.");
             }
@@ -254,17 +295,38 @@ public class AppointmentController {
         }
     }
 
-    public void handleClearAll() {
-        txtfPatientID.clear();
-        txtfDoctorID.clear();
-        cmbxDoctorName.getSelectionModel().clearSelection();
-        cmbxSpeciality.getSelectionModel().clearSelection();
-        cmbxAppointmentType.getSelectionModel().clearSelection();
-        cmbxAppointmentDuration.getSelectionModel().clearSelection();
-        cmbxTimeSlot.getSelectionModel().clearSelection();
-        dtpkrAppointmentDate.setValue(null);
+        public void handleClearAll () {
+            txtfPatientID.clear();
+            txtfDoctorID.clear();
+            cmbxDoctorName.getSelectionModel().clearSelection();
+            cmbxSpeciality.getSelectionModel().clearSelection();
+            cmbxAppointmentType.getSelectionModel().clearSelection();
+            cmbxAppointmentDuration.getSelectionModel().clearSelection();
+            cmbxTimeSlot.getSelectionModel().clearSelection();
+            dtpkrAppointmentDate.setValue(null);
+        }
+        public void displayNextAppointmentNumber () {
+            String query = "SELECT MAX(appointment_no) AS last_appointment_id FROM appointment";
+
+            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                 Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(query)) {
+
+                if (resultSet.next()) {
+                    int lastAppointmentId = resultSet.getInt("last_appointment_id");
+                    int nextAppointmentId = lastAppointmentId + 1;
+                    txtfAppointmentNumber.setText(String.valueOf(nextAppointmentId));
+                } else {
+                    // If there are no appointments in the database, start from 1
+                    txtfAppointmentNumber.setText("1");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.out.println("Error fetching the last appointment ID: " + e.getMessage());
+            }
+        }
     }
-}
+
 
 //    public void handleBookAppointment() {
 //        // Get user input from the form

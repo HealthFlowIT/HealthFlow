@@ -140,6 +140,11 @@ public class ClinicalManagementController {
         switchScene("StaffRegistration.fxml");
     }
 
+    @FXML
+    public void handleUserButtonClick() throws IOException {
+        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
+    }
+
     // Method to switch scenes
 //    public void switchScene(String fxmlFile) throws IOException {
 //        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlFile)));

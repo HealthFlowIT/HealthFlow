@@ -2,8 +2,8 @@
 .button {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10px 20px;
+    -fx-font-size: 20px;
+    -fx-padding: 5px 20px;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-overflow: hidden; /* Ensures the ripple stays within the button */
@@ -19,7 +19,7 @@
 
 /* Specific button hover styles */
 #btnHome:hover, #btnAppointment:hover, #btnBilling:hover,
-#btnClinicalManagement:hover,#mnuBtnRegistration:hover, #btnUser:hover {
+#btnClinicalManagement:hover, #btnUser:hover {
     -fx-background-color: #3e8e41;  /* Change background color on hover */
     -fx-scale-x: 1.05;              /* Slightly increase the button size */
     -fx-scale-y: 1.05;
