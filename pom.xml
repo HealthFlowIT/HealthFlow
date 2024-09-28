@@ -46,6 +46,11 @@
         <artifactId>javafx-swing</artifactId>
         <version>22.0.1</version>
       </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itext7-core</artifactId>
+      <version>7.1.15</version> <!-- Check for the latest version -->
+    </dependency>
 <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-media</artifactId>
