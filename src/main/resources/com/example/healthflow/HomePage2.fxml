@@ -21,7 +21,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@style5.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.HomeController">
    <AnchorPane fx:id="ankrDashboard" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="10.0">
-      <ImageView fx:id="imgvRefresh" fitHeight="54.0" fitWidth="54.0" layoutX="287.0" layoutY="36.0" onMouseClicked="#loadDashboardData" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="287.0" AnchorPane.topAnchor="36.0">
+      <ImageView fx:id="imgvRefresh" fitHeight="54.0" fitWidth="54.0" layoutX="287.0" layoutY="36.0" onMouseClicked="#refreshPage" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="287.0" AnchorPane.topAnchor="36.0">
          <image>
             <Image url="@rotate-right_7883922.png" />
          </image>
@@ -181,7 +181,7 @@
          <effect>
             <InnerShadow />
          </effect>
-         <Button fx:id="btnprofile" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
+         <Button fx:id="btnprofile" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
             <VBox.margin>
                <Insets bottom="-46.0" left="65.0" top="10.0" />
             </VBox.margin>

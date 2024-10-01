@@ -240,7 +240,7 @@
                <Insets left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
          </Label>
-         <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE">
+         <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font name="Calibri Bold" size="20.0" />
             </font>
@@ -390,7 +390,7 @@
          </DropShadow>
       </effect>
    </Button>
-   <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" layoutX="591.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Save" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="409.0">
+   <Button fx:id="btnSave" alignment="CENTER" contentDisplay="CENTER" layoutX="591.0" layoutY="615.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Save" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="409.0">
       <font>
          <Font name="Book Antiqua" size="24.0" />
       </font>
@@ -403,7 +403,7 @@
       </effect>
    </Button>
 
-   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="315.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleClearAll" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.60000000000002" AnchorPane.leftAnchor="315.0">
+   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="315.0" layoutY="615.0" mnemonicParsing="false" onAction="#clearAll" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="134.60000000000002" AnchorPane.leftAnchor="315.0">
       <font>
          <Font name="Book Antiqua" size="24.0" />
       </font>

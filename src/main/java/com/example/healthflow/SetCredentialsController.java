@@ -162,6 +162,39 @@ public class SetCredentialsController {
         return true;
     }
 
+
+//    public void saveToDatabase(String username, String password, String securityQuestion, String securityAnswer) throws SQLException {
+//        // Database connection setup
+//        String url = "jdbc:mysql://localhost:3306/healthflow";
+//        String user = "root"; // Replace with your MySQL username
+//        String dbPassword = "12345678"; // Replace with your MySQL password
+//
+//        Connection conn = DriverManager.getConnection(url, user, dbPassword);
+//
+//        // Save staff details in 'staff' table
+//        String staffInsertQuery = "INSERT INTO staff (staff_id, first_name, last_name, dob, phone_no, email, qualification,gender, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+//        PreparedStatement staffStmt = conn.prepareStatement(staffInsertQuery);
+//        staffStmt.setString(1, staffID);
+//        staffStmt.setString(2, firstName);
+//        staffStmt.setString(3, lastName);
+//        staffStmt.setString(4, dob);
+//        staffStmt.setString(5, phoneNo);
+//        staffStmt.setString(6, email);
+//        staffStmt.setString(7, qualification);
+//        staffStmt.setString(8, department);
+//        staffStmt.setString(9, gender);
+//        staffStmt.executeUpdate();
+//
+//        // Save credentials in 'user' table
+//        String userInsertQuery = "INSERT INTO user (username, password, security_answer) VALUES (?, ?, ?)";
+//        PreparedStatement userStmt = conn.prepareStatement(userInsertQuery);
+//        userStmt.setString(1, username);
+//        userStmt.setString(2, password);
+//        userStmt.setString(3, securityAnswer);
+//        userStmt.executeUpdate();
+//
+//        conn.close();
+//    }
     @FXML
     public void saveToDatabase(String username, String password, String securityQuestion, String securityAnswer) throws SQLException {
         // Database connection setup
@@ -172,29 +205,31 @@ public class SetCredentialsController {
         Connection conn = DriverManager.getConnection(url, user, dbPassword);
 
         // Save staff details in 'staff' table
-        String staffInsertQuery = "INSERT INTO staff (staff_id, first_name, last_name, dob, phone_no, email, qualification,gender, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String staffInsertQuery = "INSERT INTO staff (staff_id, first_name, last_name, dob, phone_no, email, qualification, gender, department) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement staffStmt = conn.prepareStatement(staffInsertQuery);
-        staffStmt.setString(1, staffID);
+        staffStmt.setString(1, staffID);  // assuming staffID is passed
         staffStmt.setString(2, firstName);
         staffStmt.setString(3, lastName);
         staffStmt.setString(4, dob);
         staffStmt.setString(5, phoneNo);
         staffStmt.setString(6, email);
         staffStmt.setString(7, qualification);
-        staffStmt.setString(8, department);
-        staffStmt.setString(9, gender);
+        staffStmt.setString(8, gender);
+        staffStmt.setString(9, department);
         staffStmt.executeUpdate();
 
-        // Save credentials in 'user' table
-        String userInsertQuery = "INSERT INTO user (username, password, security_answer) VALUES (?, ?, ?)";
+        // Save credentials in 'user' table, including staff_id
+        String userInsertQuery = "INSERT INTO user (id, username, password, security_answer) VALUES (?, ?, ?, ?)";
         PreparedStatement userStmt = conn.prepareStatement(userInsertQuery);
-        userStmt.setString(1, username);
-        userStmt.setString(2, password);
-        userStmt.setString(3, securityAnswer);
+        userStmt.setString(1, staffID);  // staffID will be stored in the 'id' column of the 'user' table
+        userStmt.setString(2, username);
+        userStmt.setString(3, password);
+        userStmt.setString(4, securityAnswer);
         userStmt.executeUpdate();
 
         conn.close();
     }
+
 
     @FXML
     public void showAlert(Alert.AlertType alertType, String title, String content) {

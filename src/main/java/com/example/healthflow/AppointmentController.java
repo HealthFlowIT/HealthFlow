@@ -43,6 +43,8 @@ public class AppointmentController {
     public DatePicker dtpkrAppointmentDate;
     @FXML
     public TextField txtfAppointmentNumber;
+    @FXML
+    public Button btnUpdate;
 
     // Connection details (ensure they are set correctly)
     public static final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
@@ -87,6 +89,11 @@ public class AppointmentController {
     @FXML
     public void handleUserButtonClick() throws IOException {
         switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
+    }
+
+    @FXML
+    public void handleUpdateButtonClick() throws IOException {
+        switchScene("UpdateAppointments.fxml");
     }
 
     public void switchScene(String fxmlFile) throws IOException {

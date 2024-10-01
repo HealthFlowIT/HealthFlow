@@ -38,7 +38,7 @@
             <font>
                <Font name="System Bold" size="36.0" />
             </font></Button>
-         <CheckBox fx:id="CBoxShowPass" layoutX="316.0" layoutY="415.0" mnemonicParsing="false" onAction="#togglePasswordVisibility" text="Show Password">
+         <CheckBox fx:id="CBoxShowPass" layoutX="316.0" layoutY="415.0" mnemonicParsing="false" text="Show Password">
             <font>
                <Font size="18.0" />
             </font></CheckBox>

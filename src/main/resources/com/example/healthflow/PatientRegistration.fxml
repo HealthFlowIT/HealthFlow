@@ -155,9 +155,15 @@
          </MenuButton>
          <MenuButton fx:id="mnubtnChooseBloodGroup" alignment="CENTER" layoutX="602.0" layoutY="109.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="189.0" style="-fx-background-color: #FFFFF; -fx-background-radius: 20;" text="Choose option">
             <items>
-               <MenuItem mnemonicParsing="false" text="" />
-               <MenuItem mnemonicParsing="false" text="Female" />
-               <MenuItem mnemonicParsing="false" text="Other" />
+               <MenuItem mnemonicParsing="false" text="A+" />
+               <MenuItem mnemonicParsing="false" text="A-" />
+               <MenuItem mnemonicParsing="false" text="B+" />
+               <MenuItem mnemonicParsing="false" text="B-" />
+               <MenuItem mnemonicParsing="false" text="O+" />
+               <MenuItem mnemonicParsing="false" text="O-" />
+               <MenuItem mnemonicParsing="false" text="AB+" />
+               <MenuItem mnemonicParsing="false" text="AB-" />
+
             </items>
             <padding>
                <Insets top="-4.0" />

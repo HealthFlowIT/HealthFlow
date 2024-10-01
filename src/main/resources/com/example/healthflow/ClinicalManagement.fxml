@@ -23,9 +23,9 @@
 
 
 <AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane fx:id="ankrTable" layoutX="271.0" layoutY="207.0" prefHeight="572.0" prefWidth="918.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrTable" layoutX="271.0" layoutY="207.0" prefHeight="430.0" prefWidth="890.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
          <children>
-         <TableView fx:id="tblvTable" editable="true" layoutX="53.0" layoutY="27.0" onSort="#initialize" prefHeight="500.0" prefWidth="825.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="53.0">
+         <TableView fx:id="tblvTable" editable="true" layoutX="53.0" layoutY="27.0" onSort="#initialize" prefHeight="469.0" prefWidth="826.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="53.0">
             <columns>
                <TableColumn fx:id="ClnPatientId" minWidth="0.0" prefWidth="115.77773797512054" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Patient ID" />
                <TableColumn fx:id="ClnFirstName" minWidth="0.0" prefWidth="156.0000228881836" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="First name" />
@@ -69,6 +69,22 @@
          <Image url="@search_4202806.png" />
       </image>
    </ImageView>
+      <Button fx:id="btnDelete1" alignment="CENTER" contentDisplay="CENTER" layoutX="426.0" layoutY="736.0" mnemonicParsing="false" onAction="#handlePrintButtonClick" prefHeight="26.0" prefWidth="75.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 20;" text="Print" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
+      <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="962.0" layoutY="733.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" prefHeight="26.0" prefWidth="75.0" style="-fx-background-radius: 20; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 20;" text="Delete" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="10.0" />
+         </font>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
 </AnchorPane>
 <VBox fx:id="vbxDashboard" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="242.0" style="-fx-background-color: #3F72AF; -fx-background-radius: 40;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
    <Label fx:id="lblDashboard" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" prefHeight="66.0" prefWidth="254.0" text="HealthFlow" textAlignment="CENTER" textFill="#dbe2ef">

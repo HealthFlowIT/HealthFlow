@@ -316,6 +316,8 @@ public class HomeController {
     @FXML
     public XYChart<String, Number> barGraph;
 
+    private int userId; // Assuming you will set this from LoginController or elsewhere
+
     // Scene switching methods
     @FXML
     public void handleHomeButtonClick() throws IOException {
@@ -354,7 +356,12 @@ public class HomeController {
 
     @FXML
     public void handleUserButtonClick() throws IOException {
-        switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
+        switchScene("LoginPage.fxml");
+    }
+
+    @FXML
+    public void handleProfileButtonClick() throws IOException {
+        switchScene("Profile.fxml");
     }
 
     // Utility method to switch scenes
@@ -368,7 +375,7 @@ public class HomeController {
     }
 
     // Load dashboard data
-    public void loadDashboardData() {
+    public void loadDashboardData(int userId) {
         String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
         String DB_USERNAME = "root";
         String DB_PASSWORD = "12345678";
@@ -386,10 +393,8 @@ public class HomeController {
             int totalStaffs = getTotalStaffs(statement);
             lblTotalnoStaff.setText(String.valueOf(totalStaffs));
 
-            // Update the PieChart with Age Groups
+            // Update the PieChart and BarChart
             updatePieChart(statement, totalPatients);
-
-            // Update the BarChart with Blood Group data
             updateBarChart(statement);
 
         } catch (Exception e) {
@@ -440,7 +445,6 @@ public class HomeController {
             while (resultSet.next()) {
                 String ageGroup = resultSet.getString("ageGroup");
                 int count = resultSet.getInt("count");
-
                 double percentage = (count / (double) totalPatients) * 100;
                 pieChart.getData().add(new PieChart.Data(ageGroup + " (" + String.format("%.1f", percentage) + "%)", count));
             }
@@ -461,47 +465,24 @@ public class HomeController {
         }
 
         barGraph.getData().add(seriesBloodGroup);
-
-        // Update the PieChart with age groups
-        pieChart.getData().clear();
-        String ageQuery = "SELECT Age FROM patient";
-        int ageGroup1 = 0, ageGroup2 = 0, ageGroup3 = 0, ageGroup4 = 0;
-
-        try (ResultSet resultSet = statement.executeQuery(ageQuery)) {
-            while (resultSet.next()) {
-                int age = resultSet.getInt("age");
-                if (age <= 12) {
-                    ageGroup1++;
-                } else if (age <= 19) {
-                    ageGroup2++;
-                } else if (age <= 60) {
-                    ageGroup3++;
-                } else {
-                    ageGroup4++;
-                }
-            }
-        }
-
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("0-12", (ageGroup1 / (double) totalPatients) * 100),
-                new PieChart.Data("13-19", (ageGroup2 / (double) totalPatients) * 100),
-                new PieChart.Data("20-60", (ageGroup3 / (double) totalPatients) * 100),
-                new PieChart.Data("60+", (ageGroup4 / (double) totalPatients) * 100)
-        );
-
-        pieChart.setData(pieChartData);
     }
 
     @FXML
     public void refreshPage() {
-        loadDashboardData();
+        loadDashboardData(userId); // Ensure userId is set properly before calling this
     }
 
     @FXML
     public void initialize() {
-        refreshPage();
+        refreshPage(); // Call this during initialization
+    }
+
+    // Method to set userId from LoginController
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
+
 
 
 
