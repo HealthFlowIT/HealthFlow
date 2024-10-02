@@ -193,6 +193,12 @@ public class BillingAndInvoiceController {
     }
 
     @FXML
+    public void handleProfileButtonClick() throws IOException {
+        switchScene("Profile.fxml");
+    }
+
+
+    @FXML
     public void handleBackButtonClick() throws IOException {
         // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));

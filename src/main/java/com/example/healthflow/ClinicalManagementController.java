@@ -465,8 +465,8 @@ public class ClinicalManagementController {
     public ObservableList<Patient> patients = FXCollections.observableArrayList();
 
     @FXML
-    void handleAppointmentButtonClick(ActionEvent event) {
-        // Appointment button logic
+    public void handleAppointmentButtonClick() throws IOException {
+        switchScene("Appointment.fxml");
     }
 
     // Handler for Home button
@@ -500,6 +500,11 @@ public class ClinicalManagementController {
     @FXML
     public void handleUserButtonClick() throws IOException {
         switchScene("LoginPage.fxml");
+    }
+
+    @FXML
+    public void handleProfileButtonClick() throws IOException {
+        switchScene("Profile.fxml");
     }
 
     public void switchScene(String fxmlFile) throws IOException {

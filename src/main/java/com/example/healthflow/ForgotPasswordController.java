@@ -70,7 +70,12 @@
 //
 package com.example.healthflow;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -78,45 +83,47 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class ForgotPasswordController {
 
     @FXML
-    private AnchorPane ankrMain;
+    public AnchorPane ankrMain;
 
     @FXML
-    private Button btnBack;
+    public Button btnBack;
 
     @FXML
-    private Button btnClearAll;
+    public Button btnClearAll;
 
     @FXML
-    private Button btnResetPass;
+    public Button btnResetPass;
 
     @FXML
-    private PasswordField passfConfirmNewPass;
+    public PasswordField passfConfirmNewPass;
 
     @FXML
-    private PasswordField passfNewPass;
+    public PasswordField passfNewPass;
 
     @FXML
-    private TextField txtUsername;
+    public TextField txtUsername;
 
     @FXML
-    private TextField txtfSecurityAnswer;
+    public TextField txtfSecurityAnswer;
 
     // Database connection details
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "12345678";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
+    public static final String DB_USER = "root";
+    public static final String DB_PASSWORD = "12345678";
 
     // Verify security answer by querying the database
-    private boolean verifySecurityAnswer(String username, String answer) {
+    public boolean verifySecurityAnswer(String username, String answer) {
         String query = "SELECT security_answer FROM user WHERE username = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -137,8 +144,25 @@ public class ForgotPasswordController {
         return false;
     }
 
+    @FXML
+    public void handleBackButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Loginpage.fxml"));  // Load the correct FXML
+            Parent root = loader.load();
+
+            Logincontroller loginController = loader.getController();  // Cast to LoginController
+            // Now you can call methods on loginController if needed
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Update password in the database
-    private void updatePassword(String username, String newPassword) {
+    public void updatePassword(String username, String newPassword) {
         String query = "UPDATE user SET password = ? WHERE username = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -160,7 +184,7 @@ public class ForgotPasswordController {
     }
 
     @FXML
-    private void handleResetPasswordAction() {
+    public void handleResetPasswordAction() {
         String username = txtUsername.getText();
         String securityAnswer = txtfSecurityAnswer.getText();
         String newPassword = passfNewPass.getText();
@@ -189,24 +213,24 @@ public class ForgotPasswordController {
     }
 
     @FXML
-    private void handleClearAllAction() {
+    public void handleClearAllAction() {
         clearAllFields();
     }
 
     @FXML
-    private void handleBackAction() {
+    public void handleBackAction() {
         Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close(); // Close the current window
     }
 
-    private void clearAllFields() {
+    public void clearAllFields() {
         txtUsername.clear();
         txtfSecurityAnswer.clear();
         passfNewPass.clear();
         passfConfirmNewPass.clear();
     }
 
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
+    public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setContentText(message);

@@ -492,6 +492,10 @@ public class StaffRegistrationController {
         switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
     }
 
+    @FXML
+    public void handleProfileButtonClick() throws IOException {
+        switchScene("Profile.fxml");
+    }
 
     @FXML
     public void handleBackButtonClick() throws IOException {

@@ -262,6 +262,7 @@ public class Logincontroller {
 
             if (resultSet.next()) {
                 isValid = true; // Valid credentials
+                UserSession2.getInstance(username);
             }
 
         } catch (SQLException e) {
@@ -295,7 +296,30 @@ public class Logincontroller {
         return userId;
     }
 
-    // Method to load the home page
+//    // Method to load the home page
+//    private void loadHomePage(ActionEvent event, int userId) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
+//
+//            Scene scene = new Scene(loader.load());
+//
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.setTitle("Home");
+//            stage.show();
+//
+//            // Optionally, get the HomeController and pass the user ID
+//            HomeController homeController = loader.getController();
+//            homeController.loadDashboardData(userId);  // Ensure this method exists in HomeController
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+
+
     private void loadHomePage(ActionEvent event, int userId) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
@@ -307,14 +331,19 @@ public class Logincontroller {
             stage.setTitle("Home");
             stage.show();
 
-            // Optionally, get the HomeController and pass the user ID
+            // Pass the username or ID to the HomeController (or ProfileController)
             HomeController homeController = loader.getController();
-            homeController.loadDashboardData(userId);  // Ensure this method exists in HomeController
+            homeController.loadUserProfile(userId);  // Assuming you have a method for this in HomeController
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
+
 
     // Handle forgot password hyperlink click
     @FXML
@@ -335,6 +364,29 @@ public class Logincontroller {
         }
     }
 
+
+    @FXML
+    private void togglePasswordVisibility() {
+        if (CBoxShowPass.isSelected()) {
+            // Set TextField visible, and hide PasswordField
+            tfpassVisible.setText(tfpass.getText());
+            tfpassVisible.setVisible(true);
+            tfpassVisible.setManaged(true);
+
+            tfpass.setVisible(false);
+            tfpass.setManaged(false);
+        } else {
+            // Set PasswordField visible, and hide TextField
+            tfpass.setText(tfpassVisible.getText());
+            tfpass.setVisible(true);
+            tfpass.setManaged(true);
+
+            tfpassVisible.setVisible(false);
+            tfpassVisible.setManaged(false);
+        }
+    }
+
+
     // Utility method to show alerts
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -343,5 +395,9 @@ public class Logincontroller {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
+
+
 
 }

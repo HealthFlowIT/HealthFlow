@@ -18,22 +18,21 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.ClinicalManagementController">
+<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.UpdateAppointmentsController">
    <!-- FXML content goes here -->
 
 
-<AnchorPane fx:id="ankrMain" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <AnchorPane fx:id="ankrTable" layoutX="271.0" layoutY="207.0" prefHeight="430.0" prefWidth="890.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane fx:id="ankrAppTable" layoutX="271.0" layoutY="207.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="890.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
          <children>
-         <TableView fx:id="tblvTable" editable="true" layoutX="53.0" layoutY="27.0" onSort="#initialize" prefHeight="469.0" prefWidth="826.0" style="-fx-background-color: DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="53.0">
+         <TableView fx:id="tblvAppTable" editable="true" layoutX="48.0" layoutY="22.0" prefHeight="426.0" prefWidth="767.0" style="-fx-background-color: #FFFFF; -fx-background-radius: 40;" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="22.0">
             <columns>
-               <TableColumn fx:id="ClnPatientId" minWidth="0.0" prefWidth="115.77773797512054" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Patient ID" />
-               <TableColumn fx:id="ClnFirstName" minWidth="0.0" prefWidth="156.0000228881836" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="First name" />
-               <TableColumn fx:id="ClnLastName" minWidth="0.0" prefWidth="143.33331298828125" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Last name" />
-               <TableColumn fx:id="ClnAge" prefWidth="57.7777099609375" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Age" />
-               <TableColumn fx:id="ClnGender" minWidth="0.0" prefWidth="102.44448852539062" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Gender" />
-               <TableColumn fx:id="ClnBG" prefWidth="74.0" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="BG" />
-               <TableColumn fx:id="ClnPhNo" prefWidth="178.22210693359375" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Phone no." />
+               <TableColumn fx:id="ClnSp" minWidth="0.0" prefWidth="147.111083984375" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Speciality" />
+               <TableColumn fx:id="ClnName" minWidth="0.0" prefWidth="138.66665649414062" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Doctor Name" />
+               <TableColumn fx:id="ClnType" minWidth="0.0" prefWidth="192.0" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Type" />
+               <TableColumn fx:id="ClnDur" prefWidth="93.5555419921875" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Duration" />
+               <TableColumn fx:id="ClnDate" minWidth="0.0" prefWidth="91.3333740234375" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Date" />
+               <TableColumn fx:id="ClnTimeSlot" prefWidth="100.22222900390625" style="-fx-background-color: DBE2EF; -fx-font-size: 20px;" text="Time slot" />
             </columns>
          </TableView>
          </children></AnchorPane>
@@ -53,42 +52,42 @@
    </Button>
    <AnchorPane fx:id="ankrTitle" layoutX="418.0" layoutY="44.0" prefHeight="56.0" prefWidth="420.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.topAnchor="45.0">
       <children>
-         <Label fx:id="lblClinicalManagement" layoutX="33.0" layoutY="5.0" text="Clinical Management">
+         <Label fx:id="lblUpdateAppointment" layoutX="33.0" layoutY="5.0" text="Update appointments">
             <font>
                <Font name="Book Antiqua Bold" size="36.0" />
             </font>
          </Label>
       </children>
    </AnchorPane>
-   <TextField fx:id="txtfSearch" layoutX="309.0" layoutY="148.0" onKeyReleased="#handleSearchKeyReleased" promptText="Search" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;">
+   <TextField fx:id="txtfSearch" layoutX="309.0" layoutY="148.0" promptText="Search" style="-fx-background-color: #DBE2EF; -fx-background-radius: 20;">
          <font>
             <Font name="Calibri" size="24.0" />
          </font></TextField>
-   <ImageView fx:id="imgvSearch" fitHeight="46.0" fitWidth="45.0" layoutX="549.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fx:id="imgvSearch" fitHeight="47.0" fitWidth="48.0" layoutX="548.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@search_4202806.png" />
       </image>
    </ImageView>
-      <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="821.0" layoutY="727.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnDelete" alignment="CENTER" layoutX="421.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Delete" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>
          <effect>
             <DropShadow>
                <color>
-                  <Color opacity="0.7200000286102295" />
+                  <Color opacity="0.5" />
                </color>
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="btnDelete1" alignment="CENTER" contentDisplay="CENTER" layoutX="418.0" layoutY="727.0" mnemonicParsing="false" onAction="#handlePrintButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnUpdate1" alignment="CENTER" layoutX="811.0" layoutY="715.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Update" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>
          <effect>
             <DropShadow>
                <color>
-                  <Color opacity="0.7200000286102295" />
+                  <Color opacity="0.5" />
                </color>
             </DropShadow>
          </effect>
@@ -133,16 +132,12 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
    </MenuButton>
-   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Appointment" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 40; -fx-border-width: 3;" text="Appointment" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
       <effect>
-         <InnerShadow>
-            <color>
-               <Color opacity="0.8223350048065186" />
-            </color>
-         </InnerShadow>
+            <DropShadow />
       </effect>
          <VBox.margin>
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
@@ -163,7 +158,7 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
    </Button>
-   <Button fx:id="btnClinicalManagement" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 40; -fx-border-width: 3;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnClinicalManagement" alignment="CENTER" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
@@ -181,7 +176,7 @@
       <effect>
          <InnerShadow />
       </effect>
-      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 20; -fx-border-width: 3;" text="Profile">
+      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 20; -fx-border-width: 3;" text="Profile">
          <effect>
                <DropShadow>
                   <color>
@@ -212,7 +207,7 @@
          </effect>
          <Image url="@man_4825038.png" />
       </ImageView>
-         <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
+         <Button fx:id="btnUser1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
             <font>
                <Font name="Calibri" size="24.0" />
             </font>

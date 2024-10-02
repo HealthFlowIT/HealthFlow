@@ -408,7 +408,7 @@
                <Insets bottom="20.0" left="20.0" right="20.0" />
             </VBox.margin>
             <children>
-               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
+               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
                   <VBox.margin>
                      <Insets bottom="-46.0" left="65.0" top="10.0" />
                   </VBox.margin>

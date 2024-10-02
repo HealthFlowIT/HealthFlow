@@ -799,6 +799,11 @@ public class DoctorRegistrationController {
         switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
     }
 
+    @FXML
+    public void handleProfileButtonClick() throws IOException {
+        switchScene("Profile.fxml");
+    }
+
     // Method to switch scenes
     public void switchScene(String fxmlFile) throws IOException {
         System.out.println("Switching to scene: " + fxmlFile);
