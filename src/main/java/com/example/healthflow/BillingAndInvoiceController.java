@@ -481,7 +481,7 @@ public class BillingAndInvoiceController {
             writer.write("    <ul>\n");
             writer.write("        <li>Please keep this receipt for your records.</li>\n");
             writer.write("        <li>Contact us for any discrepancies.</li>\n");
-            writer.write("        <li>Our office hours: Mon-Fri, 9 AM - 5 PM</li>\n");
+            writer.write("        <li>Our office hours: Mon-Fri, 9 AM - 6 PM</li>\n");
             writer.write("    </ul>\n");
             writer.write("</div>\n");
 

@@ -315,7 +315,7 @@
          </VBox.margin>
       </VBox>
    </VBox>
-   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="302.0" layoutY="51.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="56.0" prefWidth="84.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #3F72AF; -fx-border-width: 3; -fx-border-radius: 40;" text="&lt;" textAlignment="CENTER" AnchorPane.topAnchor="40.0">
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="302.0" layoutY="51.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #3F72AF; -fx-border-width: 3; -fx-border-radius: 40;" textAlignment="CENTER" AnchorPane.topAnchor="40.0">
       <font>
          <Font name="Gill Sans Ultra Bold" size="28.0" />
       </font>
@@ -326,13 +326,20 @@
             </color>
          </DropShadow>
       </effect>
+      <graphic>
+         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@back.png" />
+            </image>
+         </ImageView>
+      </graphic>
    </Button>
    <AnchorPane fx:id="ankrDashboard" layoutX="1006.0" layoutY="52.0" prefHeight="29.0" prefWidth="66.0">
       <children>
          <AnchorPane fx:id="ankrDashboard2" layoutX="1.0" layoutY="5.0" prefHeight="18.0" prefWidth="42.0" />
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="ankrTitle" layoutX="420.0" layoutY="46.0" prefHeight="60.0" prefWidth="316.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.topAnchor="40.0">
+   <AnchorPane fx:id="ankrTitle" layoutX="382.0" layoutY="39.0" prefHeight="60.0" prefWidth="316.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.topAnchor="40.0">
       <Label fx:id="lblClinicalManagement" layoutX="21.0" layoutY="8.0" prefHeight="60.0" text="Billing / Invoice" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Book Antiqua Bold" size="36.0" />

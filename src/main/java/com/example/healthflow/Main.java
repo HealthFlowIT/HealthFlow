@@ -3,6 +3,7 @@ package com.example.healthflow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
@@ -18,9 +19,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //loads fxml file
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Loginpage.fxml")));
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("HealthFlow");
+        // Set the application logo
+        Image appLogo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("HealthFlowLogo_x16_drawing.png")));
+        primaryStage.getIcons().add(appLogo);
         //first scene
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
