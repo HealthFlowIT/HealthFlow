@@ -20,8 +20,8 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.AppointmentController">
-   <AnchorPane fx:id="ankrDashboard" layoutX="392.0" layoutY="39.0" prefHeight="60.0" prefWidth="428.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.topAnchor="39.0">
+<AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@style5.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.AppointmentController">
+   <AnchorPane fx:id="ankrDashboard" layoutX="392.0" layoutY="39.0" prefHeight="60.0" prefWidth="428.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #000000; -fx-border-radius: 35; -fx-border-width: 1.5;" AnchorPane.topAnchor="39.0">
       <children>
          <Label fx:id="lblAppointment" alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="56.0" prefWidth="382.0" text="Appointment Booking">
             <font>
@@ -43,7 +43,7 @@
                <Insets left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
          </Label>
-         <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE">
+         <Button fx:id="btnHome" alignment="BOTTOM_CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" stylesheets="@style5.css" text="Home" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font name="Calibri Bold" size="20.0" />
             </font>
@@ -53,6 +53,13 @@
             <VBox.margin>
                <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
             </VBox.margin>
+            <graphic>
+               <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@output-onlinegiftools(3).gif" />
+                  </image>
+               </ImageView>
+            </graphic>
          </Button>
          <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="248.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" text="Registration" textAlignment="CENTER" textFill="WHITE">
             <items>
@@ -122,7 +129,7 @@
                <Insets bottom="20.0" left="20.0" right="20.0" />
             </VBox.margin>
             <children>
-               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
+               <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="42.0" prefWidth="105.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #1A4870; -fx-border-radius: 40; -fx-border-width: 3;" text="Profile">
                   <VBox.margin>
                      <Insets bottom="-46.0" left="65.0" top="10.0" />
                   </VBox.margin>
@@ -155,7 +162,7 @@
                      <Image url="@man_4825038.png" />
                   </image>
                </ImageView>
-               <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
+               <Button fx:id="btnLogout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
                   <VBox.margin>
                      <Insets bottom="-30.0" top="-10.0" />
                   </VBox.margin>
@@ -177,7 +184,7 @@
          </VBox>
       </children>
    </VBox>
-   <AnchorPane fx:id="ankrDetails" layoutX="307.0" layoutY="150.0" prefHeight="222.0" prefWidth="441.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30;" AnchorPane.leftAnchor="280.0">
+   <AnchorPane fx:id="ankrDetails" layoutX="307.0" layoutY="150.0" prefHeight="222.0" prefWidth="441.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30; -fx-border-color: #000000; -fx-border-radius: 30; -fx-border-width: 0.8;" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="150.0">
       <children>
          <Label fx:id="lblDetails" layoutX="21.0" layoutY="5.0" prefHeight="4.0" prefWidth="222.0" text="Details :" underline="true" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="15.0">
             <font>
@@ -203,7 +210,7 @@
                </InnerShadow>
             </effect>
             <font>
-               <Font name="Calibri Italic" size="24.0" />
+               <Font name="Calibri" size="24.0" />
             </font>
          </TextField>
          <ComboBox fx:id="cmbxAppointmentType" layoutX="29.0" layoutY="78.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="300.0" promptText="Select Type" style="-fx-background-radius: 40; -fx-background-color: #FFFFF; -fx-font-size: 20px;" AnchorPane.bottomAnchor="30.6" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="52.0">
@@ -232,7 +239,7 @@
 
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="ankrOthers" layoutX="746.0" layoutY="156.0" prefHeight="222.0" prefWidth="428.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30;" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrOthers" layoutX="746.0" layoutY="156.0" prefHeight="222.0" prefWidth="428.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30; -fx-border-color: #000000; -fx-border-radius: 30; -fx-border-width: 0.8;" AnchorPane.bottomAnchor="428.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="150.0">
       <children>
          <Label fx:id="lblOthers" layoutX="24.0" layoutY="6.0" prefHeight="4.0" prefWidth="222.0" text="Others :" underline="true" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="15.0">
             <font>
@@ -258,7 +265,7 @@
                </InnerShadow>
             </effect>
             <font>
-               <Font name="Calibri Italic" size="24.0" />
+               <Font name="Calibri" size="24.0" />
             </font>
          </TextField>
          <TextField fx:id="txtfAppointmentNumber" layoutX="111.0" layoutY="55.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="180.0" promptText="Enter number" style="-fx-background-color: #FFFFF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="76.66" AnchorPane.leftAnchor="222.0">
@@ -270,7 +277,7 @@
                </InnerShadow>
             </effect>
             <font>
-               <Font name="Calibri Italic" size="24.0" />
+               <Font name="Calibri" size="24.0" />
             </font>
          </TextField>
          <Label fx:id="lblAppointmentDuration1" layoutX="18.0" layoutY="82.0" text="Appointment Duration :" AnchorPane.bottomAnchor="30.66" AnchorPane.leftAnchor="42.0">
@@ -301,7 +308,7 @@
          </ComboBox>
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="ankrChooseDoctor" layoutX="307.0" layoutY="403.0" prefHeight="114.0" prefWidth="866.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrChooseDoctor" layoutX="307.0" layoutY="403.0" prefHeight="114.0" prefWidth="866.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30; -fx-border-color: #000000; -fx-border-radius: 30; -fx-border-width: 0.8;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
       <children>
          <Label fx:id="lblChooseDoctor" layoutX="16.0" layoutY="5.0" prefHeight="34.0" prefWidth="184.0" text="Choose Doctor :" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="10.0">
             <font>
@@ -332,7 +339,7 @@
                </InnerShadow>
             </effect>
             <font>
-               <Font name="Calibri Italic" size="24.0" />
+               <Font name="Calibri" size="24.0" />
             </font>
          </TextField>
          <ComboBox fx:id="cmbxSpeciality" layoutX="143.33333333333334" layoutY="55.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="204.0" promptText="Select Speciality" style="-fx-background-radius: 20; -fx-font-size: 20; -fx-background-color: #FFFFF;" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="143.0">
@@ -384,7 +391,7 @@
          </ComboBox>
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="ankrAvailability" layoutX="311.0" layoutY="548.0" minWidth="-Infinity" prefHeight="120.0" prefWidth="500.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrAvailability" layoutX="311.0" layoutY="548.0" minWidth="-Infinity" prefHeight="120.0" prefWidth="500.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 30; -fx-border-color: #000000; -fx-border-radius: 30; -fx-border-width: 0.8;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
       <children>
          <Label fx:id="lblAvailability" layoutX="13.0" layoutY="6.0" prefHeight="34.0" prefWidth="168.0" text="Availability :" underline="true" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="12.0">
             <font>

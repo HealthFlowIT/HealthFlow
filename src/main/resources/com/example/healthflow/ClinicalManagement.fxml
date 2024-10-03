@@ -212,7 +212,7 @@
          </effect>
          <Image url="@man_4825038.png" />
       </ImageView>
-         <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
+         <Button fx:id="btnLogout" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
             <font>
                <Font name="Calibri" size="24.0" />
             </font>
