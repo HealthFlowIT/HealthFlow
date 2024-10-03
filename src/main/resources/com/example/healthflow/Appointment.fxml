@@ -61,21 +61,48 @@
                </ImageView>
             </graphic>
          </Button>
-         <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="248.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" text="Registration" textAlignment="CENTER" textFill="WHITE">
+         <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" styleClass="menubutton" stylesheets="@style5.css" text="Registration" textAlignment="CENTER" textFill="WHITE">
             <items>
-               <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
-               <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
-               <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
+               <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick">
+                  <graphic>
+                     <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Patient">
+                        <effect>
+                           <DropShadow />
+                        </effect>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick">
+                  <graphic>
+                     <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Doctor">
+                        <effect>
+                           <DropShadow />
+                        </effect>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick">
+                  <graphic>
+                     <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Staff">
+                        <effect>
+                           <DropShadow />
+                        </effect>
+                     </Label>
+                  </graphic>
+               </MenuItem>
             </items>
             <font>
                <Font name="Calibri Bold" size="20.0" />
             </font>
             <effect>
-               <InnerShadow />
+               <DropShadow />
             </effect>
             <VBox.margin>
                <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
+            <padding>
+               <Insets left="-1.0" />
+            </padding>
          </MenuButton>
          <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="246.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-width: 3; -fx-border-radius: 40;" text="Appointment" textAlignment="CENTER" textFill="WHITE">
             <font>

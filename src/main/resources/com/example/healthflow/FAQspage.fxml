@@ -59,7 +59,7 @@
          </effect></AnchorPane>
    <AnchorPane fx:id="ankrDashboard" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="10.0" />
    <AnchorPane fx:id="ankrDashboard2" prefHeight="206.0" prefWidth="127.0" />
-   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="38.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="56.0" prefWidth="84.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #3F72AF; -fx-border-radius: 40; -fx-border-width: 3;" text="&lt;" textAlignment="CENTER" AnchorPane.topAnchor="40.0">
+   <Button fx:id="btnBack" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="38.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="62.0" prefWidth="60.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #3F72AF; -fx-border-radius: 40; -fx-border-width: 3;" stylesheets="@style5.css" textAlignment="CENTER" AnchorPane.topAnchor="40.0">
       <font>
          <Font name="Gill Sans Ultra Bold" size="28.0" />
       </font>
@@ -70,8 +70,15 @@
                </color>
          </DropShadow>
       </effect>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+         </graphic>
    </Button>
-   <AnchorPane fx:id="ankrTitle" layoutX="418.0" layoutY="44.0" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.topAnchor="45.0">
+   <AnchorPane fx:id="ankrTitle" layoutX="418.0" layoutY="44.0" prefHeight="56.0" prefWidth="152.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40; -fx-border-color: #000000; -fx-border-radius: 35; -fx-border-width: 1.5;" AnchorPane.topAnchor="45.0">
       <children>
          <Label fx:id="lblClinicalManagement" layoutX="33.0" layoutY="5.0" text="FAQs">
             <font>
@@ -160,7 +167,7 @@
             <Insets left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
    </Label>
-   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Home" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnHome" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleHomeButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" stylesheets="@style5.css" text="Home" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
@@ -171,23 +178,50 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="30.0" />
          </VBox.margin>
    </Button>
-   <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" text="Registration" textAlignment="CENTER" textFill="WHITE">
+   <MenuButton fx:id="mnuBtnRegistration" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" style="-fx-background-color: #112D4E; -fx-background-radius: 40;" styleClass="menubutton" stylesheets="@style5.css" text="Registration" textAlignment="CENTER" textFill="WHITE">
       <items>
-         <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick" text="Patient" />
-         <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick" text="Doctor" />
-         <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick" text="Staff" />
+         <MenuItem fx:id="PatientTab" mnemonicParsing="false" onAction="#handlePatientTabClick">
+            <graphic>
+               <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Patient">
+                  <effect>
+                     <DropShadow />
+                  </effect>
+               </Label>
+            </graphic>
+         </MenuItem>
+         <MenuItem fx:id="DoctorTab" mnemonicParsing="false" onAction="#handleDoctorTabClick">
+            <graphic>
+               <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Doctor">
+                  <effect>
+                     <DropShadow />
+                  </effect>
+               </Label>
+            </graphic>
+         </MenuItem>
+         <MenuItem fx:id="StaffTab" mnemonicParsing="false" onAction="#handleStaffTabClick">
+            <graphic>
+               <Label style="-fx-pref-width: 180; -fx-alignment: CENTER; -fx-background-color: #112D4E; -fx-text-fill: #FFFFFF; -fx-background-radius: 20" text="Staff">
+                  <effect>
+                     <DropShadow />
+                  </effect>
+               </Label>
+            </graphic>
+         </MenuItem>
       </items>
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
       <effect>
-         <InnerShadow />
+         <DropShadow />
       </effect>
-         <VBox.margin>
-            <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
+      <VBox.margin>
+         <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+      </VBox.margin>
+      <padding>
+         <Insets left="-1.0" />
+      </padding>
    </MenuButton>
-   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Appointment" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnAppointment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleAppointmentButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" stylesheets="@style5.css" text="Appointment" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
@@ -202,7 +236,7 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
    </Button>
-   <Button fx:id="btnBilling" alignment="CENTER" mnemonicParsing="false" onAction="#handleBillingButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Billing / Invoice" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnBilling" alignment="CENTER" mnemonicParsing="false" onAction="#handleBillingButtonClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" stylesheets="@style5.css" text="Billing / Invoice" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
@@ -217,7 +251,7 @@
             <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
    </Button>
-   <Button fx:id="btnClinicalManagement" alignment="CENTER" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 40; -fx-border-width: 3;" text="Clinical Management" textAlignment="CENTER" textFill="WHITE">
+   <Button fx:id="btnClinicalManagement" alignment="CENTER" mnemonicParsing="false" onAction="#handleClinicalManagementTabClick" prefHeight="60.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E; -fx-border-color: #5B99C2; -fx-border-radius: 40; -fx-border-width: 3;" stylesheets="@style5.css" text="Clinical Management" textAlignment="CENTER" textFill="WHITE">
       <font>
          <Font name="Calibri Bold" size="20.0" />
       </font>
@@ -235,7 +269,7 @@
       <effect>
          <InnerShadow />
       </effect>
-      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 20; -fx-border-width: 3;" text="Profile">
+      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 40; -fx-border-width: 3;" stylesheets="@style5.css" text="Profile">
          <effect>
                <DropShadow>
                   <color>
@@ -266,7 +300,7 @@
          </effect>
          <Image url="@man_4825038.png" />
       </ImageView>
-         <Button fx:id="btnUser1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" text="Logout" textFill="WHITE">
+         <Button fx:id="btnUser1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #9A0000; -fx-background-radius: 40;" stylesheets="@style5.css" text="Logout" textFill="WHITE">
             <font>
                <Font name="Calibri" size="24.0" />
             </font>
