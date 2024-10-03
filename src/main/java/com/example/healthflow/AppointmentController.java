@@ -123,8 +123,7 @@ public class AppointmentController {
 
     @FXML
     public void initialize() {
-        // Initialize Appointment Duration and Type ComboBoxes
-//        cmbxAppointmentDuration.getItems().addAll("30 ", "1 ", "1.5 ", "2 ");
+        // Initialize Appointment Type ComboBox
         cmbxAppointmentType.getItems().addAll("New Consultation", "Follow-Up", "Routine Check-Up");
 
         // Initialize Time Slot ComboBox with predefined times
@@ -140,7 +139,7 @@ public class AppointmentController {
     public void handleSpecialityChange() {
         String selectedSpeciality = cmbxSpeciality.getValue();
         if (selectedSpeciality != null) {
-            String query = "SELECT DoctorId, Firstname FROM doctor WHERE Speciality = ?";
+            String query = "SELECT DoctorId, first_name FROM doctor WHERE Speciality = ?";
 
             try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -154,7 +153,7 @@ public class AppointmentController {
 
                 // Load doctors for the selected specialty
                 while (resultSet.next()) {
-                    String doctorName = resultSet.getString("Firstname");
+                    String doctorName = resultSet.getString("first_name");
                     cmbxDoctorName.getItems().add(doctorName);
                 }
 
@@ -173,7 +172,7 @@ public class AppointmentController {
         String selectedDoctorName = cmbxDoctorName.getValue();
 
         if (selectedDoctorName != null) {
-            String query = "SELECT DoctorId FROM doctor WHERE Firstname = ?";
+            String query = "SELECT DoctorId FROM doctor WHERE first_name = ?";
 
             try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
                  PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -240,75 +239,64 @@ public class AppointmentController {
 
 
         // SQL query to insert appointment details into the database
-        String query = "INSERT INTO appointment (appointment_no, patient_id, doctor_id, doctor_name, speciality, appointment_type, appointment_duration, time_slot, appointment_date) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO appointment (appointment_no, patient_id, doctor_id, doctor_name, speciality, appointment_type, appointment_duration, time_slot, appointment_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            // Get the appointment number from the text field
-            String appointmentNumber = txtfAppointmentNumber.getText();
-
-            // Set the parameters for the query
-            preparedStatement.setString(1, appointmentNumber);  // Appointment ID
+            // Set appointment details in the query
+            preparedStatement.setString(1, txtfAppointmentNumber.getText().trim());
             preparedStatement.setString(2, patientId);
             preparedStatement.setString(3, doctorId);
             preparedStatement.setString(4, doctorName);
             preparedStatement.setString(5, speciality);
             preparedStatement.setString(6, appointmentType);
             preparedStatement.setString(7, appointmentDuration);
-            preparedStatement.setString(8, formattedTimeSlot);
+            preparedStatement.setString(8, formattedTimeSlot); // Use formatted time slot
             preparedStatement.setString(9, appointmentDate);
 
-            // Execute the query
-            int result = preparedStatement.executeUpdate();
-
-            if (result > 0) {
+            // Execute the insert query
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
                 System.out.println("Appointment booked successfully.");
-                // Optionally, increment and display the next appointment number for future appointments
-                displayNextAppointmentNumber();
             } else {
-                System.out.println("Failed to book the appointment.");
+                System.out.println("Error booking appointment. Please try again.");
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Error booking appointment: " + e.getMessage());
+            System.out.println("Error inserting appointment details: " + e.getMessage());
         }
+
+        clearFormFields();
     }
 
-        public void handleClearAll () {
-            txtfPatientID.clear();
-            txtfDoctorID.clear();
-            cmbxDoctorName.getSelectionModel().clearSelection();
-            cmbxSpeciality.getSelectionModel().clearSelection();
-            cmbxAppointmentType.getSelectionModel().clearSelection();
-            cmbxAppointmentDuration.getSelectionModel().clearSelection();
-            cmbxTimeSlot.getSelectionModel().clearSelection();
-            dtpkrAppointmentDate.setValue(null);
-        }
-        public void displayNextAppointmentNumber () {
-            String query = "SELECT MAX(appointment_no) AS last_appointment_id FROM appointment";
+    // Method to display the next appointment number automatically
+    public void displayNextAppointmentNumber() {
+        String query = "SELECT MAX(appointment_no) FROM appointment";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
 
-            try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-                 Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(query)) {
-
-                if (resultSet.next()) {
-                    int lastAppointmentId = resultSet.getInt("last_appointment_id");
-                    int nextAppointmentId = lastAppointmentId + 1;
-                    txtfAppointmentNumber.setText(String.valueOf(nextAppointmentId));
-                } else {
-                    // If there are no appointments in the database, start from 1
-                    txtfAppointmentNumber.setText("1");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Error fetching the last appointment ID: " + e.getMessage());
+            if (resultSet.next()) {
+                int maxAppointmentNo = resultSet.getInt(1);
+                txtfAppointmentNumber.setText(String.valueOf(maxAppointmentNo + 1));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error fetching next appointment number: " + e.getMessage());
         }
     }
 
-
-
-
-
+    // Method to clear all form fields
+    @FXML
+    public void clearFormFields() {
+        txtfPatientID.clear();
+        cmbxDoctorName.getSelectionModel().clearSelection();
+        cmbxSpeciality.getSelectionModel().clearSelection();
+        cmbxAppointmentType.getSelectionModel().clearSelection();
+        cmbxAppointmentDuration.getSelectionModel().clearSelection();
+        cmbxTimeSlot.getSelectionModel().clearSelection();
+        dtpkrAppointmentDate.setValue(null);
+        txtfDoctorID.clear();
+    }
+}

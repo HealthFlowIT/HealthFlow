@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="ankrMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.healthflow.StaffRegistrationController">
-   <AnchorPane fx:id="ankrOthers" layoutX="288.0" layoutY="402.0" prefHeight="154.0" prefWidth="890.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrOthers" layoutX="280.0" layoutY="475.0" prefHeight="154.0" prefWidth="890.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.40000000000009">
       <Label fx:id="lblOthers" layoutX="17.0" layoutY="4.0" prefHeight="2.0" prefWidth="111.0" text="Others :" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
          <font>
             <Font name="Calibri Bold" size="26.0" />
@@ -304,7 +304,7 @@
                <Font name="Calibri" size="24.0" />
             </font>
          </TextField>
-         <TextField fx:id="txtfStaffID" alignment="CENTER" layoutX="293.3333333333333" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="226.0" promptText="PatientID" style="-fx-background-color: #FFFFF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="65.32">
+         <TextField fx:id="txtfStaffID" alignment="CENTER" layoutX="293.3333333333333" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="226.0" promptText="StaffID" style="-fx-background-color: #FFFFF; -fx-background-radius: 20;" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="65.32">
             <effect>
                <InnerShadow>
                   <color>
@@ -352,7 +352,7 @@
          </MenuButton>
       </children>
    </AnchorPane>
-   <AnchorPane fx:id="ankrContact" layoutX="287.0" layoutY="290.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="878.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.0">
+   <AnchorPane fx:id="ankrContact" layoutX="280.0" layoutY="322.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="97.0" prefWidth="878.0" style="-fx-background-color: #DBE2EF; -fx-background-radius: 40;" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="30.40000000000009">
       <children>
          <Label fx:id="lblContact" layoutX="17.0" layoutY="4.0" prefHeight="38.0" prefWidth="124.0" text="Contact :" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="12.0">
             <font>

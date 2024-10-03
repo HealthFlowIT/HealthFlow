@@ -176,7 +176,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btnChangePassword" alignment="CENTER" contentDisplay="CENTER" layoutX="878.0" layoutY="677.0" mnemonicParsing="false" onAction="#handleChangePassword" prefHeight="50.0" prefWidth="228.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Change password" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="878.0">
+      <Button fx:id="btnChangePassword" alignment="CENTER" contentDisplay="CENTER" layoutX="878.0" layoutY="702.0" mnemonicParsing="false" onAction="#handleChangePassword" prefHeight="50.0" prefWidth="228.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Change password" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="878.0">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>
@@ -188,7 +188,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="btnUpdatePassword" alignment="CENTER" contentDisplay="CENTER" layoutX="876.0" layoutY="608.0" mnemonicParsing="false" onAction="#handleUpdateUsername" prefHeight="50.0" prefWidth="228.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Update" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnUpdatePassword" alignment="CENTER" contentDisplay="CENTER" layoutX="878.0" layoutY="623.0" mnemonicParsing="false" onAction="#handleUpdateUsername" prefHeight="50.0" prefWidth="228.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Update" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>
@@ -257,7 +257,7 @@
                   <Font name="Calibri Bold" size="26.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="hyprFAQ" layoutX="42.0" layoutY="61.0" minHeight="-Infinity" onAction="#FAQPage" prefHeight="32.0" prefWidth="305.0" text="FAQs" AnchorPane.leftAnchor="40.0">
+            <Hyperlink fx:id="hyprFAQ" layoutX="40.0" layoutY="73.0" minHeight="-Infinity" onAction="#FAQPage" prefHeight="32.0" prefWidth="305.0" text="Frequently Asked Questions" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font size="18.0" />
                </font>

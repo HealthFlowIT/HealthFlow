@@ -183,6 +183,35 @@ public class ForgotPasswordController {
         }
     }
 
+//    @FXML
+//    public void handleResetPasswordAction() {
+//        String username = txtUsername.getText();
+//        String securityAnswer = txtfSecurityAnswer.getText();
+//        String newPassword = passfNewPass.getText();
+//        String confirmNewPassword = passfConfirmNewPass.getText();
+//
+//        // Check if any field is empty
+//        if (username.isEmpty() || securityAnswer.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+//            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all the fields.");
+//            return;
+//        }
+//
+//        // Check if passwords match
+//        if (!newPassword.equals(confirmNewPassword)) {
+//            showAlert(Alert.AlertType.ERROR, "Error", "New password and confirmation do not match.");
+//            return;
+//        }
+//
+//        // Verify security answer
+//        if (verifySecurityAnswer(username, securityAnswer)) {
+//            // If correct, update the password
+//            updatePassword(username, newPassword);
+//            clearAllFields();
+//        } else {
+//            showAlert(Alert.AlertType.ERROR, "Error", "Incorrect security answer. Please try again.");
+//        }
+//    }
+
     @FXML
     public void handleResetPasswordAction() {
         String username = txtUsername.getText();
@@ -202,6 +231,12 @@ public class ForgotPasswordController {
             return;
         }
 
+        // Check if newPassword is alphanumeric and contains a special character
+        if (!isValidPassword(newPassword)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Password must be alphanumeric and contain at least one special character.");
+            return;
+        }
+
         // Verify security answer
         if (verifySecurityAnswer(username, securityAnswer)) {
             // If correct, update the password
@@ -212,6 +247,14 @@ public class ForgotPasswordController {
         }
     }
 
+    // Method to validate password
+    private boolean isValidPassword(String password) {
+        // Check for at least one special character and alphanumeric
+        boolean hasSpecialChar = !password.matches("[A-Za-z0-9 ]*");
+        boolean isAlphanumeric = password.matches(".*[A-Za-z].*") && password.matches(".*[0-9].*");
+
+        return hasSpecialChar && isAlphanumeric;
+    }
     @FXML
     public void handleClearAllAction() {
         clearAllFields();

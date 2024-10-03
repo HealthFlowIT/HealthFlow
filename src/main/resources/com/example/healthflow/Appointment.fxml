@@ -30,7 +30,7 @@
          </Label>
       </children>
    </AnchorPane>
-   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="707.0" mnemonicParsing="false" onAction="#handleClearAll" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="707.0">
+   <Button fx:id="btnClearAll" alignment="CENTER" contentDisplay="CENTER" layoutX="354.0" layoutY="707.0" mnemonicParsing="false" onAction="#clearFormFields" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="354.0" AnchorPane.topAnchor="707.0">
       <font>
          <Font name="Book Antiqua" size="24.0" />
       </font>

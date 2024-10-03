@@ -380,7 +380,7 @@
 //
 
 
-//
+//02-10
 package com.example.healthflow;
 
 import javafx.fxml.FXML;
@@ -437,8 +437,8 @@ public class PatientRegistrationController {
     public String selectedBloodGroup = null;
     @FXML
     public AnchorPane ankrMain;
-    
-    
+
+
     // Handler for Home button
     @FXML
     public void handleHomeButtonClick() throws IOException {
@@ -520,8 +520,8 @@ public class PatientRegistrationController {
         stage.setScene(homePageScene);
         stage.show();
     }
-    
-    
+
+
     @FXML
     public void initialize() {
         setNextPatientID();
@@ -558,6 +558,80 @@ public class PatientRegistrationController {
     }
 
     // Method to save patient details to the database
+//    @FXML
+//    public void handleSaveButtonClick() {
+//        String patientID = txtfPatientID.getText();
+//        String firstName = txtfFirstName.getText();
+//        String lastName = txtfLastName.getText();
+//        String address = txtfAddressLine1.getText();
+//        String city = txtfCity.getText();
+//        String pinCode = txtfPIN.getText();
+//        String bedNumber = txtfBedno1.getText();
+//        String age = txtfAge.getText();
+//        String dob = (txtfDOB.getValue() != null) ? txtfDOB.getValue().toString() : null;  // Null safety for DatePicker
+//        String phone = txtfPhoneNo.getText();
+//        String email = txtfEmail.getText();
+//        String street = txtfStreet.getText();
+//
+//        // Check for required fields
+//        if (patientID == null || firstName == null || lastName == null || dob == null || selectedGender == null || selectedBloodGroup == null) {
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Validation Error");
+//            alert.setContentText("Please fill in all required fields.");
+//            alert.showAndWait();
+//            return;
+//        }
+//
+//        // SQL query for patient table
+//        String queryPatient = "INSERT INTO patient (patient_id, first_name, last_name, Address, city, pincode, Blood_Group, Age, DOB, Gender, phone_no, email_id, street) "
+//                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//        // SQL query for bed table
+//        String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
+//
+//        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
+//             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient);
+//             PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
+//
+//            // Set parameters for patient table
+//            pstmtPatient.setString(1, patientID);
+//            pstmtPatient.setString(2, firstName);
+//            pstmtPatient.setString(3, lastName);
+//            pstmtPatient.setString(4, address);
+//            pstmtPatient.setString(5, city);
+//            pstmtPatient.setString(6, pinCode);
+//            pstmtPatient.setString(7, selectedBloodGroup); // Use selected blood group
+//            pstmtPatient.setString(8, age);
+//            pstmtPatient.setString(9, dob);
+//            pstmtPatient.setString(10, selectedGender); // Use selected gender
+//            pstmtPatient.setString(11, phone);
+//            pstmtPatient.setString(12, email);
+//            pstmtPatient.setString(13, street);
+//
+//            // Set parameters for bed table
+//            pstmtBed.setString(1, bedNumber);
+//            pstmtBed.setString(2, patientID);
+//
+//            // Execute the queries
+//            pstmtPatient.executeUpdate();
+//            pstmtBed.executeUpdate();
+//
+//            // Notify the user
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Success");
+//            alert.setContentText("Patient details saved successfully!");
+//            alert.showAndWait();
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Error");
+//            alert.setContentText("Failed to save patient details: " + e.getMessage());
+//            alert.showAndWait();
+//        }
+//    }
+
+    // Method to save patient details to the database
     @FXML
     public void handleSaveButtonClick() {
         String patientID = txtfPatientID.getText();
@@ -570,14 +644,41 @@ public class PatientRegistrationController {
         String age = txtfAge.getText();
         String dob = (txtfDOB.getValue() != null) ? txtfDOB.getValue().toString() : null;  // Null safety for DatePicker
         String phone = txtfPhoneNo.getText();
-        String email = txtfEmail.getText();
+        String email = txtfEmail.getText().toLowerCase();  // Convert email to lowercase
         String street = txtfStreet.getText();
 
         // Check for required fields
-        if (patientID == null || firstName == null || lastName == null || dob == null || selectedGender == null || selectedBloodGroup == null) {
+        if (patientID.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || dob == null || selectedGender == null || selectedBloodGroup == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validation Error");
             alert.setContentText("Please fill in all required fields.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate phone number (10 digits)
+        if (!phone.matches("\\d{10}")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Error");
+            alert.setContentText("Phone number must be 10 digits.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate email (must contain "@" and be in lowercase)
+        if (!email.contains("@")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Error");
+            alert.setContentText("Email must contain '@' and be in lowercase.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Validate PIN code (must be digits)
+        if (!pinCode.matches("\\d+")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validation Error");
+            alert.setContentText("PIN code must contain only digits.");
             alert.showAndWait();
             return;
         }
@@ -590,8 +691,7 @@ public class PatientRegistrationController {
         String queryBed = "INSERT INTO bed (bed_no, patient_id) VALUES (?, ?)";
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthflow", "root", "12345678");
-             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient);
-             PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
+             PreparedStatement pstmtPatient = conn.prepareStatement(queryPatient)) {
 
             // Set parameters for patient table
             pstmtPatient.setString(1, patientID);
@@ -608,13 +708,17 @@ public class PatientRegistrationController {
             pstmtPatient.setString(12, email);
             pstmtPatient.setString(13, street);
 
-            // Set parameters for bed table
-            pstmtBed.setString(1, bedNumber);
-            pstmtBed.setString(2, patientID);
-
-            // Execute the queries
+            // Execute the patient table query
             pstmtPatient.executeUpdate();
-            pstmtBed.executeUpdate();
+
+            // Insert into bed table only if bed number is provided
+            if (bedNumber != null && !bedNumber.trim().isEmpty()) {
+                try (PreparedStatement pstmtBed = conn.prepareStatement(queryBed)) {
+                    pstmtBed.setString(1, bedNumber);
+                    pstmtBed.setString(2, patientID);
+                    pstmtBed.executeUpdate();
+                }
+            }
 
             // Notify the user
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -630,6 +734,8 @@ public class PatientRegistrationController {
             alert.showAndWait();
         }
     }
+
+
 
     // Method to clear all form fields
     public void handleClearButtonClick() {

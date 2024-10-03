@@ -135,7 +135,7 @@ public class SetCredentialsController {
                 try {
                     saveToDatabase(username, setPassword, securityQuestion, securityAnswer);
                     showAlert(Alert.AlertType.INFORMATION, "Success", "Credentials saved successfully!");
-                    closeWindow();
+//                    closeWindow();
                 } catch (SQLException e) {
                     showAlert(Alert.AlertType.ERROR, "Database Error", "Failed to save credentials: " + e.getMessage());
                 }
@@ -239,11 +239,11 @@ public class SetCredentialsController {
         alert.showAndWait();
     }
 
-    @FXML
-    public void closeWindow() {
-        Stage stage = (Stage) btnSave.getScene().getWindow();
-        stage.close();
-    }
+//    @FXML
+//    public void closeWindow() {
+//        Stage stage = (Stage) btnSave.getScene().getWindow();
+//        stage.close();
+//    }
 
     @FXML
     public void clearAll() {

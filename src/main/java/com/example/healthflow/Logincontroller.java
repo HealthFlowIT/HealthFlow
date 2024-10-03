@@ -1,5 +1,3 @@
-
-//30-09
 //package com.example.healthflow;
 //
 //import javafx.event.ActionEvent;
@@ -8,6 +6,7 @@
 //import javafx.scene.Scene;
 //import javafx.scene.control.*;
 //import javafx.scene.Node;
+//import javafx.scene.layout.Pane;
 //import javafx.stage.Stage;
 //
 //import java.io.IOException;
@@ -38,117 +37,94 @@
 //    private Label lblError;  // Error Label for login failure
 //
 //    @FXML
-//    private TextField tfpassVisible = new TextField();  // For showing plain password
+//    private TextField tfpassVisible = new TextField();  // TextField for showing plain password
 //
-//    // Database connection details
 //    private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-//    private final String DB_USERNAME = "root"; // Replace with your MySQL username
-//    private final String DB_PASSWORD = "12345678"; // Replace with your MySQL password
+//    private final String DB_USERNAME = "root";  // Replace with your MySQL username
+//    private final String DB_PASSWORD = "12345678";  // Replace with your MySQL password
 //
 //    @FXML
 //    void initialize() {
-//        // Sync the text between PasswordField and the TextField
 //        tfpassVisible.setManaged(false);
 //        tfpassVisible.setVisible(false);
 //        tfpassVisible.textProperty().bindBidirectional(tfpass.textProperty());
+//
+//        CBoxShowPass.setOnAction(event -> togglePasswordVisibility());
 //    }
 //
 //    @FXML
 //    void handleLogin(ActionEvent event) {
 //        String username = tfuser.getText();
-//        String password = tfpass.getText();  // Use `tfpass.getText()` even when password is shown
+//        String password = tfpass.getText();
 //
 //        if (tfuser.getText().isEmpty() || tfpass.getText().isEmpty()) {
-//            lblError.setText("Please enter username and password");
+//            lblError.setText("Please enter both username and password");
 //            lblError.setVisible(true);
-//        } else if (isValidCredentials(username, password)) {
-//            // Credentials are correct, navigate to the home page
-//            int userId = getUserId(username);
-//            loadHomePage(event, userId);
 //        } else {
-//            // Credentials are incorrect, show an error alert
-//            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
-//            lblError.setVisible(false);
+//            int validationResult = validateCredentials(username, password);
+//
+//            switch (validationResult) {
+//                case 1:
+//                    lblError.setText("Incorrect username.");
+//                    lblError.setVisible(true);
+//                    break;
+//                case 2:
+//                    lblError.setText("Incorrect password.");
+//                    lblError.setVisible(true);
+//                    break;
+//                case 3:
+//                    lblError.setText("Both username and password are incorrect.");
+//                    lblError.setVisible(true);
+//                    break;
+//                case 0:
+//                    loadHomePage(event);  // Successful login
+//                    lblError.setVisible(false);
+//                    break;
+//                default:
+//                    showAlert(Alert.AlertType.ERROR, "Error", "An unknown error occurred.");
+//            }
 //        }
 //    }
 //
-//    // Method to check if the provided username and password are correct by querying the database
-//    private boolean isValidCredentials(String username, String password) {
-//        boolean isValid = false;
-//        String query = "SELECT * FROM user WHERE username = ? AND password = ?"; // Ensure the table and columns match your DB
+//    private int validateCredentials(String username, String password) {
+//        int result = 3;  // Assume both are incorrect
+//        String queryUsername = "SELECT * FROM user WHERE username = ?";
+//        String queryPassword = "SELECT * FROM user WHERE username = ? AND password = ?";
 //
-//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//
-//            preparedStatement.setString(1, username);
-//            preparedStatement.setString(2, password);
-//
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            if (resultSet.next()) {
-//                isValid = true; // Valid credentials
-//                UserSession2.getInstance(username);
+//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
+//            // Check if the username exists
+//            try (PreparedStatement usernameStmt = connection.prepareStatement(queryUsername)) {
+//                usernameStmt.setString(1, username);
+//                ResultSet rs = usernameStmt.executeQuery();
+//                if (rs.next()) {
+//                    result = 2;  // Username exists, but password might be wrong
+//                }
 //            }
 //
+//            // Check if both username and password are correct
+//            if (result == 2) {
+//                try (PreparedStatement passwordStmt = connection.prepareStatement(queryPassword)) {
+//                    passwordStmt.setString(1, username);
+//                    passwordStmt.setString(2, password);
+//                    ResultSet rs = passwordStmt.executeQuery();
+//                    if (rs.next()) {
+//                        result = 0;  // Both username and password are correct
+//                    }
+//                }
+//            } else {
+//                result = 1;  // Username is incorrect
+//            }
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while connecting to the database.");
 //        }
 //
-//        return isValid;
+//        return result;
 //    }
 //
-//    // Method to get user ID from the database
-//    private int getUserId(String username) {
-//        int userId = -1; // Default if not found
-//        String query = "SELECT id FROM user WHERE username = ?"; // Ensure the table and columns match your DB
-//
-//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//
-//            preparedStatement.setString(1, username);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            if (resultSet.next()) {
-//                userId = resultSet.getInt("id"); // Assuming 'id' is the column name for user ID
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while connecting to the database.");
-//        }
-//
-//        return userId;
-//    }
-//
-////    // Method to load the home page
-////    private void loadHomePage(ActionEvent event, int userId) {
-////        try {
-////            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
-////
-////            Scene scene = new Scene(loader.load());
-////
-////            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-////            stage.setScene(scene);
-////            stage.setTitle("Home");
-////            stage.show();
-////
-////            // Optionally, get the HomeController and pass the user ID
-////            HomeController homeController = loader.getController();
-////            homeController.loadDashboardData(userId);  // Ensure this method exists in HomeController
-////
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////        }
-////    }
-//
-//
-//
-//
-//    private void loadHomePage(ActionEvent event, int userId) {
+//    private void loadHomePage(ActionEvent event) {
 //        try {
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
-//
 //            Scene scene = new Scene(loader.load());
 //
 //            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -156,26 +132,35 @@
 //            stage.setTitle("Home");
 //            stage.show();
 //
-//            // Pass the username or ID to the HomeController (or ProfileController)
-//            HomeController homeController = loader.getController();
-//            homeController.loadUserProfile(userId);  // Assuming you have a method for this in HomeController
+//            com.example.healthflow.HomeController homeController = loader.getController();
+//            homeController.loadDashboardData();
 //
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
 //    }
 //
+//    @FXML
+//    private void togglePasswordVisibility() {
+//        if (CBoxShowPass.isSelected()) {
+//            tfpassVisible.setText(tfpass.getText());
+//            tfpassVisible.setVisible(true);
+//            tfpassVisible.setManaged(true);
+//            tfpass.setVisible(false);
+//            tfpass.setManaged(false);
+//        } else {
+//            tfpass.setText(tfpassVisible.getText());
+//            tfpass.setVisible(true);
+//            tfpass.setManaged(true);
+//            tfpassVisible.setVisible(false);
+//            tfpassVisible.setManaged(false);
+//        }
+//    }
 //
-//
-//
-//
-//
-//    // Handle forgot password hyperlink click
 //    @FXML
 //    void handleForgotPassword(ActionEvent event) {
 //        try {
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/ForgotPassword.fxml"));
-//
 //            Scene scene = new Scene(loader.load());
 //
 //            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -189,30 +174,6 @@
 //        }
 //    }
 //
-//
-//    @FXML
-//    private void togglePasswordVisibility() {
-//        if (CBoxShowPass.isSelected()) {
-//            // Set TextField visible, and hide PasswordField
-//            tfpassVisible.setText(tfpass.getText());
-//            tfpassVisible.setVisible(true);
-//            tfpassVisible.setManaged(true);
-//
-//            tfpass.setVisible(false);
-//            tfpass.setManaged(false);
-//        } else {
-//            // Set PasswordField visible, and hide TextField
-//            tfpass.setText(tfpassVisible.getText());
-//            tfpass.setVisible(true);
-//            tfpass.setManaged(true);
-//
-//            tfpassVisible.setVisible(false);
-//            tfpassVisible.setManaged(false);
-//        }
-//    }
-//
-//
-//    // Utility method to show alerts
 //    private void showAlert(Alert.AlertType alertType, String title, String message) {
 //        Alert alert = new Alert(alertType);
 //        alert.setTitle(title);
@@ -220,203 +181,9 @@
 //        alert.setContentText(message);
 //        alert.showAndWait();
 //    }
-//
-//
-//
-//
-//
-//}
-//package com.example.healthflow;
-//
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
-//import javafx.scene.Scene;
-//import javafx.scene.control.*;
-//import javafx.scene.Node;
-//import javafx.stage.Stage;
-//
-//import java.io.IOException;
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//
-//public class Logincontroller {
-//
-//    @FXML
-//    private CheckBox CBoxShowPass;
-//
-//    @FXML
-//    private Hyperlink HypLinkForgPass;
-//
-//    @FXML
-//    private TextField tfuser;  // Username TextField
-//
-//    @FXML
-//    private PasswordField tfpass;  // Password PasswordField
-//
-//    @FXML
-//    private Button btnlog;  // Login Button
-//
-//    @FXML
-//    private Label lblError;  // Error Label for login failure
-//
-//    @FXML
-//    private TextField tfpassVisible = new TextField();  // For showing plain password
-//
-//    // Database connection details
-//    private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-//    private final String DB_USERNAME = "root"; // Replace with your MySQL username
-//    private final String DB_PASSWORD = "12345678"; // Replace with your MySQL password
-//
-//    @FXML
-//    void initialize() {
-//        // Sync the text between PasswordField and the TextField
-//        tfpassVisible.setManaged(false);
-//        tfpassVisible.setVisible(false);
-//        tfpassVisible.textProperty().bindBidirectional(tfpass.textProperty());
-//    }
-//
-//    @FXML
-//    void handleLogin(ActionEvent event) {
-//        String username = tfuser.getText();
-//        String password = tfpass.getText();  // Use `tfpass.getText()` even when password is shown
-//
-//        if (tfuser.getText().isEmpty() || tfpass.getText().isEmpty()) {
-//            lblError.setText("Please enter username and password");
-//            lblError.setVisible(true);
-//        } else if (isValidCredentials(username, password)) {
-//            // Credentials are correct, navigate to the home page
-//            int userId = getUserId(username);
-//            loadHomePage(event, userId);
-//        } else {
-//            // Credentials are incorrect, show an error alert
-//            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
-//            lblError.setVisible(false);
-//        }
-//    }
-//
-//    // Method to check if the provided username and password are correct by querying the database
-//    private boolean isValidCredentials(String username, String password) {
-//        boolean isValid = false;
-//        String query = "SELECT * FROM user WHERE username = ? AND password = ?"; // Ensure the table and columns match your DB
-//
-//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//
-//            preparedStatement.setString(1, username);
-//            preparedStatement.setString(2, password);
-//
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            if (resultSet.next()) {
-//                isValid = true; // Valid credentials
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while connecting to the database.");
-//        }
-//
-//        return isValid;
-//    }
-//
-//    // Method to get user ID from the database
-//    private int getUserId(String username) {
-//        int userId = -1; // Default if not found
-//        String query = "SELECT id FROM user WHERE username = ?"; // Ensure the table and columns match your DB
-//
-//        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-//             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-//
-//            preparedStatement.setString(1, username);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            if (resultSet.next()) {
-//                userId = resultSet.getInt("id"); // Assuming 'id' is the column name for user ID
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while connecting to the database.");
-//        }
-//
-//        return userId;
-//    }
-//
-//    // Method to load the home page
-//    private void loadHomePage(ActionEvent event, int userId) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
-//
-//            Scene scene = new Scene(loader.load());
-//
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.setTitle("Home");
-//            stage.show();
-//
-//            // Optionally, get the HomeController and pass the user ID
-//            HomeController homeController = loader.getController();
-//            homeController.loadDashboardData(userId);  // Ensure this method exists in HomeController
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    // Handle forgot password hyperlink click
-//    @FXML
-//    void handleForgotPassword(ActionEvent event) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/ForgotPassword.fxml"));
-//
-//            Scene scene = new Scene(loader.load());
-//
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.setTitle("Forgot Password");
-//            stage.show();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load Forgot Password page.");
-//        }
-//    }
-//
-//    // Utility method to show alerts
-//    private void showAlert(Alert.AlertType alertType, String title, String message) {
-//        Alert alert = new Alert(alertType);
-//        alert.setTitle(title);
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-//    }
-//        @FXML
-//    private void togglePasswordVisibility() {
-//        if (CBoxShowPass.isSelected()) {
-//            // Set TextField visible, and hide PasswordField
-//            tfpassVisible.setText(tfpass.getText());
-//            tfpassVisible.setVisible(true);
-//            tfpassVisible.setManaged(true);
-//
-//            tfpass.setVisible(false);
-//            tfpass.setManaged(false);
-//        } else {
-//            // Set PasswordField visible, and hide TextField
-//            tfpass.setText(tfpassVisible.getText());
-//            tfpass.setVisible(true);
-//            tfpass.setManaged(true);
-//
-//            tfpassVisible.setVisible(false);
-//            tfpassVisible.setManaged(false);
-//        }
-//    }
-//
 //}
 package com.example.healthflow;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -425,6 +192,7 @@ import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -452,78 +220,99 @@ public class Logincontroller {
     @FXML
     private Label lblError;  // Error Label for login failure
 
-    // Temporary TextField for showing plain password (hidden by default in FXML)
-//    private TextField tfShowPassword = new TextField();
     @FXML
-    private TextField tfpassVisible = new TextField();
-    // Database connection details
+    private TextField tfpassVisible = new TextField();  // TextField for showing plain password
+
     private final String DB_URL = "jdbc:mysql://localhost:3306/healthflow";
-    private final String DB_USERNAME = "root"; // Replace with your MySQL username
-    private final String DB_PASSWORD = "12345678"; // Replace with your MySQL password
+    private final String DB_USERNAME = "root";  // Replace with your MySQL username
+    private final String DB_PASSWORD = "12345678";  // Replace with your MySQL password
 
     @FXML
     void initialize() {
-        // Sync the text between PasswordField and the TextField
         tfpassVisible.setManaged(false);
         tfpassVisible.setVisible(false);
-
-        // Bind the content of both fields to the same value
         tfpassVisible.textProperty().bindBidirectional(tfpass.textProperty());
 
-        // Handle the Show Password checkbox
         CBoxShowPass.setOnAction(event -> togglePasswordVisibility());
     }
 
     @FXML
     void handleLogin(ActionEvent event) {
         String username = tfuser.getText();
-        String password = tfpass.getText();  // Use tfpass.getText() even when password is shown
+        String password = tfpass.getText();
 
-        if (tfuser.getText().isEmpty() || tfpass.getText().isEmpty()) {
-            lblError.setText("Please enter username and password");
-            lblError.setVisible(true);
-        } else if (isValidCredentials(username, password)) {
-            // Credentials are correct, navigate to the home page
-            loadHomePage(event);
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Login Error", "Please enter both username and password.");
         } else {
-            // Credentials are incorrect, show an error alert
-            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
-            lblError.setVisible(false);
+            int validationResult = validateCredentials(username, password);
+
+            switch (validationResult) {
+                case 1:  // Incorrect username
+                    showAlert(Alert.AlertType.ERROR, "Login Error", "Incorrect username.");
+                    break;
+                case 2:  // Incorrect password
+                    showAlert(Alert.AlertType.ERROR, "Login Error", "Incorrect password.");
+                    break;
+                case 3:  // Both username and password are incorrect
+                    showAlert(Alert.AlertType.ERROR, "Login Error", "Invalid username or password.");
+                    break;
+                case 0:  // Successful login
+                    loadHomePage(event);  // Navigate to home page
+                    break;
+                default:
+                    showAlert(Alert.AlertType.ERROR, "Error", "An unknown error occurred.");
+            }
         }
     }
 
-    // Method to check if the provided username and password are correct by querying the database
-    private boolean isValidCredentials(String username, String password) {
-        boolean isValid = false;
-        String query = "SELECT * FROM user WHERE username = ? AND password = ?"; // Ensure the table and columns match your DB
+//    private void showAlert(Alert.AlertType alertType, String title, String message) {
+//        Alert alert = new Alert(alertType);
+//        alert.setTitle(title);
+//        alert.setHeaderText(null);
+//        alert.setContentText(message);
+//        alert.showAndWait();
+//    }
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
+    private int validateCredentials(String username, String password) {
+        int result = 3;  // Assume both are incorrect
+        String queryUsername = "SELECT * FROM user WHERE username = ?";
+        String queryPassword = "SELECT * FROM user WHERE username = ? AND password = ?";
 
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                // If the result set has a row, that means the credentials are correct
-                isValid = true;
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD)) {
+            // Check if the username exists
+            try (PreparedStatement usernameStmt = connection.prepareStatement(queryUsername)) {
+                usernameStmt.setString(1, username);
+                ResultSet rs = usernameStmt.executeQuery();
+                if (rs.next()) {
+                    result = 2;  // Username exists, but password might be wrong
+                }
             }
 
+            // Check if both username and password are correct
+            if (result == 2) {
+                try (PreparedStatement passwordStmt = connection.prepareStatement(queryPassword)) {
+                    passwordStmt.setString(1, username);
+                    passwordStmt.setString(2, password);
+                    ResultSet rs = passwordStmt.executeQuery();
+                    if (rs.next()) {
+                        result = 0;  // Both username and password are correct
+                    }
+                }
+            } else {
+                result = 1;  // Username is incorrect
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Database Error", "An error occurred while connecting to the database.");
         }
 
-        return isValid;
+        return result;
     }
 
-    // Method to load the home page
     private void loadHomePage(ActionEvent event) {
         try {
-            // Load the home page instead of landing page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/HomePage2.fxml"));
-
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -531,9 +320,8 @@ public class Logincontroller {
             stage.setTitle("Home");
             stage.show();
 
-            // Optionally, get the HomeController and pass any necessary data
             com.example.healthflow.HomeController homeController = loader.getController();
-            homeController.loadDashboardData();  // Ensure this method exists in HomeController for loading the data
+            homeController.loadDashboardData();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -543,32 +331,24 @@ public class Logincontroller {
     @FXML
     private void togglePasswordVisibility() {
         if (CBoxShowPass.isSelected()) {
-            // Set TextField visible, and hide PasswordField
             tfpassVisible.setText(tfpass.getText());
             tfpassVisible.setVisible(true);
             tfpassVisible.setManaged(true);
-
             tfpass.setVisible(false);
             tfpass.setManaged(false);
         } else {
-            // Set PasswordField visible, and hide TextField
             tfpass.setText(tfpassVisible.getText());
             tfpass.setVisible(true);
             tfpass.setManaged(true);
-
             tfpassVisible.setVisible(false);
             tfpassVisible.setManaged(false);
         }
     }
 
-
-    // Handle forgot password hyperlink click
     @FXML
     void handleForgotPassword(ActionEvent event) {
         try {
-            // Load the ForgotPassword page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/healthflow/ForgotPassword.fxml"));
-
             Scene scene = new Scene(loader.load());
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -582,7 +362,6 @@ public class Logincontroller {
         }
     }
 
-    // Utility method to show alerts
     private void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

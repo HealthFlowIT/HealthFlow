@@ -427,6 +427,5 @@
          </DropShadow>
       </effect>
    </Button>
-   <Label fx:id="lblPasswordError" layoutX="150" layoutY="400" text="" />
 
 </AnchorPane>

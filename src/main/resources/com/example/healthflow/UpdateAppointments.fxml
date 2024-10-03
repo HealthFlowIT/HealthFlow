@@ -176,7 +176,7 @@
       <effect>
          <InnerShadow />
       </effect>
-      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleUserButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 20; -fx-border-width: 3;" text="Profile">
+      <Button fx:id="btnUser" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProfileButtonClick" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #5B99C2; -fx-background-radius: 40; -fx-border-color: #112D4E; -fx-border-radius: 20; -fx-border-width: 3;" text="Profile">
          <effect>
                <DropShadow>
                   <color>

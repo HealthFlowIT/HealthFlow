@@ -69,7 +69,7 @@
          <Image url="@search_4202806.png" />
       </image>
    </ImageView>
-      <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="821.0" layoutY="727.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" layoutX="821.0" layoutY="727.0" mnemonicParsing="false" onAction="#handleDeleteButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Delete" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>
@@ -81,7 +81,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="btnDelete1" alignment="CENTER" contentDisplay="CENTER" layoutX="418.0" layoutY="727.0" mnemonicParsing="false" onAction="#handlePrintButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Clear all" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnDelete1" alignment="CENTER" contentDisplay="CENTER" layoutX="418.0" layoutY="727.0" mnemonicParsing="false" onAction="#handlePrintButtonClick" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 40; -fx-background-color: #112D4E;" text="Print" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Book Antiqua" size="24.0" />
          </font>

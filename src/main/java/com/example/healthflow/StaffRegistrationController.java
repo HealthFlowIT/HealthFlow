@@ -393,14 +393,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.Objects;
 
 import static com.example.healthflow.AppointmentController.*;
 
@@ -445,11 +442,10 @@ public class StaffRegistrationController {
     @FXML
     public MenuButton mnubtnChooseGender;
 
-
     // Store staff details temporarily before saving credentials
-    public String tempFirstName, tempLastName, tempDob, tempStaffID, tempPhoneNo, tempEmail, tempQualification,tempGender, tempDepartment;
+    public String tempFirstName, tempLastName, tempDob, tempStaffID, tempPhoneNo, tempEmail, tempQualification, tempGender, tempDepartment;
 
-//     Handler for Home button
+    // Handler for Home button
     @FXML
     public void handleHomeButtonClick() throws IOException {
         switchScene("HomePage2.fxml");
@@ -487,6 +483,7 @@ public class StaffRegistrationController {
     public void handleClinicalManagementTabClick() throws IOException {
         switchScene("ClinicalManagement.fxml");
     }
+
     @FXML
     public void handleUserButtonClick() throws IOException {
         switchScene("LoginPage.fxml"); // Replace "LoginPage.fxml" with the actual FXML file name for your login page
@@ -500,14 +497,12 @@ public class StaffRegistrationController {
     @FXML
     public void handleBackButtonClick() throws IOException {
         // Load the homepage scene from FXML (assuming "HomePage2.fxml" is the homepage)
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("HomePage2.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage2.fxml"));
         Parent homePageRoot = loader.load();
 
         // Get the controller for the homepage
         HomeController homePageController = loader.getController();
-
-        // Call the refreshPage method to refresh the homepage data (this step is optional because the initialize method will do this)
-        homePageController.refreshPage();
+        homePageController.refreshPage(); // Refresh the homepage data
 
         // Get the current stage
         Stage stage = (Stage) ankrMain.getScene().getWindow();
@@ -519,7 +514,7 @@ public class StaffRegistrationController {
         stage.show();
     }
 
-// Update switchScene method to use loader once
+    // Update switchScene method to use loader once
     @FXML
     public void switchScene(String fxmlFile) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -529,10 +524,6 @@ public class StaffRegistrationController {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
-
 
     @FXML
     public void initialize() {
@@ -544,8 +535,6 @@ public class StaffRegistrationController {
         }
         // Call the method to display next staff ID
         displayNextStaffID();
-
-
     }
 
     @FXML
@@ -561,6 +550,7 @@ public class StaffRegistrationController {
             tempQualification = mnubtnChooseQualification.getText();
             tempGender = mnubtnChooseGender.getText();
             tempDepartment = txtfDepartment.getText();
+            // Proceed with further processing...
         }
     }
 
@@ -582,13 +572,30 @@ public class StaffRegistrationController {
     // Method to check if staff details are valid
     @FXML
     public boolean areFieldsValid() {
+        // Check if any field is empty
         if (txtfFirstName.getText().isEmpty() || txtfLastName.getText().isEmpty() || (dtpkrDate.getValue() == null)
                 || txtfStaffID.getText().isEmpty() || txtfPhoneNo.getText().isEmpty() || txtfEmail.getText().isEmpty()
-                || mnubtnChooseQualification.getText().equals("Choose option")  || mnubtnChooseGender.getText().equals("Choose option") || txtfDepartment.getText().isEmpty()) {
+                || mnubtnChooseQualification.getText().equals("Choose option") || mnubtnChooseGender.getText().equals("Choose option")
+                || txtfDepartment.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Validation Error", "All fields must be filled.");
             return false;
         }
-        return true;
+
+        // Validate phone number
+        String phoneNumber = txtfPhoneNo.getText();
+        if (!phoneNumber.matches("\\d{10}")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Phone number must be exactly 10 digits.");
+            return false;
+        }
+
+        // Validate email
+        String email = txtfEmail.getText();
+        if (!email.contains("@")) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error", "Email must contain '@' symbol.");
+            return false;
+        }
+
+        return true; // All validations passed
     }
 
     // Show alert dialog
@@ -599,7 +606,6 @@ public class StaffRegistrationController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
     @FXML
     public void clearAll() {
@@ -639,5 +645,4 @@ public class StaffRegistrationController {
             System.out.println("Error fetching the last staff ID: " + e.getMessage());
         }
     }
-
-    }
+}
