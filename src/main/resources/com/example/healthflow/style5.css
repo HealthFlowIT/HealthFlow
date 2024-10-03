@@ -1,5 +1,5 @@
-/* Default button styling */
-.button {
+/* Default button and menubutton styling */
+.button, .menubutton {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-size: 20px;
@@ -7,27 +7,44 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-overflow: hidden; /* Ensures the ripple stays within the button */
+    -fx-effect: dropshadow(gaussian, #094c66, 4, 0, 4, 4); /* Box shadow */
+    -fx-transition: transform 200ms, -fx-effect 200ms; /* Transition for hover */
 }
 
-/* Hover effect for buttons */
-.button:hover {
+/* Ensure the text fill for menubutton is white */
+.menubutton > .label {
+    -fx-text-fill: white;  /* Force white text color for MenuButton */
+}
+
+/* Hover effect for buttons and MenuButtons */
+.button:hover, .menubutton:hover {
     -fx-background-color: #45a049;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #094c66, 6, 0, 2, 2); /* Slightly bigger shadow on hover */
+}
+
+/* Button and MenuButton pressed effect (similar to active state) */
+.button:pressed, .menubutton:pressed {
+    -fx-translate-x: 4px;
+    -fx-translate-y: 4px;
+    -fx-effect: dropshadow(gaussian, #094c66, 0, 0, 0, 0); /* Shadow disappears on press */
 }
 
 /* Specific button hover styles */
 #btnHome:hover, #btnAppointment:hover, #btnBilling:hover,
-#btnClinicalManagement:hover, #btnUser:hover {
-    -fx-background-color: #3e8e41;  /* Change background color on hover */
+#btnClinicalManagement:hover, #btnUser:hover,
+#menuHome:hover, #menuAppointment:hover, #menuBilling:hover,
+#menuClinicalManagement:hover, #menuUser:hover, #StaffTab:hover, #DoctorTab:hover, #PatientTab:hover {
+    /*-fx-background-color: #3e8e41;  !* Change background color on hover *!*/
     -fx-scale-x: 1.05;              /* Slightly increase the button size */
     -fx-scale-y: 1.05;
     -fx-text-fill: #f4f4f4;         /* Change text color on hover */
 }
 
-/* Optional: Button hover animation */
-.button {
+/* Optional: Button and MenuButton hover animation */
+.button, .menubutton {
     -fx-transition: all 0.2s ease-in-out;
 }
 
@@ -42,7 +59,7 @@
 }
 
 /* Ripple active (expanding) */
-.button:pressed .ripple {
+.button:pressed .ripple, .menubutton:pressed .ripple {
     -fx-opacity: 1;
     -fx-scale-x: 20;
     -fx-scale-y: 20;
