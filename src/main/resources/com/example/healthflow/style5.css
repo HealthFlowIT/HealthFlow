@@ -36,7 +36,8 @@
 #btnHome:hover, #btnAppointment:hover, #btnBilling:hover,
 #btnClinicalManagement:hover, #btnUser:hover,
 #menuHome:hover, #menuAppointment:hover, #menuBilling:hover,
-#menuClinicalManagement:hover, #menuUser:hover, #StaffTab:hover, #DoctorTab:hover, #PatientTab:hover {
+#menuClinicalManagement:hover, #menuUser:hover, #StaffTab:hover,
+#DoctorTab:hover, #PatientTab:hover {
     /*-fx-background-color: #3e8e41;  !* Change background color on hover *!*/
     -fx-scale-x: 1.05;              /* Slightly increase the button size */
     -fx-scale-y: 1.05;
