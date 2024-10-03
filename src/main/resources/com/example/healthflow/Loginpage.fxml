@@ -22,16 +22,10 @@
          <AnchorPane layoutX="198.0" layoutY="15.0" prefHeight="153.0" prefWidth="153.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 20;" AnchorPane.rightAnchor="190.0" />
 
             <!-- Username Field -->
-            <TextField fx:id="tfuser" alignment="CENTER" layoutX="143.0" layoutY="256.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 40;" styleClass="text-field-shadow" AnchorPane.topAnchor="256.0">
-            <font>
-               <Font name="Book Antiqua" size="36.0" />
-            </font></TextField>
+            <TextField fx:id="tfuser" alignment="CENTER" layoutX="143.0" layoutY="256.0" prefHeight="50.0" prefWidth="300.0" promptText="Username" style="-fx-background-radius: 40;" styleClass="text-field-shadow" AnchorPane.topAnchor="256.0" />
 
             <!-- Password Field -->
-            <PasswordField fx:id="tfpass" alignment="CENTER" layoutX="143.0" layoutY="330.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 40;" styleClass="text-field-shadow" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="132.66666666666669" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="330.0">
-            <font>
-               <Font name="Calibri" size="36.0" />
-            </font></PasswordField>
+            <PasswordField fx:id="tfpass" alignment="CENTER" layoutX="143.0" layoutY="330.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="300.0" promptText="Password" style="-fx-background-radius: 40;" styleClass="text-field-shadow" AnchorPane.bottomAnchor="210.0" AnchorPane.leftAnchor="132.66666666666669" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="330.0" />
 
             <!-- Login Button -->
             <Button fx:id="btnlog" layoutX="175.0" layoutY="468.0" onAction="#handleLogin" prefHeight="50.0" prefWidth="200.0" style="-fx-background-radius: 20;" styleClass="login-button" text="Login">
