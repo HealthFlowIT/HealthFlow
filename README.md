@@ -17,6 +17,11 @@ While many existing healthcare systems deliver basic functionality, they often c
 By integrating these advanced features, HMS enhances healthcare operations, improves patient satisfaction, and empowers providers to deliver high-quality care.
 
 ---
+## 📽️ Demo Video
+
+▶️ [Click here to watch the demo video](https://drive.google.com/file/d/1bKhQoOz9UquhnGChWHFATTHx1tk75zDJ/view?usp=sharing)
+
+---
 
 ## **Key Features**
 
